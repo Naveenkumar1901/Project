@@ -1,14 +1,13 @@
 import React from "react";
 import Sidebar from "../components/Sidebar";
 import BasePage from "../reusableComponent/BasePage";
-import "../styles/home.css";
-const Home = () => {
+const Schedule = () => {
   return (
-    <div className="homeContainer">
+    <div>
       <Sidebar displayName="Abcd" />
       <BasePage />
     </div>
   );
 };
 
-export default Home;
+export default Schedule;

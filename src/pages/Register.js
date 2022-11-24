@@ -1,15 +1,15 @@
-import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import Base from '../reusableComponent/Base';
-import '../styles/loading.css';
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import AuthenticateBase from "../reusableComponent/AuthenticateBase";
+import "../styles/loading.css";
 const Register = () => {
   const navigate = useNavigate();
   const home = () => {
-    navigate('/');
+    navigate("/");
   };
   return (
     <div className="register-container">
-      <Base
+      <AuthenticateBase
         formName="Sign up"
         textType="text"
         passwordType="password"

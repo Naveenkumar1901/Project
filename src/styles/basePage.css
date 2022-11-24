@@ -1,0 +1,114 @@
+.basePageContainer {
+  height: 100%;
+  width: 80%;
+}
+
+.basePageInnerContainer {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 10%;
+  padding: 0px 40px 0px 40px;
+  margin-top: 20px;
+}
+
+.logo {
+  width: 7.5%;
+  height: 100%;
+}
+
+.searchSection {
+  background-color: #ffffff;
+  height: 60%;
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 5px;
+  box-shadow: 0px 5px 5px 5px rgba(135, 135, 135, 0.25);
+}
+
+.searchIcon,
+.closeIcon {
+  font-size: 30px;
+  font-weight: 500;
+  color: #232323;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.search {
+  height: 90%;
+  width: 90%;
+  border: none;
+  padding: 5px;
+  outline-color: #f0ce1b;
+  font-family: Poppins;
+  font-size: 16px;
+  font-weight: 500;
+  color: #474747;
+}
+
+.search::placeholder {
+  font-family: Poppins;
+  font-size: 16px;
+  font-weight: 500;
+  color: #232323;
+}
+
+.banner {
+  width: 100%;
+  height: 40%;
+  padding: 10px 40px 10px 40px;
+}
+
+.selectServiceText {
+  display: flex;
+  font-family: Poppins;
+  font-size: 16px;
+  font-weight: 600;
+  color: #474747;
+  align-items: center;
+  justify-content: left;
+  padding: 10px 40px 10px 40px;
+}
+
+.serviceSection {
+  display: grid;
+  width: 100%;
+  height: 100%;
+  padding: 10px 40px 10px 40px;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+.eachService {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 20%;
+  height: 50%;
+  border-radius: 10px;
+  box-shadow: 0px 5px 5px 5px rgba(135, 135, 135, 0.25);
+  cursor: pointer;
+  transition: 0.4s;
+}
+
+.eachService:hover {
+  transform: scale(1.2);
+}
+
+.serviceIcon {
+  object-fit: contain;
+  width: 75%;
+  overflow: hidden;
+  height: 40%;
+}

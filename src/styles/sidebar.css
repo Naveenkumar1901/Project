@@ -1,0 +1,83 @@
+.sidebarContainer {
+  height: 100%;
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: left;
+  padding-right: 15px;
+  border-right: 1.5px solid #f0ce1b;
+  box-shadow: rgba(206, 41, 41, 0.25) 0px 54px 55px,
+    rgba(174, 20, 20, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+    rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px !important;
+}
+
+.menuIcon,
+.homeIcon,
+.offerIcon,
+.profileIcon,
+.upcomingIcon,
+.outgoingIcon,
+.scheduleIcon {
+  font-size: 25px;
+  color: #232323;
+}
+
+.menuIcon {
+  color: #f0ce1b;
+}
+
+.displayName {
+  font-family: Roboto;
+  font-size: 16px;
+  font-weight: 700;
+  gap: 10px;
+  color: #474747;
+}
+
+.homeText,
+.offersText,
+.profileText,
+.upcomingText,
+.outgoingText,
+.scheduleText {
+  font-family: Poppins;
+  font-size: 16px;
+  font-weight: 500;
+  color: #232323;
+}
+
+.menuSection,
+.homeSection,
+.offerSection,
+.profileSection,
+.upcomingSection,
+.outgoingSection,
+.scheduleSection {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  cursor: pointer;
+  padding: 10px 10px 10px 30px;
+  gap: 10px;
+  border-radius: 5px;
+  margin: 0px 0px 20px 0px;
+  transition: 0.2s;
+  box-shadow: 5px 5px 5px 5px rgba(135, 135, 135, 0.25);
+}
+
+.menuSection {
+  margin: 30px 0 30px 0;
+  box-shadow: none;
+}
+
+.homeSection:hover,
+.offerSection:hover,
+.profileSection:hover,
+.upcomingSection:hover,
+.outgoingSection:hover,
+.scheduleSection:hover {
+  background-color: #f0ce1b;
+  transform: scale(1.125);
+}
