@@ -9,6 +9,7 @@ import {
 } from "react-icons/md";
 import { AiOutlineSchedule } from "react-icons/ai";
 import { IoPersonOutline } from "react-icons/io5";
+import logo from "../assets/Logo.png";
 import "../styles/sidebar.css";
 
 const Sidebar = (props) => {
@@ -16,18 +17,18 @@ const Sidebar = (props) => {
   return (
     <div className="sidebarContainer">
       <div className="menuSection">
-        <BiMenuAltLeft className="menuIcon" />
+        <img src={logo} alt="" className="logo" />
         <p className="displayName">Hello {props.displayName}</p>
       </div>
       <div className="homeSection" onClick={() => navigate("/")}>
         <MdOutlineHome className="homeIcon" />
         <p className="homeText">Home</p>
       </div>
-      <div className="offerSection" onClick={() => navigate("/offers")}>
+      <div className="offerSection" >
         <MdOutlineLocalOffer className="offerIcon" />
         <p className="offersText">Offers</p>
       </div>
-      <div className="profileSection" onClick={() => navigate("/profile")}>
+      <div className="profileSection" >
         <IoPersonOutline className="profileIcon" />
         <p className="profileText">Profile</p>
       </div>

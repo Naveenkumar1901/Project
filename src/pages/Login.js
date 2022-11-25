@@ -1,14 +1,15 @@
 import React from "react";
-import AuthenticateBase from "../reusableComponent/AuthenticateBase";
+import AuthenticationBase from "../reusableComponent/AuthenticationBase";
 
 const Login = () => {
   return (
     <div>
-      <AuthenticateBase
+      <AuthenticationBase
         formName="Log in"
-        text="text"
-        password="password"
-        placeholder="Mobile no"
+        type1="text"
+        type2="password"
+        placeholder2="Mobile no"
+        placeholder3="Password"
         forgot="Forgot password?"
         ques="Don't have an account"
         btnName="Log in"

@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import Sidebar from "../components/Sidebar";
-import BasePage from "../reusableComponent/BasePage";
+import HomeBase from "../reusableComponent/HomeBase";
 import "../styles/home.css";
 const Home = () => {
+  const [loading, setLoading] = useState(true);
   return (
     <div className="homeContainer">
+      <loading/>
       <Sidebar displayName="Abcd" />
-      <BasePage />
+      <HomeBase />
     </div>
   );
 };

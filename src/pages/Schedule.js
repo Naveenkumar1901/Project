@@ -1,11 +1,10 @@
 import React from "react";
 import Sidebar from "../components/Sidebar";
-import BasePage from "../reusableComponent/BasePage";
+import "../styles/schedule.css"
 const Schedule = () => {
   return (
-    <div>
+    <div className="scheduleContainer">
       <Sidebar displayName="Abcd" />
-      <BasePage />
     </div>
   );
 };

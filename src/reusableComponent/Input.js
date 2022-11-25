@@ -1,5 +1,5 @@
 import React from 'react';
-import '../styles/base.css';
+import '../styles/authenticationBase.css';
 
 const Input = (props) => {
   return (

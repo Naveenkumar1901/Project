@@ -1,19 +1,17 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { BiSearchAlt2 } from "react-icons/bi";
 import { IoClose } from "react-icons/io5";
 import "../styles/basePage.css";
-import logo from "../assets/Logo.png";
-import banner from "../assets/homeBanner.png";
-import service from "../assets/Repair.png";
-import { useNavigate } from "react-router-dom";
+import banner from "../assets/bannerDesign.jpg";
 import services from "../serviceSection";
+
 const BasePage = () => {
   const navigate = useNavigate();
   return (
     <div className="basePageContainer">
       <div className="basePageInnerContainer">
         <div className="navbar">
-          <img src={logo} alt="" className="logo" />
           <div className="searchSection">
             <BiSearchAlt2 className="searchIcon" />
             <input type="text" placeholder="Search" className="search" />
@@ -28,14 +26,23 @@ const BasePage = () => {
             Log out
           </button>
         </div>
+        
         <img src={banner} alt="" className="banner" />
         <span className="selectServiceText">Select Service</span>
+        
         <div className="serviceSection">
-          <div className="eachService">
-            {/* {service.map((data) => data.imgFile)} */}
-            <img src={service} alt="" className="serviceIcon" />
-            <p className="serviceName">Repair</p>
-          </div>
+          {services.map((data, index) => {
+                return (
+                  <div className="eachService">
+                  <div key={index} className="serviceIcon">
+                    {data.icon}
+                  </div>
+                  <p key={index} className="serviceName">
+                  {data.name}
+                </p>
+                </div>
+                );
+              })}
         </div>
       </div>
     </div>

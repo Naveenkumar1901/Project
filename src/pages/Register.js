@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import AuthenticateBase from "../reusableComponent/AuthenticateBase";
+import AuthenticationBase from "../reusableComponent/AuthenticationBase";
 import "../styles/loading.css";
 const Register = () => {
   const navigate = useNavigate();
@@ -9,13 +9,13 @@ const Register = () => {
   };
   return (
     <div className="register-container">
-      <AuthenticateBase
+      <AuthenticationBase
         formName="Sign up"
-        textType="text"
-        passwordType="password"
-        mobileno="Mobile no"
-        password="Password"
-        username="Username"
+        type1="text"
+        type2="password"
+        placeholder2="Mobile no"
+        placeholder3="Password"
+        placeholder1="Username"
         ques="Already have an account"
         btnName="Sign up"
         routeLink="/login"

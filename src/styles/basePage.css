@@ -16,19 +16,15 @@
   justify-content: space-between;
   width: 100%;
   height: 10%;
-  padding: 0px 40px 0px 40px;
+  padding: 0px 60px 0px 60px;
   margin-top: 20px;
 }
 
-.logo {
-  width: 7.5%;
-  height: 100%;
-}
 
 .searchSection {
   background-color: #ffffff;
   height: 60%;
-  width: 50%;
+  width: 35%;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -66,8 +62,8 @@
 
 .banner {
   width: 100%;
-  height: 40%;
-  padding: 10px 40px 10px 40px;
+  height: 35%;
+  padding: 10px 60px 10px 60px;
 }
 
 .selectServiceText {
@@ -78,15 +74,19 @@
   color: #474747;
   align-items: center;
   justify-content: left;
-  padding: 10px 40px 10px 40px;
+  padding: 10px 0px 0px 60px;
 }
 
 .serviceSection {
   display: grid;
+  align-items: center;
+  justify-content: center;
   width: 100%;
   height: 100%;
-  padding: 10px 40px 10px 40px;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  padding: 10px 0px 10px 60px;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
 }
 
 .eachService {
@@ -94,21 +94,35 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 20%;
-  height: 50%;
+  background-color: #ffffff;
+  width: 75%;
+  height: 80%;
+  object-fit: contain;
   border-radius: 10px;
-  box-shadow: 0px 5px 5px 5px rgba(135, 135, 135, 0.25);
+  box-shadow: 10px 10px 10px 10px rgba(135, 135, 135, 0.25);
   cursor: pointer;
-  transition: 0.4s;
+  transition: 0.25s;
 }
 
 .eachService:hover {
   transform: scale(1.2);
+  outline: auto;
+  outline-color: #f0ce1b;
 }
 
 .serviceIcon {
+  font-size: 50px;
+  font-weight:bolder;
   object-fit: contain;
-  width: 75%;
-  overflow: hidden;
-  height: 40%;
+  color: #f0ce1b;
+
+}
+
+.serviceName {
+  display: flex;
+  font-family: Poppins;
+  font-size: 16px;
+  font-weight: 600;
+  color: #474747;
+  align-items: center;
 }

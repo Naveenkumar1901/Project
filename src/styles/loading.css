@@ -5,7 +5,7 @@ loading {
   z-index: 12;
   position: fixed;
   --gradient-yellow: #f0ce1b;
-  --gradient-lightYellow: lightyellow;
+  --gradient-white: #ffffff;
 }
 
 loading {
@@ -13,7 +13,7 @@ loading {
     0.5s ease-out LoadingBarEnter;
   background: linear-gradient(
     to right,
-    var(--gradient-lightYellow),
+    var(--gradient-white),
     var(--gradient-yellow)
   );
   background-size: 500%;

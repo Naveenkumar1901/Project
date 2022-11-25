@@ -1,14 +1,14 @@
 import React from "react";
-import AuthenticateBase from "../reusableComponent/AuthenticateBase";
+import AuthenticationBase from "../reusableComponent/AuthenticationBase";
 
 const ResetPassword = () => {
   return (
     <div>
-      <AuthenticateBase
+      <AuthenticationBase
         formName="Create new password"
-        textType="password"
-        passwordType="password"
-        mobileno="New password"
+        type2="password"
+        placeholder2="New password"
+        placeholder3="Confirm new password"
         password="Confirm new password"
         btnName="Continue"
       />
