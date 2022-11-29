@@ -6,8 +6,16 @@ const Home = () => {
   const [loading, setLoading] = useState(true);
   return (
     <div className="homeContainer">
-      <loading/>
-      <Sidebar displayName="Abcd" />
+      <loading />
+      <Sidebar
+        displayName="Abcd"
+        home="Home"
+        offers="Offers"
+        profile="Profile"
+        upcomingCars="Upcoming cars"
+        outgoingCars="Outgoing cars"
+        scheduleAppointment="Schedule appointment"
+      />
       <HomeBase />
     </div>
   );

@@ -1,0 +1,42 @@
+.servicePageContainer {
+    width: 80%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.servicePageNavbar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 7.5%;
+    margin-top: 20px;
+}
+
+.breadcrumbSection {
+    display: flex;
+    margin: 20px 0px 0px 30px;
+}
+
+.breadcrumbOption {
+    text-decoration: none;
+    color: #232323;
+}
+
+.breadcrumbOption:hover {
+    color: #F0CE1B;
+
+}
+
+.detailsSection {
+    width: 100%;
+    height: 100%;
+    padding: 30px;
+}
+
+.eachDetail {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(30%, 1fr));
+    gap: 30px;
+}

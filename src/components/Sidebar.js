@@ -1,6 +1,5 @@
 import { useNavigate } from "react-router-dom";
 import React from "react";
-import { BiMenuAltLeft } from "react-icons/bi";
 import {
   MdOutlineCarRepair,
   MdOutlineElectricCar,
@@ -22,27 +21,34 @@ const Sidebar = (props) => {
       </div>
       <div className="homeSection" onClick={() => navigate("/")}>
         <MdOutlineHome className="homeIcon" />
-        <p className="homeText">Home</p>
+        <p className="homeText">{props.home}</p>
       </div>
-      <div className="offerSection" >
-        <MdOutlineLocalOffer className="offerIcon" />
-        <p className="offersText">Offers</p>
-      </div>
-      <div className="profileSection" >
-        <IoPersonOutline className="profileIcon" />
-        <p className="profileText">Profile</p>
-      </div>
+      {props.offers === "Offers" ? (
+        <>
+          <div className="offerSection">
+            <MdOutlineLocalOffer className="offerIcon" />
+            <p className="offersText">{props.offers}</p>
+          </div>
+          <div className="profileSection">
+            <IoPersonOutline className="profileIcon" />
+            <p className="profileText">{props.profile}</p>
+          </div>
+        </>
+      ) : (
+        ""
+      )}
+
       <div className="upcomingSection" onClick={() => navigate("/upcoming")}>
         <MdOutlineCarRepair className="upcomingIcon" />
-        <p className="upcomingText">Upcoming cars</p>
+        <p className="upcomingText">{props.upcomingCars}</p>
       </div>
       <div className="outgoingSection" onClick={() => navigate("/delivered")}>
         <MdOutlineElectricCar className="outgoingIcon" />
-        <p className="outgoingText">Outgoing cars</p>
+        <p className="outgoingText">{props.outgoingCars}</p>
       </div>
       <div className="scheduleSection" onClick={() => navigate("/schedule")}>
         <AiOutlineSchedule className="scheduleIcon" />
-        <p className="scheduleText">Schedule appointment</p>
+        <p className="scheduleText">{props.scheduleAppointment}</p>
       </div>
     </div>
   );
