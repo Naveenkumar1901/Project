@@ -3,3 +3,13 @@
     width: 100%;
     display: flex;
   }
+
+    .scheduleSidebar {
+      width: 20%;
+      height: 100%;
+    }
+  
+    .schedulePage {
+      width: 80%;
+      height: 100%;
+    }

@@ -5,19 +5,19 @@ import "../styles/upcoming.css";
 const Upcoming = () => {
   return (
     <div className="upcomingContainer">
-      <Sidebar
-        displayName="Abcd"
-        home="Home"
-        upcomingCars="Upcoming cars"
-        outgoingCars="Outgoing cars"
-        scheduleAppointment="Schedule appointment"
-      />
-      <ServicesBase
-        navigation1="Upcoming cars"
-        navigation2="Details"
-        navRoute1="/upcoming"
-        navRoute2="/upcoming/details"
-      />
+      <div className="upcomingSidebar">
+        <Sidebar
+          displayName="Abcd"
+          home="Home"
+          upcomingCars="Upcoming cars"
+          outgoingCars="Outgoing cars"
+          scheduleAppointment="Schedule appointment"
+        />
+      </div>
+
+      <div className="upcomingPage">
+        <ServicesBase navigation1="Upcoming cars" navRoute1="/upcoming" />
+      </div>
     </div>
   );
 };

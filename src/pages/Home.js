@@ -7,16 +7,21 @@ const Home = () => {
   return (
     <div className="homeContainer">
       <loading />
-      <Sidebar
-        displayName="Abcd"
-        home="Home"
-        offers="Offers"
-        profile="Profile"
-        upcomingCars="Upcoming cars"
-        outgoingCars="Outgoing cars"
-        scheduleAppointment="Schedule appointment"
-      />
-      <HomeBase />
+      <div className="homeSidebar">
+        <Sidebar
+          displayName="Abcd"
+          home="Home"
+          offers="Offers"
+          profile="Profile"
+          upcomingCars="Upcoming cars"
+          outgoingCars="Outgoing cars"
+          scheduleAppointment="Schedule appointment"
+        />
+      </div>
+
+      <div className="homePage">
+        <HomeBase />
+      </div>
     </div>
   );
 };

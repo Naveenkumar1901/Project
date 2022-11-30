@@ -1,68 +1,78 @@
 import { FaCarBattery, FaTemperatureHigh } from "react-icons/fa";
-import { GiAutoRepair, GiCarDoor, GiCartwheel, GiSpray, GiTinker } from "react-icons/gi";
-import { MdCleaningServices, MdDryCleaning, MdHealthAndSafety, MdLocalCarWash } from "react-icons/md";
-import { GrClearOption } from "react-icons/gr";
+import {
+  GiAutoRepair,
+  GiCarDoor,
+  GiCartwheel,
+  GiSpray,
+  GiTinker,
+} from "react-icons/gi";
+import {
+  MdCleaningServices,
+  MdDryCleaning,
+  MdHealthAndSafety,
+  MdLocalCarWash,
+} from "react-icons/md";
 import { RiOilFill } from "react-icons/ri";
 
 const services = [
-  { 
+  {
     id: 1,
-    icon: <GiAutoRepair/>,
+    icon: <GiAutoRepair />,
     name: "Car Service",
   },
   {
     id: 2,
-    icon: <GiCartwheel/>,
+    icon: <GiCartwheel />,
     name: "Tyres & Wheel Care",
   },
   {
     id: 3,
-    icon: <GiSpray/>,
+    icon: <GiSpray />,
     name: "Denting & Painting",
   },
   {
     id: 4,
-    icon: <FaTemperatureHigh/>,
+    icon: <FaTemperatureHigh />,
     name: "AC Service & Repair",
   },
   {
     id: 5,
-    icon: <MdCleaningServices/>,
+    icon: <MdCleaningServices />,
     name: "Car Spa & Cleaning",
   },
   {
     id: 6,
-    icon: <FaCarBattery/>,
+    icon: <FaCarBattery />,
     name: "Batteries",
   },
   {
     id: 7,
-    icon: <MdHealthAndSafety/>,
+    icon: <MdHealthAndSafety />,
     name: "Insurance Claims",
   },
   {
     id: 8,
-    icon: <GiCarDoor/>,
+    icon: <GiCarDoor />,
     name: "Windshield & Lights",
   },
   {
     id: 9,
-    icon: <GiTinker/>,
+    icon: <GiTinker />,
     name: "Clutch & Brakes",
   },
   {
     id: 10,
-    icon: <MdDryCleaning/>,
+    icon: <MdDryCleaning />,
     name: "Dryclean",
   },
   {
     id: 11,
-    icon: <MdLocalCarWash/>,
+    icon: <MdLocalCarWash />,
     name: "Car Wash",
   },
   {
     id: 12,
-    icon: <RiOilFill/>,
+    icon: <RiOilFill />,
     name: "Oiling",
   },
 ];

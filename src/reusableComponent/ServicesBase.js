@@ -3,12 +3,10 @@ import { BiSearchAlt2 } from "react-icons/bi";
 import { IoClose } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import { RiArrowRightSLine } from "react-icons/ri";
-import "../styles/basePage.css";
 import "../styles/serviceBase.css";
 import ServiceInfo from "./ServiceInfo";
 import appointmentInfo from "../data/appointmentData";
 import upcomingInfo from "../data/upcomingData";
-import deliveredInfo from "../data/deliveredData";
 
 const ServicesBase = (props) => {
   return (
@@ -29,35 +27,40 @@ const ServicesBase = (props) => {
 
         <Link className="breadcrumbOption">{props.navigation2}</Link>
       </div>
-      <div className="detailsSection">
-        <div className="eachDetail">
-          {props.navigation1 === "Schedule appointment"
-            ? appointmentInfo.map((data) => {
-                return (
-                  <ServiceInfo
-                    ownerName={data.ownerName}
-                    carName={data.carName}
-                    carNo={data.carNo}
-                    date={data.date}
-                    time={data.time}
-                    status={data.status}
-                  />
-                );
-              })
-            : upcomingInfo.map((data) => {
-                return (
-                  <ServiceInfo
-                    ownerName={data.ownerName}
-                    carName={data.carName}
-                    carNo={data.carNo}
-                    date={data.date}
-                    time={data.time}
-                    status={data.status}
-                  />
-                );
-              })}
+      {props.navigation1 === "Delivered cars" ? null : (
+        <div className="detailsSection">
+          <div className="eachDetail">
+            {props.navigation1 === "Schedule appointment"
+              ? appointmentInfo.map((data) => {
+                  return (
+                    <ServiceInfo
+                      ownerName={data.ownerName}
+                      carName={data.carName}
+                      carNo={data.carNo}
+                      date={data.date}
+                      time={data.time}
+                      status={data.status}
+                    />
+                  );
+                })
+              : null}
+            {props.navigation1 === "Upcoming cars"
+              ? upcomingInfo.map((data) => {
+                  return (
+                    <ServiceInfo
+                      ownerName={data.ownerName}
+                      carName={data.carName}
+                      carNo={data.carNo}
+                      date={data.date}
+                      time={data.time}
+                      status={data.status}
+                    />
+                  );
+                })
+              : null}
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };

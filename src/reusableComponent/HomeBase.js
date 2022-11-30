@@ -2,10 +2,10 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { BiSearchAlt2 } from "react-icons/bi";
 import { IoClose } from "react-icons/io5";
-import "../styles/basePage.css";
+import "../styles/homeBase.css";
 import banner from "../assets/bannerDesign.jpg";
-import services from "../serviceSection";
-
+import ServiceCategory from "../reusableComponent/SeviceCategory";
+import services from "../data/serviceSection";
 const BasePage = () => {
   const navigate = useNavigate();
   return (
@@ -26,23 +26,14 @@ const BasePage = () => {
             Log out
           </button>
         </div>
-        
         <img src={banner} alt="" className="banner" />
         <span className="selectServiceText">Select Service</span>
-        
         <div className="serviceSection">
-          {services.map((data, index) => {
-                return (
-                  <div className="eachService">
-                  <div key={index} className="serviceIcon">
-                    {data.icon}
-                  </div>
-                  <p key={index} className="serviceName">
-                  {data.name}
-                </p>
-                </div>
-                );
-              })}
+          <div className="eachService">
+            {services.map((data) => {
+              return <ServiceCategory icon={data.icon} name={data.name} />;
+            })}
+          </div>
         </div>
       </div>
     </div>

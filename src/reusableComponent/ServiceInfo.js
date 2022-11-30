@@ -39,14 +39,12 @@ const ServiceInfo = (props) => {
           <p className="propsStatus">{props.status}</p>
         </div>
       </div>
-      {props.status === "confirmed" || "not confirmed" ? (
+      {props.status === "confirmed" ? (
         <div className="actionBtn">
           <button className="btn">Cancel</button>
           <button className="btn">Reschedule</button>
         </div>
-      ) : (
-        ""
-      )}
+      ) : null}
     </div>
   );
 };

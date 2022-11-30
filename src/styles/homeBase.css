@@ -1,0 +1,100 @@
+.basePageContainer {
+  height: 100%;
+  width: 100%;
+}
+
+.basePageInnerContainer {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 10%;
+  padding: 0px 5% 0px 5%;
+  margin-top: 1%;
+}
+
+
+.searchSection {
+  background-color: #ffffff;
+  height: 65%;
+  width: 40%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 5px;
+  box-shadow: 0px 5px 5px 5px rgba(135, 135, 135, 0.25);
+}
+
+.searchIcon,
+.closeIcon {
+  font-size: 200%;
+  font-weight: 500;
+  color: #232323;
+  padding: 2%;
+  cursor: pointer;
+}
+
+.search {
+  height: 90%;
+  width: 90%;
+  border: none;
+  padding: 2.5%;
+  outline-color: #f0ce1b;
+  font-family: Poppins;
+  font-size: 100%;
+  font-weight: 500;
+  color: #474747;
+}
+
+.search::placeholder {
+  font-family: Poppins;
+  font-size: 100%;
+  font-weight: 500;
+  color: #232323;
+}
+
+.banner {
+  width: 100%;
+  height: 35%;
+  padding: 0 5% 0 5%;
+  margin-top: 1%;
+}
+
+.selectServiceText {
+  display: flex;
+  width: 100%;
+  height: 2%;
+  font-family: Poppins;
+  font-size: 90%;
+  font-weight: 600;
+  color: #474747;
+  align-items: center;
+  justify-content: left;
+  padding: 2% 0 2% 5%;
+  margin-top: 1%;
+}
+
+.serviceSection {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 50%;
+  padding: 1% 5% 3% 5%;
+}
+
+.eachService {
+  display: grid;
+  width: 100%;
+  height: 100%;
+  grid-template-columns: repeat(auto-fit, minmax(20%, 1fr));
+  column-gap: 20px;
+  row-gap: 20px;
+}

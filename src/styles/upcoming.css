@@ -4,3 +4,12 @@
     display: flex;
     background-color: #ffffff;
   }
+.upcomingSidebar {
+  width: 20%;
+  height: 100%;
+}
+
+.upcomingPage {
+  width: 80%;
+  height: 100%;
+}
