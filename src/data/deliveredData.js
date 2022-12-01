@@ -1,3 +1,6 @@
+import { BsEyeFill } from "react-icons/bs";
+import { RiDeleteBin6Fill } from "react-icons/ri";
+
 const deliveredInfo = [
   {
     id: "1",
@@ -6,7 +9,8 @@ const deliveredInfo = [
     carNo: "TN-02-TY-5628",
     date: "30/11/2022",
     time: "10:30",
-    status: "delivered",
+    status: "Delivered",
+    action: <BsEyeFill />,
   },
   {
     id: "2",
@@ -15,7 +19,8 @@ const deliveredInfo = [
     carNo: "TN-05-JI-2548",
     date: "01/12/2022",
     time: "11:00",
-    status: "delivered",
+    status: "Delivered",
+    action: <BsEyeFill />,
   },
   {
     id: "3",
@@ -24,7 +29,8 @@ const deliveredInfo = [
     carNo: "TN-10-LI-4589",
     date: "01/12/2022",
     time: "14:30",
-    status: "delivered",
+    status: "Delivered",
+    action: <BsEyeFill />,
   },
   {
     id: "4",
@@ -33,7 +39,8 @@ const deliveredInfo = [
     carNo: "TN-12-ON-9765",
     date: "03/12/2022",
     time: "11:30",
-    status: "not delivered",
+    status: "Not delivered",
+    action: <BsEyeFill />,
   },
   {
     id: "5",
@@ -42,7 +49,8 @@ const deliveredInfo = [
     carNo: "TN-05-RF-5307",
     date: "02/12/2022",
     time: "16:00",
-    status: "not delivered",
+    status: "Not delivered",
+    action: <BsEyeFill />,
   },
   {
     id: "6",
@@ -51,7 +59,8 @@ const deliveredInfo = [
     carNo: "TN-07-AA-3638",
     date: "04/12/2022",
     time: "17:00",
-    status: "not delivered",
+    status: "Not delivered",
+    action: <BsEyeFill />,
   },
   {
     id: "7",
@@ -60,7 +69,8 @@ const deliveredInfo = [
     carNo: "TN-07-AA-3638",
     date: "04/12/2022",
     time: "17:00",
-    status: "not delivered",
+    status: "Not delivered",
+    action: <BsEyeFill />,
   },
   {
     id: "8",
@@ -69,7 +79,8 @@ const deliveredInfo = [
     carNo: "TN-07-AA-3638",
     date: "04/12/2022",
     time: "17:00",
-    status: "not delivered",
+    status: "Not delivered",
+    action: <BsEyeFill />,
   },
   {
     id: "9",
@@ -78,7 +89,8 @@ const deliveredInfo = [
     carNo: "TN-07-AA-3638",
     date: "04/12/2022",
     time: "17:00",
-    status: "not delivered",
+    status: "Not delivered",
+    action: <BsEyeFill />,
   },
   {
     id: "10",
@@ -87,7 +99,8 @@ const deliveredInfo = [
     carNo: "TN-07-AA-3638",
     date: "04/12/2022",
     time: "17:00",
-    status: "not delivered",
+    status: "Not delivered",
+    action: <BsEyeFill />,
   },
   {
     id: "11",
@@ -96,7 +109,8 @@ const deliveredInfo = [
     carNo: "TN-07-AA-3638",
     date: "04/12/2022",
     time: "17:00",
-    status: "not delivered",
+    status: "Not delivered",
+    action: <BsEyeFill />,
   },
   {
     id: "12",
@@ -105,7 +119,8 @@ const deliveredInfo = [
     carNo: "TN-07-AA-3638",
     date: "04/12/2022",
     time: "17:00",
-    status: "not delivered",
+    status: "Not delivered",
+    action: <BsEyeFill />,
   },
   {
     id: "13",
@@ -114,7 +129,8 @@ const deliveredInfo = [
     carNo: "TN-10-LI-4589",
     date: "01/12/2022",
     time: "14:30",
-    status: "delivered",
+    status: "Delivered",
+    action: <BsEyeFill />,
   },
   {
     id: "14",
@@ -123,7 +139,8 @@ const deliveredInfo = [
     carNo: "TN-10-LI-4589",
     date: "01/12/2022",
     time: "14:30",
-    status: "delivered",
+    status: "Delivered",
+    action: <BsEyeFill />,
   },
   {
     id: "15",
@@ -132,7 +149,8 @@ const deliveredInfo = [
     carNo: "TN-10-LI-4589",
     date: "01/12/2022",
     time: "14:30",
-    status: "delivered",
+    status: "Delivered",
+    action: <BsEyeFill />,
   },
   {
     id: "16",
@@ -141,7 +159,8 @@ const deliveredInfo = [
     carNo: "TN-10-LI-4589",
     date: "01/12/2022",
     time: "14:30",
-    status: "delivered",
+    status: "Delivered",
+    action: <BsEyeFill />,
   },
 ];
 

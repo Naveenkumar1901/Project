@@ -1,12 +1,12 @@
 import React from "react";
-import Sidebar from "../components/Sidebar";
+import SideBar from "../components/SideBar";
 import ServicesBase from "../reusableComponent/ServicesBase";
 import "../styles/upcoming.css";
 const Upcoming = () => {
   return (
     <div className="upcomingContainer">
       <div className="upcomingSidebar">
-        <Sidebar
+        <SideBar
           displayName="Abcd"
           home="Home"
           upcomingCars="Upcoming cars"

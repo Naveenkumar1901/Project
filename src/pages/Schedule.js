@@ -1,12 +1,12 @@
 import React from "react";
-import Sidebar from "../components/Sidebar";
+import SideBar from "../components/SideBar";
 import ServicesBase from "../reusableComponent/ServicesBase";
 import "../styles/schedule.css";
 const Schedule = () => {
   return (
     <div className="scheduleContainer">
       <div className="scheduleSidebar">
-        <Sidebar
+        <SideBar
           displayName="Abcd"
           home="Home"
           upcomingCars="Upcoming cars"

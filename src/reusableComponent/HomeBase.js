@@ -6,16 +6,15 @@ import "../styles/homeBase.css";
 import banner from "../assets/bannerDesign.jpg";
 import ServiceCategory from "../reusableComponent/SeviceCategory";
 import services from "../data/serviceSection";
+import SearchBar from "./SearchBar";
 const BasePage = () => {
   const navigate = useNavigate();
   return (
     <div className="basePageContainer">
       <div className="basePageInnerContainer">
         <div className="navbar">
-          <div className="searchSection">
-            <BiSearchAlt2 className="searchIcon" />
-            <input type="text" placeholder="Search" className="search" />
-            <IoClose className="closeIcon" />
+          <div className="homeSearch">
+            <SearchBar />
           </div>
           <button
             className="btn"

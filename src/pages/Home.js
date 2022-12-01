@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Sidebar from "../components/Sidebar";
+import SideBar from "../components/SideBar";
 import HomeBase from "../reusableComponent/HomeBase";
 import "../styles/home.css";
 const Home = () => {
@@ -8,7 +8,7 @@ const Home = () => {
     <div className="homeContainer">
       <loading />
       <div className="homeSidebar">
-        <Sidebar
+        <SideBar
           displayName="Abcd"
           home="Home"
           offers="Offers"

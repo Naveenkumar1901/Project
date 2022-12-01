@@ -52,7 +52,7 @@
   justify-content: left;
   cursor: pointer;
   padding: 10% 10% 10% 10%;
-    gap: 3%;
+  gap: 3%;
   border-radius: 0px 7px 7px 0px;
   margin: 0 0 7.5% 0;
   transition: 0.2s;
@@ -65,7 +65,7 @@
     padding: 0;
   box-shadow: none;
   display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
 }
 
 .logo {
@@ -81,5 +81,4 @@
 .outgoingSection:hover,
 .scheduleSection:hover {
   background-color: #f0ce1b;
-  transform: scale(1.125);
 }
