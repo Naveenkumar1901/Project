@@ -1,0 +1,18 @@
+.carServiceContainer,
+.wheelServiceContainer {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+}
+
+.carServiceSideBar,
+.wheelServiceSideBar {
+    width: 20%;
+    height: 100%;
+}
+
+.carServicePage,
+.wheelServicePage {
+    width: 80%;
+    height: 100%;
+}

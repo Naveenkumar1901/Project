@@ -7,6 +7,8 @@ import Home from "./Home";
 import Upcoming from "./Upcoming";
 import Delivered from "./Delivered";
 import Schedule from "./Schedule";
+import CarService from "./CarService";
+import WheelService from "./WheelService";
 function App() {
   return (
     <div className="App">
@@ -19,6 +21,8 @@ function App() {
           <Route path="/upcoming" element={<Upcoming />} />
           <Route path="/delivered" element={<Delivered />} />
           <Route path="/schedule" element={<Schedule />} />
+          <Route path="/carService" element={<CarService />} />
+          <Route path="/wheelService" element={<WheelService />} />
         </Routes>
       </BrowserRouter>
     </div>

@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import SideBar from "../components/SideBar";
+import SideBar from "../reusableComponent/SideBar";
 import "../styles/delivered.css";
 import deliveredInfo from "../data/deliveredData";
 import SearchBar from "../reusableComponent/SearchBar";
-import { BiCalendar } from "react-icons/bi";
+import { BiCalendar, BiSearchAlt2 } from "react-icons/bi";
 import { IoClose } from "react-icons/io5";
 import { Pagination } from "@mui/material";
-import BasicDatePicker from "../reusableComponent/DatePicker";
+import Input from "../reusableComponent/Input";
 
 const Delivered = () => {
   const [search, setSearch] = useState(deliveredInfo);
@@ -41,34 +41,38 @@ const Delivered = () => {
                 type="text"
                 placeholder="Search"
                 className="search"
-                onChange={(e) => handleSearch(e)}
+                onChange={handleSearch}
               />
               <IoClose className="closeIcon" />
             </div>
           </div>
           <div className="dateFilter">
-            <p className="dateFilterText">Filter date: from</p>
-
-            <BiCalendar className="calendarFilter" />
+            <p className="dateFilterText">from</p>
+            <Input type="date" onChange={handleSearch} />
             <p className="dateFilterText">to</p>
-            <BiCalendar className="calendarFilter" />
+            <Input type="date" />
+            {/* <BiCalendar className="calendarFilter" /> */}
+            <BiSearchAlt2 className="dateSearch" onClick={handleSearch} />
           </div>
         </div>
         <div className="tableContainer">
           <table className="tableParticulars">
             <thead>
-              <th>SI.no</th>
-              <th>Owner name</th>
-              <th>Car name</th>
-              <th>Car no</th>
-              <th>Date</th>
-              <th>Time</th>
-              <th>Status</th>
-              <th>Action</th>
+              <tr>
+                <th>SI.no</th>
+                <th>Owner name</th>
+                <th>Car name</th>
+                <th>Car no</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Status</th>
+                <th>Action</th>
+              </tr>
             </thead>
-            {search
-              ? search.map((filteredData) => {
-                  return (
+            {search ? (
+              search.map((filteredData) => {
+                return (
+                  <tbody>
                     <tr>
                       <td>{filteredData.id}</td>
                       <td>{filteredData.ownerName}</td>
@@ -88,9 +92,12 @@ const Delivered = () => {
                       </td>
                       <td>{filteredData.action}</td>
                     </tr>
-                  );
-                })
-              : err && <p>No item found!</p>}
+                  </tbody>
+                );
+              })
+            ) : (
+              <p>No item found!</p>
+            )}
           </table>
         </div>
         <div className="paginationContainer">

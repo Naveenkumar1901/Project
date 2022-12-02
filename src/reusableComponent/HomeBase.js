@@ -7,7 +7,7 @@ import banner from "../assets/bannerDesign.jpg";
 import ServiceCategory from "../reusableComponent/SeviceCategory";
 import services from "../data/serviceSection";
 import SearchBar from "./SearchBar";
-const BasePage = () => {
+const BasePage = (props) => {
   const navigate = useNavigate();
   return (
     <div className="basePageContainer">
@@ -30,7 +30,13 @@ const BasePage = () => {
         <div className="serviceSection">
           <div className="eachService">
             {services.map((data) => {
-              return <ServiceCategory icon={data.icon} name={data.name} />;
+              return (
+                <ServiceCategory
+                  icon={data.icon}
+                  name={data.name}
+                  serviceParticularsPage="/carService"
+                />
+              );
             })}
           </div>
         </div>

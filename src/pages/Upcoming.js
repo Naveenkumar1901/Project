@@ -1,6 +1,6 @@
 import React from "react";
-import SideBar from "../components/SideBar";
 import ServicesBase from "../reusableComponent/ServicesBase";
+import SideBar from "../reusableComponent/SideBar";
 import "../styles/upcoming.css";
 const Upcoming = () => {
   return (

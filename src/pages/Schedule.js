@@ -1,5 +1,5 @@
 import React from "react";
-import SideBar from "../components/SideBar";
+import SideBar from "../reusableComponent/SideBar";
 import ServicesBase from "../reusableComponent/ServicesBase";
 import "../styles/schedule.css";
 const Schedule = () => {
