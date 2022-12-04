@@ -3,6 +3,7 @@ import { BiCalendar } from "react-icons/bi";
 import { BsDot } from "react-icons/bs";
 import { MdAccessTimeFilled } from "react-icons/md";
 import "../styles/serviceInfo.css";
+import Button from "../reusableComponent/Button";
 
 const ServiceInfo = (props) => {
   return (
@@ -39,12 +40,12 @@ const ServiceInfo = (props) => {
           <p className="propsStatus">{props.status}</p>
         </div>
       </div>
-      {props.status === "confirmed" ? (
+      {props.status === "upcoming" ? null : (
         <div className="actionBtn">
-          <button className="btn">Cancel</button>
-          <button className="btn">Reschedule</button>
+          <Button>Cancel</Button>
+          <Button variant={"primary"}>Reschedule</Button>
         </div>
-      ) : null}
+      )}
     </div>
   );
 };

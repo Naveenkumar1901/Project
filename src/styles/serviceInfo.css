@@ -1,93 +1,80 @@
 .serviceInfoContainer {
-    width: 100%;
-    height: 100%;
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0px 5px 5px 5px rgba(135, 135, 135, 0.25);
-    display: flex;
-    flex-direction: column;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0px 5px 5px 5px rgba(135, 135, 135, 0.25);
+  display: flex;
+  flex-direction: column;
 }
 
 .ownerNameSection,
 .carNameSection,
 .carNoSection {
-    width: 100%;
-    height: 15%;
-    display: flex;
-    margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: Poppins;
+  font-size: 14px;
+  margin-bottom: 10px;
+  flex: 1;
 }
 
 .ownerNameText,
 .carNameText,
 .carNoText {
-    display: flex;
-    width: 50%;
-    color: #1A30AC;
-    font-family: Poppins;
-    font-size: 14px;
-    font-weight: 600;
+  color: #1a30ac;
+  flex: 0.5;
+  text-align: left;
 }
 
 .ownerNameProps,
 .carNameProps,
 .carNoProps {
-    display: flex;
-    float: left;
-    width: 50%;
-    color: #232323;
-    font-family: Poppins;
-    font-size: 14px;
-    font-weight: 600;
+  color: #232323;
+
+  flex: 0.5;
+  text-align: left;
 }
 
 .separationLine {
-    width: 100%;
-    height: 1px;
-    background-color: #1A30AC;
-    margin-bottom: 10px;
+  width: 100%;
+  height: 1px;
+  background-color: #1a30ac;
+  margin-bottom: 10px;
 }
 
 .scheduleStatus {
-    display: flex;
-    width: 100%;
-    height: 25%;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 10px;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
 }
 
 .calendar,
 .time,
 .status {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-}
-
-.status {
-    gap: 0px;
+  display: flex;
+  align-items: center;
 }
 
 .calendarIcon,
 .timeIcon,
 .dotIcon {
-    font-size: 20px;
-    color: #232323;
+  font-size: 20px;
+  color: #232323;
 }
-
 
 .propsDate,
 .propsTime,
 .propsStatus {
-    color: #232323;
-    font-family: Poppins;
-    font-size: 14px;
-    font-weight: 500;
+  color: #232323;
+  font-family: Poppins;
+  font-size: 14px;
 }
 
 .actionBtn {
-    display: flex;
-    width: 100%;
-    height: 30%;
-    justify-content: space-around;
+  display: flex;
+  justify-content: space-between;
 }

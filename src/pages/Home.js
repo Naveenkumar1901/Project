@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import SideBar from "../reusableComponent/SideBar";
 import HomeBase from "../reusableComponent/HomeBase";
 import "../styles/home.css";
-const Home = (props) => {
+const Home = ({ children }) => {
   const [loading, setLoading] = useState(true);
   return (
     <div className="homeContainer">
-      <loading />
+      {/* <loading /> */}
       <div className="homeSidebar">
         <SideBar
           displayName="Abcd"
@@ -19,9 +19,7 @@ const Home = (props) => {
         />
       </div>
 
-      <div className="homePage">
-        <HomeBase />
-      </div>
+      <div className="homePage">{children} </div>
     </div>
   );
 };

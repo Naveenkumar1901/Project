@@ -7,8 +7,10 @@ import Home from "./Home";
 import Upcoming from "./Upcoming";
 import Delivered from "./Delivered";
 import Schedule from "./Schedule";
-import CarService from "./CarService";
-import WheelService from "./WheelService";
+import ServicePage from "./ServicePage";
+import HomeBase from "../reusableComponent/HomeBase";
+import ServicesBase from "../reusableComponent/ServicesBase";
+
 function App() {
   return (
     <div className="App">
@@ -17,12 +19,47 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
           <Route path="/resetPassword" element={<ResetPassword />} />
-          <Route path="/" element={<Home />} />
-          <Route path="/upcoming" element={<Upcoming />} />
-          <Route path="/delivered" element={<Delivered />} />
-          <Route path="/schedule" element={<Schedule />} />
-          <Route path="/carService" element={<CarService />} />
-          <Route path="/wheelService" element={<WheelService />} />
+          {/* navigation */}
+          <Route
+            path="/"
+            element={
+              <Home>
+                <HomeBase />
+              </Home>
+            }
+          />
+          <Route
+            path="/upcoming"
+            element={
+              <Home>
+                <Schedule type={"upcoming"} />
+              </Home>
+            }
+          />
+          <Route
+            path="/delivered"
+            element={
+              <Home>
+                <Delivered />
+              </Home>
+            }
+          />
+          <Route
+            path="/schedule"
+            element={
+              <Home>
+                <Schedule type={"schedule"} />
+              </Home>
+            }
+          />
+          <Route
+            path="/services/:serviceName"
+            element={
+              <Home>
+                <ServicePage />
+              </Home>
+            }
+          />
         </Routes>
       </BrowserRouter>
     </div>

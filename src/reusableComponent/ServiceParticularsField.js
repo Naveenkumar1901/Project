@@ -6,19 +6,14 @@ const ServiceParticularsField = (props) => {
     <div className="serviceParticularsField">
       <p className="fieldName">{props.fieldName}</p>
       <div className="inputField">
-        {props.type === "checkbox" ? (
-          <div className="checkboxSection">
-            <input className="checkboxInput" type={props.type} />
-          </div>
+        {props.fieldName === "Description" ||
+        props.fieldName === "Service type" ? (
+          <textarea
+            className="multilineInput"
+            onChange={(e) => props.onChange(e.target.value)}
+          ></textarea>
         ) : (
-          <>
-            {props.fieldName === "Description" ||
-            props.fieldName === "Service type" ? (
-              <textarea className="multilineInput"></textarea>
-            ) : (
-              <Input type={props.type} />
-            )}
-          </>
+          <Input type={props.type} onChange={(e) => props.onChange(e)} />
         )}
       </div>
     </div>

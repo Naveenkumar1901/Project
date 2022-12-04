@@ -11,13 +11,26 @@ const Register = () => {
     <div className="register-container">
       <AuthenticationBase
         formName="Sign up"
-        type1="text"
-        type2="password"
-        placeholder2="Mobile no"
-        placeholder3="Password"
-        placeholder1="Username"
-        ques="Already have an account"
         btnName="Sign up"
+        renderObjectInputs={[
+          {
+            fieldName: "username",
+            type: "text",
+            placeholder: "username",
+          },
+          {
+            fieldName: "Mobile number",
+            type: "number",
+            placeholder: "Mobile number",
+          },
+          {
+            fieldName: "password",
+            type: "password",
+            placeholder: "password",
+          },
+        ]}
+        //later
+        ques="Already have an account"
         routeLink="/login"
         routeName="Log in"
         googleAuth="Signup with"

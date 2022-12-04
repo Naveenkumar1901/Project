@@ -1,84 +1,91 @@
 .sidebarContainer {
   height: 100%;
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-right: 1px solid lightgray;
+  transition: width 0.1s ease-in 0.1s;
+  overflow: hidden;
+}
+
+.sidebarHeader {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  border-bottom: 1px solid lightgray;
+}
+
+.sidebarHeader img {
+  width: 60px;
+}
+.sidebarHeader p {
+  font-family: Poppins;
+}
+
+.hideSidebar {
+  width: 50px;
+}
+.sidebarOptions {
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #ffffff;
-  justify-content: left;
-  box-shadow: 10px 10px 10px 10px rgba(135, 135, 135, 0.25);
 }
 
-.homeIcon,
-.offerIcon,
-.profileIcon,
-.upcomingIcon,
-.outgoingIcon,
-.scheduleIcon {
-  font-size: 150%;
-  color: #232323;
-}
-
-.displayName {
-  font-family: Roboto;
-  font-size: 90%;
-  font-weight: 600;
-  color: #474747;
-}
-
-.homeText,
-.offersText,
-.profileText,
-.upcomingText,
-.outgoingText,
-.scheduleText {
-  font-family: Poppins;
-  font-size: 100%;
-  font-weight: 500;
-  color: #232323;
-}
-
-.menuSection,
-.homeSection,
-.offerSection,
-.profileSection,
-.upcomingSection,
-.outgoingSection,
-.scheduleSection {
-  width: 90%;
-  height: 5%;
+.sidebarOptions .eachOption {
+  width: 100%;
+  margin-bottom: 10px;
   display: flex;
   align-items: center;
-  justify-content: left;
   cursor: pointer;
-  padding: 10% 10% 10% 10%;
-  gap: 3%;
-  border-radius: 7px;
-  margin: 0 0 7.5% 0;
-  transition: 0.2s;
-  box-shadow: 0px 5px 5px 5px rgba(135, 135, 135, 0.25);
+  padding: 20px 0;
+  text-decoration: none;
 }
 
-.menuSection {
-  height: 10%;
-  margin: 5% 0 0 0;
-  padding: 0;
-  box-shadow: none;
-  display: flex;
-  justify-content: space-evenly;
+.eachOption:hover {
+  background-color: gold;
 }
 
-.logo {
-  width: 60%;
-  height: 75%;
-  object-fit: contain;
+.menuIcon {
+  cursor: pointer;
 }
 
-.homeSection:hover,
-.offerSection:hover,
-.profileSection:hover,
-.upcomingSection:hover,
-.outgoingSection:hover,
-.scheduleSection:hover {
-  background-color: #f0ce1b;
+@media only screen and (max-width: 900px) {
+  .sidebarContainer {
+    width: 50px;
+  }
+  .sidebarOptionText {
+    display: none;
+    width: 0;
+  }
+  .sidebarHeader {
+    display: none;
+  }
+  .menuIcon {
+    display: none;
+  }
+}
+
+.sidebarIcon {
+  font-size: 20px;
+  color: #232323;
+  margin-left: 15px;
+}
+
+.sidebarOptionText {
+  font-family: Poppins;
+  color: #232323;
+  transition: all 0.1s ease-in 0.1s;
+  opacity: 1;
+  display: block;
+  margin-left: 15px;
+  font-size: 16px;
+}
+
+.animate-text {
+  opacity: 0;
+  width: 0;
 }

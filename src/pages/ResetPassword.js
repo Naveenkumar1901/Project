@@ -6,11 +6,19 @@ const ResetPassword = () => {
     <div>
       <AuthenticationBase
         formName="Create new password"
-        type2="password"
-        placeholder2="New password"
-        placeholder3="Confirm new password"
-        password="Confirm new password"
         btnName="Continue"
+        renderObjectInputs={[
+          {
+            fieldName: "username",
+            type: "password",
+            placeholder: "new password",
+          },
+          {
+            fieldName: "Mobile number",
+            type: "password",
+            placeholder: "confirm new password",
+          },
+        ]}
       />
     </div>
   );

@@ -6,13 +6,21 @@ const Login = () => {
     <div>
       <AuthenticationBase
         formName="Log in"
-        type1="text"
-        type2="password"
-        placeholder2="Mobile no"
-        placeholder3="Password"
+        btnName="Log in"
+        renderObjectInputs={[
+          {
+            fieldName: "username",
+            type: "text",
+            placeholder: "username",
+          },
+          {
+            fieldName: "password",
+            type: "password",
+            placeholder: "password",
+          },
+        ]}
         forgot="Forgot password?"
         ques="Don't have an account"
-        btnName="Log in"
         routeLink="/register"
         routeName="Sign up"
         googleAuth="Login with"

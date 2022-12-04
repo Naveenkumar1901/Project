@@ -19,61 +19,73 @@ const services = [
     id: 1,
     icon: <GiAutoRepair />,
     name: "Car Service",
+    routeName: "carService",
   },
   {
     id: 2,
     icon: <GiCartwheel />,
     name: "Tyres & Wheel Care",
+    routeName: "wheelService",
   },
   {
     id: 3,
     icon: <GiSpray />,
     name: "Denting & Painting",
+    routeName: "paintingService",
   },
   {
     id: 4,
     icon: <FaTemperatureHigh />,
     name: "AC Service & Repair",
+    routeName: "acService",
   },
   {
     id: 5,
     icon: <MdCleaningServices />,
     name: "Car Spa & Cleaning",
+    routeName: "cleaningService",
   },
   {
     id: 6,
     icon: <FaCarBattery />,
     name: "Batteries",
+    routeName: "carService",
   },
   {
     id: 7,
     icon: <MdHealthAndSafety />,
     name: "Insurance Claims",
+    routeName: "insuranceService",
   },
   {
     id: 8,
     icon: <GiCarDoor />,
     name: "Windshield & Lights",
+    routeName: "carService",
   },
   {
     id: 9,
     icon: <GiTinker />,
     name: "Clutch & Brakes",
+    routeName: "clutchService",
   },
   {
     id: 10,
     icon: <MdDryCleaning />,
     name: "Dryclean",
+    routeName: "dryCleanService",
   },
   {
     id: 11,
     icon: <MdLocalCarWash />,
     name: "Car Wash",
+    routeName: "washService",
   },
   {
     id: 12,
     icon: <RiOilFill />,
     name: "Oiling",
+    routeName: "oilingService",
   },
 ];
 

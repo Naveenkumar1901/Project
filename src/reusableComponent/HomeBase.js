@@ -1,46 +1,58 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { BiSearchAlt2 } from "react-icons/bi";
-import { IoClose } from "react-icons/io5";
 import "../styles/homeBase.css";
 import banner from "../assets/bannerDesign.jpg";
 import ServiceCategory from "../reusableComponent/SeviceCategory";
 import services from "../data/serviceSection";
 import SearchBar from "./SearchBar";
+import Button from "./Button";
+import { BiMenuAltLeft } from "react-icons/bi";
+import { useDispatch } from "react-redux";
+import { toggleSideBar } from "../store/toggleSlice";
+
 const BasePage = (props) => {
   const navigate = useNavigate();
+  const [value, setSearchValue] = useState("");
+  const dispatch = useDispatch();
+
   return (
     <div className="basePageContainer">
-      <div className="basePageInnerContainer">
-        <div className="navbar">
-          <div className="homeSearch">
-            <SearchBar />
-          </div>
-          <button
-            className="btn"
+      <div className="navbar">
+        <div className="homeSearch">
+          <BiMenuAltLeft
+            size={25}
+            className="menuIcon"
             onClick={() => {
-              navigate("/login");
+              dispatch(toggleSideBar());
             }}
-          >
-            Log out
-          </button>
+          />
+          <SearchBar value={value} setSearchValue={setSearchValue} />
         </div>
-        <img src={banner} alt="" className="banner" />
-        <span className="selectServiceText">Select Service</span>
-        <div className="serviceSection">
-          <div className="eachService">
-            {services.map((data) => {
-              return (
-                <ServiceCategory
-                  icon={data.icon}
-                  name={data.name}
-                  serviceParticularsPage="/carService"
-                />
-              );
-            })}
-          </div>
-        </div>
+        <Button
+          variant={"primary"}
+          onClick={() => {
+            navigate("/login");
+          }}
+        >
+          Log out
+        </Button>
       </div>
+
+      <img src={banner} alt="" className="banner" />
+
+      <>
+        <div className="eachService">
+          {services.map((data) => {
+            return (
+              <ServiceCategory
+                icon={data.icon}
+                name={data.name}
+                serviceParticularsPage={`/services/${data.routeName}`}
+              />
+            );
+          })}
+        </div>
+      </>
     </div>
   );
 };

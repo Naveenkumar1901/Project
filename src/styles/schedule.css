@@ -1,17 +1,1 @@
-.scheduleContainer {
-    height: 100vh;
-    width: 100%;
-    display: flex;
-  }
 
-    .scheduleSidebar {
-      width: 20%;
-      height: 100%;
-    }
-  
-    .schedulePage {
-      display: flex;
-        flex-direction: column;
-      width: 80%;
-      height: 100%;
-    }

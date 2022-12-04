@@ -5,54 +5,86 @@ import deliveredInfo from "../data/deliveredData";
 import SearchBar from "../reusableComponent/SearchBar";
 import { BiCalendar, BiSearchAlt2 } from "react-icons/bi";
 import { IoClose } from "react-icons/io5";
-import { Pagination } from "@mui/material";
 import Input from "../reusableComponent/Input";
+import { BsEyeFill } from "react-icons/bs";
+import Modal from "react-modal";
+import ServiceInfo from "../reusableComponent/ServiceInfo";
 
 const Delivered = () => {
-  const [search, setSearch] = useState(deliveredInfo);
-  const [err, setErr] = useState(false);
-  const handleSearch = (e) => {
-    let input = e.target.value;
+  const [data, setData] = useState(deliveredInfo);
+  const [dateFilters, setDateFilters] = useState({});
+
+  const [showModal, setShowModal] = useState(false);
+
+  const [value, setSearchValue] = useState("");
+
+  const customStyles = {
+    content: {
+      top: "50%",
+      left: "50%",
+      right: "auto",
+      bottom: "auto",
+      marginRight: "-50%",
+      transform: "translate(-50%, -50%)",
+    },
+  };
+  const handleSearch = (input) => {
     let filteredSearch = deliveredInfo.filter((eachItem) =>
       eachItem.ownerName.toLowerCase().includes(input.toLowerCase())
     );
-    setSearch(filteredSearch);
-    if (search !== input) {
-      setErr(true);
+    setData(filteredSearch);
+    if (data !== input) {
     }
   };
 
+  const showDetails = (id) => {
+    setShowModal(true);
+    console.log("id", id);
+  };
+  const deleteDetail = (id) => {};
+  const searchWithDate = () => {
+    console.log(dateFilters);
+    dateFilters.start &&
+      dateFilters.end &&
+      setData(
+        deliveredInfo.filter(
+          ({ date }) =>
+            new Date(date) >= dateFilters.start &&
+            new Date(date) <= dateFilters.end
+        )
+      );
+  };
+  const setDateFilter = (e, type) => {
+    setDateFilters((prevState) => ({
+      ...prevState,
+      [type]: new Date(e.target.value),
+    }));
+  };
+
   return (
-    <div className="deliveredContainer">
-      <div className="deliveredSidebar">
-        <SideBar
-          displayName="Abcd"
-          home="Home"
-          upcomingCars="Upcoming cars"
-          outgoingCars="Outgoing cars"
-          scheduleAppointment="Schedule appointment"
-        />
-      </div>
+    <>
+      <Modal isOpen={showModal} style={customStyles}>
+        <div>
+          <p onClick={() => setShowModal(false)}>X</p>
+          <ServiceInfo />
+        </div>
+      </Modal>
       <div className="deliveredPage">
         <div className="deliveredNavBar">
           <div className="deliveredSearch">
-            <div className="searchSection">
-              <input
-                type="text"
-                placeholder="Search"
-                className="search"
-                onChange={handleSearch}
-              />
-              <IoClose className="closeIcon" />
-            </div>
+            <SearchBar
+              value={value}
+              setSearchValue={setSearchValue}
+              filterFunction={(input) => handleSearch(input)}
+            />
           </div>
           <div className="dateFilter">
-            <p className="dateFilterText">from</p>
-            <Input type="date" onChange={handleSearch} />
-            <p className="dateFilterText">to</p>
-            <Input type="date" />
-            {/* <BiCalendar className="calendarFilter" /> */}
-            <BiSearchAlt2 className="dateSearch" onClick={handleSearch} />
+            <Input type="date" onChange={(e) => setDateFilter(e, "start")} />
+            <p className="dateFilterText"> - </p>
+            <Input type="date" onChange={(e) => setDateFilter(e, "end")} />
+            <div className="dateSearchWrapper">
+              <BiSearchAlt2 className="dateSearch" onClick={searchWithDate} />
+            </div>
           </div>
         </div>
         <div className="tableContainer">
@@ -69,8 +101,8 @@ const Delivered = () => {
                 <th>Action</th>
               </tr>
             </thead>
-            {search ? (
-              search.map((filteredData) => {
+            {data.length ? (
+              data.map((filteredData) => {
                 return (
                   <tbody>
                     <tr>
@@ -90,7 +122,14 @@ const Delivered = () => {
                       >
                         {filteredData.status}
                       </td>
-                      <td>{filteredData.action}</td>
+                      <td>
+                        <BsEyeFill
+                          onClick={() => showDetails(filteredData.id)}
+                        />{" "}
+                        <BsEyeFill
+                          onClick={() => deleteDetail(filteredData.id)}
+                        />
+                      </td>
                     </tr>
                   </tbody>
                 );
@@ -102,15 +141,15 @@ const Delivered = () => {
         </div>
         <div className="paginationContainer">
           {/* <BasicDatePicker /> */}
-          <Pagination
+          {/* <Pagination
             count={10}
             shape="rounded"
             showFirstButton
             showLastButton
-          />
+          /> */}
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

@@ -1,0 +1,22 @@
+.commonButtonStyle {
+  font-family: Poppins;
+  font-size: 16px;
+  text-align: center;
+  padding: 10px;
+  border: 0;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.primary {
+  background-color: #f0ce1b;
+}
+.primary:hover {
+}
+
+.secondary {
+  background-color: red;
+}
+
+.secondary:hover {
+}
