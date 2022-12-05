@@ -1,5 +1,4 @@
 import React from "react";
-
 import logo from "../assets/Logo.png";
 import "../styles/sidebar.css";
 import SideBarOption from "./SideBarOption";

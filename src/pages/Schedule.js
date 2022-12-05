@@ -4,6 +4,7 @@ import SearchBar from "../reusableComponent/SearchBar";
 import appointmentInfo from "../data/appointmentData";
 import ServiceInfo from "../reusableComponent/ServiceInfo";
 import upcomingInfo from "../data/upcomingData";
+
 const Schedule = (props) => {
   const [value, setSearchValue] = useState("");
   return (
