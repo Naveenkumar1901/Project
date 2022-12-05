@@ -24,14 +24,14 @@ const ServiceParticulars = (props) => {
 
   return (
     <div className="serviceParticularsContainer">
+      <div className="serviceParticularsHeader">
+        {props.icon}
+        <p className="serviceParticularsTitle">{props.name}</p>
+      </div>
       <form
         className="serviceParticularsInnerContainer"
         onSubmit={(e) => submitForm(e)}
       >
-        <div className="serviceParticularsHeader">
-          {props.serviceIcon}
-          <p className="serviceParticularsTitle">{props.serviceName}</p>
-        </div>
         <ServiceParticularsField
           fieldName="Customer name"
           onChange={(value) => {

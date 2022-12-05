@@ -16,7 +16,8 @@ const Delivered = () => {
   const [data, setData] = useState(deliveredInfo);
   const [dateFilters, setDateFilters] = useState({});
 
-  const [showModal, setShowModal] = useState(false);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [showPaymentModal, setShowPaymentModal] = useState(false);
 
   const [value, setSearchValue] = useState("");
   // const modalToggle = useSelector((state) => state.toggle.closeModal);
@@ -43,14 +44,6 @@ const Delivered = () => {
     // }
   };
 
-  const showDetails = (id) => {
-    setShowModal(true);
-    console.log("id", id);
-  };
-  const deleteDetail = (id) => {
-    setShowModal(true);
-    console.log("id", id);
-  };
   const searchWithDate = () => {
     // console.log(dateFilters);
     dateFilters.start &&
@@ -64,24 +57,34 @@ const Delivered = () => {
       );
   };
   const setDateFilter = (e, type) => {
+    console.log(type, e);
     setDateFilters((prevState) => ({
       ...prevState,
-      [type]: new Date(e.target.value),
+      [type]: new Date(e),
     }));
   };
 
   const hideModal = () => {
-    setShowModal(false);
+    setShowDeleteModal(false);
   };
 
   return (
     <>
-      <Modal isOpen={showModal} style={customStyles}>
+      <Modal isOpen={showPaymentModal || showDeleteModal} style={customStyles}>
         <>
-          {/* <IoClose className="modalClose" onClick={() => setShowModal(false)} /> */}
-          {/* {<AiOutlineEye /> ? <PaymentModal /> : <DeleteInfo />} */}
+          {" "}
+          {showPaymentModal ? (
+            <>
+              <IoClose
+                className="modalClose"
+                onClick={() => setShowPaymentModal(false)}
+              />
+              <PaymentModal id={showPaymentModal} />
+            </>
+          ) : (
+            <DeleteInfo hideModal={hideModal} id={showDeleteModal} />
+          )}
           {/* <PaymentModal /> */}
-          <DeleteInfo onClick={hideModal} />
         </>
       </Modal>
       <div className="deliveredPage">
@@ -98,7 +101,7 @@ const Delivered = () => {
             <p className="dateFilterText"> - </p>
             <Input type="date" onChange={(e) => setDateFilter(e, "end")} />
             <div className="dateSearchWrapper">
-              <BiSearchAlt2 className="dateSearch" onClick={searchWithDate()} />
+              <BiSearchAlt2 className="dateSearch" onClick={searchWithDate} />
             </div>
           </div>
         </div>
@@ -141,11 +144,11 @@ const Delivered = () => {
                         <div className="actionIcons">
                           <AiOutlineEye
                             className="actionEyeIcon"
-                            onClick={() => showDetails(filteredData.id)}
+                            onClick={() => setShowPaymentModal(filteredData.id)}
                           />{" "}
                           <RiDeleteBinLine
                             className="actionDeleteIcon"
-                            onClick={() => deleteDetail(filteredData.id)}
+                            onClick={() => setShowDeleteModal(filteredData.id)}
                           />
                         </div>
                       </td>

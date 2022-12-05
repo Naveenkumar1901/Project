@@ -1,7 +1,11 @@
 import React from "react";
 import deliveredInfo from "../data/deliveredData";
 
-const PaymentModal = (props) => {
+const PaymentModal = ({ id }) => {
+  const result = deliveredInfo.find(function (eachData) {
+    return eachData.id === id;
+  });
+  console.log(result);
   return (
     <div className="paymentModalContainer">
       <div className="paymentDetailsHeader">
@@ -9,15 +13,15 @@ const PaymentModal = (props) => {
       </div>
       <div className="paymentStatusSection">
         <p className="paymentStatus">Payment status</p>
-        <p className="paymentStatusProps">{deliveredInfo.paymentStatus}</p>
+        <p className="paymentStatusProps">{result.paymentStatus}</p>
       </div>
       <div className="paymentModeSection">
         <p className="paymentMode">Payment mode</p>
-        <p className="paymentModeProps">{deliveredInfo.paymentMode}</p>
+        <p className="paymentModeProps">{result.paymentMode}</p>
       </div>
       <div className="bookingFeesSection">
         <p className="bookingFees">Booking fees</p>
-        <p className="bookingFeesProps">{deliveredInfo.bookingFees}</p>
+        <p className="bookingFeesProps">{result.bookingFees}</p>
       </div>
     </div>
   );

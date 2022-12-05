@@ -10,8 +10,13 @@ const ServicePage = () => {
   const { serviceName, serviceIcon } = useParams();
   const [checkboxArray, setCheckArray] = useState();
   // const [formValue, setFormValue] = useState();
+  const [icon, setIcon] = useState();
 
   useEffect(() => {
+    const result = services.find(function (eachData) {
+      return eachData.routeName === serviceName;
+    });
+    setIcon(result.icon);
     switch (serviceName) {
       case "carService":
         return setCheckArray([
@@ -81,24 +86,11 @@ const ServicePage = () => {
   }, [serviceName]);
 
   return (
-    <div className="carServiceContainer">
-      <div className="carServicePage">
-        {/* {services.map((eachForm) => {
-          return (
-            <ServiceParticulars
-              icon={eachForm.icon}
-              name={eachForm.name}
-              checkboxArray={checkboxArray}
-            />
-          );
-        })} */}
-        <ServiceParticulars
-          serviceIcon={serviceIcon}
-          serviceName={serviceName}
-          checkboxArray={checkboxArray}
-        />
-      </div>
-    </div>
+    <ServiceParticulars
+      icon={icon}
+      name={serviceName}
+      checkboxArray={checkboxArray}
+    />
   );
 };
 

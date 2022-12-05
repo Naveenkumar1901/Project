@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "../styles/schedule.css";
+import "../styles/serviceBase.css";
 import SearchBar from "../reusableComponent/SearchBar";
 import appointmentInfo from "../data/appointmentData";
 import ServiceInfo from "../reusableComponent/ServiceInfo";

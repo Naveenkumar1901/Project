@@ -31,7 +31,7 @@ function App() {
             path="/upcoming"
             element={
               <Home>
-                <ServicesBase type={"upcoming"} />
+                <Schedule type={"upcoming"} />
               </Home>
             }
           />
