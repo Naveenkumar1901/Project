@@ -49,7 +49,7 @@ const services = [
     id: 6,
     icon: <FaCarBattery />,
     name: "Batteries",
-    routeName: "carService",
+    routeName: "batteryService",
   },
   {
     id: 7,
@@ -61,7 +61,7 @@ const services = [
     id: 8,
     icon: <GiCarDoor />,
     name: "Windshield & Lights",
-    routeName: "carService",
+    routeName: "lightService",
   },
   {
     id: 9,

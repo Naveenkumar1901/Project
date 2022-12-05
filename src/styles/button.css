@@ -11,11 +11,13 @@
 .primary {
   background-color: #f0ce1b;
 }
-.primary:hover {
-}
+/* .primary:hover {
+  background-color: #ffffff;
+} */
 
 .secondary {
-  background-color: red;
+  background-color: #ffffff;
+    border: 1px solid #232323;
 }
 
 .secondary:hover {

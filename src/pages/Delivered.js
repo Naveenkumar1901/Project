@@ -1,14 +1,16 @@
 import React, { useState } from "react";
-import SideBar from "../reusableComponent/SideBar";
 import "../styles/delivered.css";
 import deliveredInfo from "../data/deliveredData";
 import SearchBar from "../reusableComponent/SearchBar";
-import { BiCalendar, BiSearchAlt2 } from "react-icons/bi";
+import { BiSearchAlt2 } from "react-icons/bi";
 import { IoClose } from "react-icons/io5";
 import Input from "../reusableComponent/Input";
-import { BsEyeFill } from "react-icons/bs";
+import { AiOutlineEye } from "react-icons/ai";
 import Modal from "react-modal";
-import ServiceInfo from "../reusableComponent/ServiceInfo";
+import { RiDeleteBinLine } from "react-icons/ri";
+import PaymentModal from "../components/PaymentModal";
+import DeleteInfo from "../components/DeleteInfoModal";
+import { useSelector } from "react-redux";
 
 const Delivered = () => {
   const [data, setData] = useState(deliveredInfo);
@@ -17,7 +19,7 @@ const Delivered = () => {
   const [showModal, setShowModal] = useState(false);
 
   const [value, setSearchValue] = useState("");
-
+  // const modalToggle = useSelector((state) => state.toggle.closeModal);
   const customStyles = {
     content: {
       top: "50%",
@@ -26,6 +28,10 @@ const Delivered = () => {
       bottom: "auto",
       marginRight: "-50%",
       transform: "translate(-50%, -50%)",
+      boxShadow: "10px 10px 10px 10px rgba(135, 135, 135, 0.25)",
+      borderRadius: "10px",
+      backgroundColor: "#ffffff",
+      border: "none",
     },
   };
   const handleSearch = (input) => {
@@ -33,17 +39,20 @@ const Delivered = () => {
       eachItem.ownerName.toLowerCase().includes(input.toLowerCase())
     );
     setData(filteredSearch);
-    if (data !== input) {
-    }
+    // if (data !== input) {
+    // }
   };
 
   const showDetails = (id) => {
     setShowModal(true);
     console.log("id", id);
   };
-  const deleteDetail = (id) => {};
+  const deleteDetail = (id) => {
+    setShowModal(true);
+    console.log("id", id);
+  };
   const searchWithDate = () => {
-    console.log(dateFilters);
+    // console.log(dateFilters);
     dateFilters.start &&
       dateFilters.end &&
       setData(
@@ -61,13 +70,19 @@ const Delivered = () => {
     }));
   };
 
+  const hideModal = () => {
+    setShowModal(false);
+  };
+
   return (
     <>
       <Modal isOpen={showModal} style={customStyles}>
-        <div>
-          <p onClick={() => setShowModal(false)}>X</p>
-          <ServiceInfo />
-        </div>
+        <>
+          {/* <IoClose className="modalClose" onClick={() => setShowModal(false)} /> */}
+          {/* {<AiOutlineEye /> ? <PaymentModal /> : <DeleteInfo />} */}
+          {/* <PaymentModal /> */}
+          <DeleteInfo onClick={hideModal} />
+        </>
       </Modal>
       <div className="deliveredPage">
         <div className="deliveredNavBar">
@@ -83,7 +98,7 @@ const Delivered = () => {
             <p className="dateFilterText"> - </p>
             <Input type="date" onChange={(e) => setDateFilter(e, "end")} />
             <div className="dateSearchWrapper">
-              <BiSearchAlt2 className="dateSearch" onClick={searchWithDate} />
+              <BiSearchAlt2 className="dateSearch" onClick={searchWithDate()} />
             </div>
           </div>
         </div>
@@ -123,12 +138,16 @@ const Delivered = () => {
                         {filteredData.status}
                       </td>
                       <td>
-                        <BsEyeFill
-                          onClick={() => showDetails(filteredData.id)}
-                        />{" "}
-                        <BsEyeFill
-                          onClick={() => deleteDetail(filteredData.id)}
-                        />
+                        <div className="actionIcons">
+                          <AiOutlineEye
+                            className="actionEyeIcon"
+                            onClick={() => showDetails(filteredData.id)}
+                          />{" "}
+                          <RiDeleteBinLine
+                            className="actionDeleteIcon"
+                            onClick={() => deleteDetail(filteredData.id)}
+                          />
+                        </div>
                       </td>
                     </tr>
                   </tbody>
@@ -139,15 +158,7 @@ const Delivered = () => {
             )}
           </table>
         </div>
-        <div className="paginationContainer">
-          {/* <BasicDatePicker /> */}
-          {/* <Pagination
-            count={10}
-            shape="rounded"
-            showFirstButton
-            showLastButton
-          /> */}
-        </div>
+        <div className="paginationContainer"></div>
       </div>
     </>
   );

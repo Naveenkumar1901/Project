@@ -4,7 +4,6 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./Login";
 import ResetPassword from "./ResetPassword";
 import Home from "./Home";
-import Upcoming from "./Upcoming";
 import Delivered from "./Delivered";
 import Schedule from "./Schedule";
 import ServicePage from "./ServicePage";
@@ -32,7 +31,7 @@ function App() {
             path="/upcoming"
             element={
               <Home>
-                <Schedule type={"upcoming"} />
+                <ServicesBase type={"upcoming"} />
               </Home>
             }
           />

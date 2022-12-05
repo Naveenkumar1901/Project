@@ -13,9 +13,11 @@
   flex-wrap: wrap;
   gap: 8px;
 }
-
+/* 
 .deliveredSearch {
 }
+
+*/
 .dateFilter {
   display: flex;
   align-items: center;
@@ -28,7 +30,7 @@
 }
 
 .dateSearch {
-  width: 30px;
+  width: 50px;
   cursor: pointer;
   color: #232323;
 }
@@ -88,4 +90,30 @@ td:last-child {
 
 tr:hover {
   background-color: #fff1da;
+}
+
+.actionIcons {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  color: #232323;
+  font-size: 20px;
+}
+
+.actionEyeIcon:hover,
+.actionDeleteIcon:hover {
+  color: #f0ce1b;
+}
+
+.modalPopup {
+  width: 100%;
+  background-color: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.modalClose {
+  color: #232323;
 }
