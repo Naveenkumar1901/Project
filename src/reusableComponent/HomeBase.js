@@ -9,8 +9,10 @@ import Button from "./Button";
 import { BiMenuAltLeft } from "react-icons/bi";
 import { useDispatch } from "react-redux";
 import { toggleSideBar } from "../store/toggleSlice";
+import { Tooltip } from "@mui/material";
+import Zoom from "@mui/material/Zoom";
 
-const BasePage = (props) => {
+const BasePage = () => {
   const navigate = useNavigate();
   const [value, setSearchValue] = useState("");
   const dispatch = useDispatch();
@@ -19,13 +21,24 @@ const BasePage = (props) => {
     <div className="basePageContainer">
       <div className="navbar">
         <div className="homeSearch">
-          <BiMenuAltLeft
-            size={25}
-            className="menuIcon"
-            onClick={() => {
-              dispatch(toggleSideBar());
-            }}
-          />
+          <Tooltip
+            placement="bottom"
+            TransitionComponent={Zoom}
+            TransitionProps={{ timeout: 300 }}
+            title="Show"
+            arrow
+          >
+            <div>
+              {" "}
+              <BiMenuAltLeft
+                size={25}
+                className="menuIcon"
+                onClick={() => {
+                  dispatch(toggleSideBar());
+                }}
+              />
+            </div>
+          </Tooltip>
           <SearchBar value={value} setSearchValue={setSearchValue} />
         </div>
         <Button

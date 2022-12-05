@@ -28,19 +28,19 @@ const sideBarData = [
   },
   {
     id: 4,
-    icon: <MdOutlineCarRepair className="sidebarIcon" />,
+    icon: <AiOutlineSchedule className="sidebarIcon" />,
     name: "Schedule",
     route: "/schedule",
   },
   {
     id: 5,
-    icon: <MdOutlineElectricCar className="sidebarIcon" />,
+    icon: <MdOutlineCarRepair className="sidebarIcon" />,
     name: "Upcoming",
     route: "/upcoming",
   },
   {
     id: 6,
-    icon: <AiOutlineSchedule className="sidebarIcon" />,
+    icon: <MdOutlineElectricCar className="sidebarIcon" />,
     name: "Outgoing",
     route: "/delivered",
   },

@@ -19,8 +19,9 @@
 }
 
 .sidebarHeader img {
-  width: 60px;
-}
+  width: 80px;
+  }
+  
 .sidebarHeader p {
   font-family: Poppins;
 }
@@ -28,6 +29,7 @@
 .hideSidebar {
   width: 50px;
 }
+
 .sidebarOptions {
   width: 100%;
   display: flex;
@@ -46,7 +48,8 @@
 }
 
 .eachOption:hover {
-  background-color: gold;
+  background-color: #fff1da;
+    border-left: 5px solid #f0ce1b;
 }
 
 .menuIcon {
@@ -88,4 +91,8 @@
 .animate-text {
   opacity: 0;
   width: 0;
+}
+
+.logoShrink {
+  width: 0px;
 }

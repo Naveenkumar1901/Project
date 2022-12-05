@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "../styles/serviceParticulars.css";
+import Button from "./Button";
 import ServiceParticularsField from "./ServiceParticularsField";
 const ServiceParticulars = (props) => {
   const [formValue, setFormValue] = useState({});
@@ -77,18 +78,20 @@ const ServiceParticulars = (props) => {
         />
         {props.checkboxArray?.map((val) => {
           return (
-            <ServiceParticularsField
-              fieldName={val.fieldName}
-              type="checkbox"
-              onChange={(value) => {
-                setState(value, val.fieldName);
-              }}
-            />
+            <div className="checkboxSection">
+              <ServiceParticularsField
+                fieldName={val.fieldName}
+                type="checkbox"
+                onChange={(value) => {
+                  setState(value, val.fieldName);
+                }}
+              />
+            </div>
           );
         })}
-        <button className="btn" type="submit">
+        <Button variant={"primary"} type="submit">
           Submit
-        </button>
+        </Button>
       </form>
     </div>
   );
