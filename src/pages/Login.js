@@ -3,9 +3,9 @@ import AuthenticationBase from "../reusableComponent/AuthenticationBase";
 
 const Login = () => {
   return (
-    <div>
+    <>
       <AuthenticationBase
-        formName="Log in"
+        formName="Log In"
         btnName="Log in"
         renderObjectInputs={[
           {
@@ -25,7 +25,7 @@ const Login = () => {
         routeName="Sign up"
         googleAuth="Login with"
       />
-    </div>
+    </>
   );
 };
 

@@ -12,7 +12,9 @@ const ServiceParticularsField = (props) => {
             onChange={(e) => props.onChange(e.target.value)}
           ></textarea>
         ) : (
-          <Input type={props.type} onChange={(e) => props.onChange(e)} />
+          <div className={`inputWrapper`}>
+            <Input type={props.type} onChange={(e) => props.onChange(e)} />
+          </div>
         )}
       </div>
     </div>

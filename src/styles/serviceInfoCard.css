@@ -10,7 +10,8 @@
 
 .ownerNameSection,
 .carNameSection,
-.carNoSection {
+.carNoSection,
+.serviceNameSection {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -22,15 +23,17 @@
 
 .ownerNameText,
 .carNameText,
-.carNoText {
+.carNoText,
+.serviceNameText {
   color: #1a30ac;
   flex: 0.5;
   text-align: left;
 }
 
-.ownerNameProps,
-.carNameProps,
-.carNoProps {
+.ownerNameValue,
+.carNameValue,
+.carNoValue,
+.serviceNameValue {
   color: #232323;
   flex: 0.5;
   text-align: left;
@@ -58,9 +61,9 @@
   align-items: center;
 }
 
-.propsDate,
-.propsTime,
-.propsStatus {
+.dateValue,
+.timeValue,
+.statusInfo {
   color: #232323;
   font-family: Poppins;
   font-size: 12px;
@@ -75,9 +78,14 @@
 .dotIcon {
   margin-top: 3px;
 }
+
 .greenColor {
+  color: #3a7f0d;
+  }
+  
+  .redColor {
   color: #eb4335;
 }
-.redColor {
-  color: #3a7f0d;
+.yellowColor {
+  color: #F0CE1B;
 }

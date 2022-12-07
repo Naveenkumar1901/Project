@@ -14,17 +14,18 @@ const sideBarData = [
     name: "Home",
     route: "/",
   },
+
   {
     id: 2,
-    icon: <MdOutlineLocalOffer className="sidebarIcon" />,
-    name: "Offers",
-    route: "/Offers",
+    icon: <IoPersonOutline className="sidebarIcon" />,
+    name: "Profile",
+    route: "/profile",
   },
   {
     id: 3,
-    icon: <IoPersonOutline className="sidebarIcon" />,
-    name: "Profile",
-    route: "/Profile",
+    icon: <MdOutlineLocalOffer className="sidebarIcon" />,
+    name: "Offers",
+    route: "/offers",
   },
   {
     id: 4,

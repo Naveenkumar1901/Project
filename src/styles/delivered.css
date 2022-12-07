@@ -93,6 +93,13 @@ tr:hover {
   background-color: #fff1da;
 }
 
+.errorMsg {
+  width: 100%;
+  color: #f0ce1b;
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+}
 .actionIcons {
   display: flex;
   align-items: center;

@@ -3,9 +3,9 @@ import AuthenticationBase from "../reusableComponent/AuthenticationBase";
 
 const ResetPassword = () => {
   return (
-    <div>
+    <>
       <AuthenticationBase
-        formName="Create new password"
+        formName="Reset Password"
         btnName="Continue"
         renderObjectInputs={[
           {
@@ -20,7 +20,7 @@ const ResetPassword = () => {
           },
         ]}
       />
-    </div>
+    </>
   );
 };
 

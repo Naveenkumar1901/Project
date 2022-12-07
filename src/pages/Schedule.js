@@ -16,8 +16,8 @@ const Schedule = () => {
           return (
             <ServiceInfo
               ownerName={data.ownerName}
-              carName={data.carName}
               carNo={data.carNo}
+              serviceName={data.serviceName}
               date={data.date}
               time={data.time}
               status={data.status}

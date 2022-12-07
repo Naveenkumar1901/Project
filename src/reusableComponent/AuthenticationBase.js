@@ -28,13 +28,13 @@ const AuthenticationBase = (props) => {
       <div className="base-innerContainer">
         <h2 className="form-heading">{props.formName}</h2>
         {props.renderObjectInputs?.map((value) => (
-          <>
+          <div className="authenticationFields">
             <Input
               type={value.type}
               placeholder={value.placeholder}
               onChange={(e) => setCommonStateFunc(e, value.placeholder)}
             />
-          </>
+          </div>
         ))}
 
         <Link className="forgot-link" to="/resetPassword">
@@ -49,20 +49,20 @@ const AuthenticationBase = (props) => {
             {props.routeName}
           </Link>
         </span>
-        {props.formName === "Create new password" ? null : (
+        {props.formName === "Reset Password" ? null : (
           <div className="or-section">
             <hr className="line1" />
             <p className="or-text">OR</p>
             <hr className="line2" />
           </div>
         )}
-        {props.formName === "Create new password" ? null : (
+        {props.formName === "Reset Password" ? null : (
           <>
             <Link className="google-auth">{props.googleAuth}</Link>
             <img src={Google} alt="" className="google-icon" />
           </>
         )}
-        {props.formName === "Create new password" ? (
+        {props.formName === "Reset Password" ? (
           <BsArrowLeft
             className="backwardArrow"
             onClick={() => {

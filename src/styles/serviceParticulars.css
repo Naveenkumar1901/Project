@@ -8,9 +8,9 @@
 }
 
 .serviceParticularsInnerContainer {
-  width: 70%;
+  width: 60%;
   height: 90%;
-  border: 1px solid lightgrey;
+  /* border: 1px solid lightgrey; */
   overflow-y: auto;
   padding: 10px 50px 10px 50px;
 }
@@ -25,6 +25,7 @@
   color: #f0ce1b;
   gap: 10px;
   padding: 20px;
+  margin-bottom: 10px;
 }
 
 .serviceParticularsTitle {
@@ -46,6 +47,9 @@
   width: 50%;
 }
 
+.inputWrapper {
+  float: left;
+}
 .multilineInput {
   width: 100%;
   border: 1px solid #f0ce1b;
@@ -66,9 +70,12 @@
 }
 
 .checkboxSection {
-  width: 50%;
+  width: 100%;
   display: flex;
   accent-color: #f0ce1b;
-  cursor: pointer;
-  margin-top: 5px;
+  margin-top: 10px;
+}
+
+.formSubmitBtn {
+  margin-top: 20px;
 }

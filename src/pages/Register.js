@@ -1,16 +1,12 @@
-import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React from "react";
 import AuthenticationBase from "../reusableComponent/AuthenticationBase";
 import "../styles/loading.css";
+
 const Register = () => {
-  const navigate = useNavigate();
-  const home = () => {
-    navigate("/");
-  };
   return (
-    <div className="register-container">
+    <>
       <AuthenticationBase
-        formName="Sign up"
+        formName="Sign Up"
         btnName="Sign up"
         renderObjectInputs={[
           {
@@ -29,13 +25,12 @@ const Register = () => {
             placeholder: "password",
           },
         ]}
-        //later
         ques="Already have an account"
         routeLink="/login"
         routeName="Log in"
         googleAuth="Signup with"
       />
-    </div>
+    </>
   );
 };
 

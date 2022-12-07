@@ -1,6 +1,6 @@
 .commonButtonStyle {
   font-family: Poppins;
-  font-size: 16px;
+  font-size: 14px;
   text-align: center;
   padding: 10px;
   border: 0;
@@ -11,14 +11,17 @@
 .primary {
   background-color: #f0ce1b;
 }
-/* .primary:hover {
-  background-color: #ffffff;
-} */
 
 .secondary {
   background-color: #ffffff;
-    border: 1px solid #232323;
+  border: 1px solid #232323;
+  font-size: 12px;
+    padding: 5px 10px;
 }
 
-.secondary:hover {
+.compact {
+  font-size: 12px;
+  background-color: #f0ce1b;
+  padding: 5px 10px;
 }
+

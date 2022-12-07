@@ -27,7 +27,6 @@ const Home = () => {
             title={sidebarToggle ? "Hide Sidebar " : "Show Sidebar"}
             arrow
             TransitionComponent={Zoom}
-            leaveDelay={500}
           >
             <div>
               {" "}

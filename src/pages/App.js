@@ -19,6 +19,8 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/resetPassword" element={<ResetPassword />} />
           <Route path="/" element={<LayoutWrapper children={<Home />} />} />
+          <Route path="/profile" element={<LayoutWrapper />} />
+          <Route path="/offers" element={<LayoutWrapper />} />
           <Route
             path="/upcoming"
             element={<LayoutWrapper children={<Upcoming />} />}
@@ -31,6 +33,7 @@ function App() {
             path="/schedule"
             element={<LayoutWrapper children={<Schedule />} />}
           />
+          <Route path="/schedule/payment" element={<LayoutWrapper />} />
 
           <Route
             path="/services/:serviceName"

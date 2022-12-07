@@ -40,6 +40,7 @@ const EachServiceForm = () => {
           { fieldName: "Water wash" },
           { fieldName: "Premium polish" },
           { fieldName: "Generel service" },
+          { fieldName: "Full service" },
         ]);
       case "wheelService":
         return setCheckArray([
@@ -120,6 +121,7 @@ const EachServiceForm = () => {
         />
         <ServiceParticularsField
           fieldName="Mobile number"
+          type="number"
           onChange={(value) => {
             setState(value, "mobileNumber");
           }}
@@ -169,9 +171,11 @@ const EachServiceForm = () => {
             </div>
           );
         })}
-        <Button variant={"primary"} type="submit">
-          Submit
-        </Button>
+        <div className="formSubmitBtn">
+          <Button variant={"primary"} type="submit">
+            Submit
+          </Button>
+        </div>
       </form>
     </div>
   );

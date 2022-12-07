@@ -10,7 +10,7 @@
 .base-innerContainer {
   display: flex;
   width: 300px;
-  padding: 10px;
+  padding: 20px 10px;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -24,21 +24,13 @@
   width: 80px;
 }
 
-.backwardArrow {
-  display: flex;
-  color: #f0ce1b;
-  font-size: 25px;
-  font-weight: bold;
-  cursor: pointer;
-}
-
 .form-heading {
   font-family: Poppins;
   font-size: 16px;
   font-style: normal;
   text-align: center;
   color: #1e232c;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 
 .reusableInput {
@@ -52,6 +44,10 @@
   outline: none;
 }
 
+.authenticationFields {
+  width: 90%;
+  margin-bottom: 10px;
+}
 .eye-icon {
   width: 100%;
   position: relative;
@@ -71,12 +67,15 @@
   right: 0;
 }
 
+.eyeIcon-opened {
+  color: #f0ce1b;
+}
 .forgot-link {
   color: #f0ce1b;
   font-family: Poppins;
   margin-bottom: 10px;
   text-decoration: none;
-  width: 100%;
+  width: 90%;
   text-align: end;
 }
 
@@ -108,7 +107,7 @@
 .or-section {
   display: flex;
   align-items: center;
-  margin: 20px 0px 20px 0px;
+  margin: 20px 0px 10px 0px;
 }
 
 .or-text {
@@ -132,4 +131,16 @@
 .google-icon {
   margin-top: 10px;
   width: 20px;
+}
+
+.backwardArrow {
+  display: flex;
+  font-size: 30px;
+  font-weight: bold;
+  cursor: pointer;
+  color: #232323;
+  background-color: #f0ce1b;
+  border-radius: 50%;
+  padding: 5px;
+  margin-bottom: 10px;
 }

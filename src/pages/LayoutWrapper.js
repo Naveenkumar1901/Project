@@ -1,8 +1,8 @@
-// import React, { useState } from "react";
 import "../styles/layout.css";
-import SideBar from "../components/sidebar"
+import SideBar from "../components/sidebar";
 const LayoutWrapper = ({ children }) => {
   // const [loading, setLoading] = useState(true);
+
   return (
     <div className="layout">
       {/* <loading /> */}

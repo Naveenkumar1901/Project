@@ -3,7 +3,6 @@ import "../styles/delivered.css";
 import deliveredInfo from "../data/deliveredData";
 import SearchBar from "../reusableComponent/SearchBar";
 import { BiSearchAlt2 } from "react-icons/bi";
-import { IoClose } from "react-icons/io5";
 import Input from "../reusableComponent/Input";
 import { AiOutlineEye } from "react-icons/ai";
 import Modal from "react-modal";
@@ -24,7 +23,6 @@ const Delivered = () => {
       left: "50%",
       right: "auto",
       bottom: "auto",
-      marginRight: "-50%",
       transform: "translate(-50%, -50%)",
       boxShadow: "10px 10px 10px 10px rgba(135, 135, 135, 0.25)",
       borderRadius: "10px",
@@ -32,9 +30,13 @@ const Delivered = () => {
       border: "none",
     },
   };
+  const keys = ["ownerName", "carName", "carNo", "time", "status"];
+
   const handleSearch = (input) => {
     let filteredSearch = deliveredInfo.filter((eachItem) =>
-      eachItem.ownerName.toLowerCase().includes(input.toLowerCase())
+      keys.some((key) =>
+        eachItem[key].toLowerCase().includes(input.toLowerCase())
+      )
     );
     setData(filteredSearch);
   };
@@ -62,23 +64,22 @@ const Delivered = () => {
     setShowDeleteModal(false);
   };
 
+  const hidePaymentModal = () => {
+    setShowPaymentModal(false);
+  };
+
   return (
     <>
       <Modal isOpen={showPaymentModal || showDeleteModal} style={customStyles}>
-        <>
-          {" "}
-          {showPaymentModal ? (
-            <>
-              <IoClose
-                className="modalClose"
-                onClick={() => setShowPaymentModal(false)}
-              />
-              <PaymentModal id={showPaymentModal} />
-            </>
-          ) : (
-            <DeleteInfo hideModal={hideModal} id={showDeleteModal} />
-          )}
-        </>
+        {" "}
+        {showPaymentModal ? (
+          <PaymentModal
+            id={showPaymentModal}
+            hidePaymentModal={hidePaymentModal}
+          />
+        ) : (
+          <DeleteInfo hideModal={hideModal} id={showDeleteModal} />
+        )}
       </Modal>
       <div className="deliveredPage">
         <div className="deliveredNavBar">
@@ -150,7 +151,7 @@ const Delivered = () => {
                 );
               })
             ) : (
-              <p>No item found!</p>
+              <p className="errorMsg">No item found!</p>
             )}
           </table>
         </div>
