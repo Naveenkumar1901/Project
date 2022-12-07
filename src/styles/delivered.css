@@ -12,12 +12,13 @@
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 8px;
-}
-/* 
-.deliveredSearch {
+  margin-bottom: 10px;
 }
 
-*/
+.deliveredSearch {
+  width: 30%;
+}
+
 .dateFilter {
   display: flex;
   align-items: center;

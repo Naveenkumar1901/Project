@@ -3,12 +3,12 @@ import Register from "./Register";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./Login";
 import ResetPassword from "./ResetPassword";
-import Home from "./Home";
+import LayoutWrapper from "./LayoutWrapper";
 import Delivered from "./Delivered";
 import Schedule from "./Schedule";
-import ServicePage from "./ServicePage";
-import HomeBase from "../reusableComponent/HomeBase";
-import ServicesBase from "../reusableComponent/ServicesBase";
+import EachServiceForm from "./EachServiceForm";
+import Home from "./Home";
+import Upcoming from "./Upcoming";
 
 function App() {
   return (
@@ -18,46 +18,23 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
           <Route path="/resetPassword" element={<ResetPassword />} />
-          {/* navigation */}
-          <Route
-            path="/"
-            element={
-              <Home>
-                <HomeBase />
-              </Home>
-            }
-          />
+          <Route path="/" element={<LayoutWrapper children={<Home />} />} />
           <Route
             path="/upcoming"
-            element={
-              <Home>
-                <Schedule type={"upcoming"} />
-              </Home>
-            }
+            element={<LayoutWrapper children={<Upcoming />} />}
           />
           <Route
             path="/delivered"
-            element={
-              <Home>
-                <Delivered />
-              </Home>
-            }
+            element={<LayoutWrapper children={<Delivered />} />}
           />
           <Route
             path="/schedule"
-            element={
-              <Home>
-                <Schedule type={"schedule"} />
-              </Home>
-            }
+            element={<LayoutWrapper children={<Schedule />} />}
           />
+
           <Route
             path="/services/:serviceName"
-            element={
-              <Home>
-                <ServicePage />
-              </Home>
-            }
+            element={<LayoutWrapper children={<EachServiceForm />} />}
           />
         </Routes>
       </BrowserRouter>

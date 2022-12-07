@@ -6,13 +6,17 @@
 }
 
 .searchWrapper {
-  width: 300px;
-  padding: 20px 50px;
+  height: 65px;
+  width: 30%;
+  padding: 20px 10px 0px 20px;
+  position: sticky;
+  top: 0;
+  left: 0;
 }
 
 .detailsSection {
   width: 100%;
-  height: 100%;
+  height: calc(100% - 85px);
   display: grid;
   padding: 20px;
   grid-template-columns: repeat(auto-fit, minmax(280px, 300px));

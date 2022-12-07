@@ -47,7 +47,7 @@
   display: flex;
   width: 100%;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: space-between;
   margin-bottom: 10px;
 }
 
@@ -58,22 +58,26 @@
   align-items: center;
 }
 
-.calendarIcon,
-.timeIcon,
-.dotIcon {
-  font-size: 20px;
-  color: #232323;
-}
-
 .propsDate,
 .propsTime,
 .propsStatus {
   color: #232323;
   font-family: Poppins;
-  font-size: 14px;
+  font-size: 12px;
+  margin-left: 5px;
 }
 
 .actionBtn {
   display: flex;
   justify-content: space-between;
+}
+
+.dotIcon {
+  margin-top: 3px;
+}
+.greenColor {
+  color: #eb4335;
+}
+.redColor {
+  color: #3a7f0d;
 }

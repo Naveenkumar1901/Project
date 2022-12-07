@@ -1,12 +1,9 @@
-import Button from "../reusableComponent/Button";
+import Button from "../../reusableComponent/Button";
 import React from "react";
 import { RiDeleteBinLine } from "react-icons/ri";
-import "../styles/deleteInfoModal.css";
-import { useDispatch } from "react-redux";
+import "../../styles/deleteInfoModal.css";
 
 const DeleteInfo = ({ hideModal }) => {
-  // const dispatch = useDispatch();
-
   return (
     <div className="deleteInfoContainer">
       <RiDeleteBinLine className="deleteIcon" />

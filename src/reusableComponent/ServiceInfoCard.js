@@ -1,11 +1,10 @@
 import React from "react";
 import { BiCalendar } from "react-icons/bi";
-import { BsDot } from "react-icons/bs";
 import { MdAccessTimeFilled } from "react-icons/md";
-import "../styles/serviceInfo.css";
-import Button from "../reusableComponent/Button";
+import "../styles/serviceInfoCard.css";
+import Button from "./Button";
 
-const ServiceInfo = (props) => {
+const ServiceInfoCard = (props) => {
   return (
     <div className="serviceInfoContainer">
       <div className="ownerNameSection">
@@ -23,20 +22,21 @@ const ServiceInfo = (props) => {
       <hr className="separationLine" />
       <div className="scheduleStatus">
         <div className="calendar">
-          <BiCalendar className="calendarIcon" />
+          <BiCalendar color="gray" />
           <p className="propsDate">{props.date}</p>
         </div>
         <div className="time">
-          <MdAccessTimeFilled className="timeIcon" />
+          <MdAccessTimeFilled color="gray" />
           <p className="propsTime">{props.time}</p>
         </div>
         <div className="status">
-          <BsDot
-            className="dotIcon"
-            style={{
-              color: props.status === "confirmed" ? "#3A7F0D" : "#EB4335",
-            }}
-          />
+          <span
+            className={`dotIcon ${
+              props.status === "confirmed" ? "greenColor" : "redColor"
+            }`}
+          >
+            &#x2022;
+          </span>
           <p className="propsStatus">{props.status}</p>
         </div>
       </div>
@@ -50,4 +50,4 @@ const ServiceInfo = (props) => {
   );
 };
 
-export default ServiceInfo;
+export default ServiceInfoCard;

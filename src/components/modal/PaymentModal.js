@@ -1,5 +1,5 @@
 import React from "react";
-import deliveredInfo from "../data/deliveredData";
+import deliveredInfo from "../../data/deliveredData";
 
 const PaymentModal = ({ id }) => {
   const result = deliveredInfo.find(function (eachData) {

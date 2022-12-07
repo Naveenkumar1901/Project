@@ -1,25 +1,73 @@
 import React, { useState } from "react";
-import SideBar from "../reusableComponent/SideBar";
-import HomeBase from "../reusableComponent/HomeBase";
+import { useNavigate } from "react-router-dom";
 import "../styles/home.css";
-const Home = ({ children }) => {
-  const [loading, setLoading] = useState(true);
+import banner from "../assets/bannerDesign.jpg";
+import ServiceCategory from "../reusableComponent/SeviceCategory";
+import services from "../data/serviceSection";
+import SearchBar from "../reusableComponent/SearchBar";
+import Button from "../reusableComponent/Button";
+import { BiMenuAltLeft } from "react-icons/bi";
+import { useDispatch, useSelector } from "react-redux";
+import { toggleSideBar } from "../store/toggleSlice";
+import { Tooltip } from "@mui/material";
+import Zoom from "@mui/material/Zoom";
+
+const Home = () => {
+  const navigate = useNavigate();
+  const [value, setSearchValue] = useState("");
+  const dispatch = useDispatch();
+  const sidebarToggle = useSelector((state) => state.toggle.showSidebar);
+
   return (
-    <div className="homeContainer">
-      {/* <loading /> */}
-      <div className="homeSidebar">
-        <SideBar
-          displayName="Abcd"
-          home="Home"
-          offers="Offers"
-          profile="Profile"
-          upcomingCars="Upcoming cars"
-          outgoingCars="Outgoing cars"
-          scheduleAppointment="Schedule appointment"
-        />
+    <div className="basePageContainer">
+      <div className="navbar">
+        <div className="homeSearch">
+          <Tooltip
+            placement="bottom"
+            title={sidebarToggle ? "Hide Sidebar " : "Show Sidebar"}
+            arrow
+            TransitionComponent={Zoom}
+            leaveDelay={500}
+          >
+            <div>
+              {" "}
+              <BiMenuAltLeft
+                size={30}
+                color={"gold"}
+                className="menuIcon"
+                onClick={() => {
+                  dispatch(toggleSideBar());
+                }}
+              />
+            </div>
+          </Tooltip>
+          <SearchBar value={value} setSearchValue={setSearchValue} />
+        </div>
+        <Button
+          variant={"primary"}
+          onClick={() => {
+            navigate("/login");
+          }}
+        >
+          Log out
+        </Button>
       </div>
 
-      <div className="homePage">{children} </div>
+      <img src={banner} alt="" className="banner" />
+
+      <>
+        <div className="eachService">
+          {services.map((data) => {
+            return (
+              <ServiceCategory
+                icon={data.icon}
+                name={data.name}
+                serviceParticularsPage={`/services/${data.routeName}`}
+              />
+            );
+          })}
+        </div>
+      </>
     </div>
   );
 };

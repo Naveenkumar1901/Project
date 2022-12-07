@@ -1,11 +1,7 @@
 import React from "react";
-import { BiSearchAlt2 } from "react-icons/bi";
-import { IoClose } from "react-icons/io5";
-import { Link } from "react-router-dom";
-import { RiArrowRightSLine } from "react-icons/ri";
-import "../styles/serviceBase.css";
+import "../styles/upcomingAndSchedule.css";
 import ServiceInfo from "./ServiceInfo";
-import SearchBar from "./SearchBar";
+import SearchBar from "../components/SearchBar";
 import appointmentInfo from "../data/appointmentData";
 import upcomingInfo from "../data/upcomingData";
 
@@ -22,16 +18,6 @@ const ServicesBase = (props) => {
           <SearchBar />
         </div>
       </div>
-      {/* <div className="breadcrumbSection">
-        <RiArrowRightSLine className="scheduleIcon" />
-        <Link className="breadcrumbOption">{props.navigation1}</Link>
-        {props.navigation2 ? (
-          <RiArrowRightSLine className="scheduleIcon" />
-        ) : null}
-
-        <Link className="breadcrumbOption">{props.navigation2}</Link>
-      </div> */}
-      {/* {props.navigation1 === "Delivered cars" ? null : ( */}
       <div className="detailsSection">
         {props.navigation1 === "Schedule appointment"
           ? appointmentInfo.map((data) => {

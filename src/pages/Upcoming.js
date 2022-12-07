@@ -1,22 +1,29 @@
-import React from "react";
-import ServicesBase from "../reusableComponent/ServicesBase";
-import SideBar from "../reusableComponent/SideBar";
-import "../styles/upcoming.css";
-const Upcoming = () => {
-  return (
-    <div className="upcomingContainer">
-      <div className="upcomingSidebar">
-        <SideBar
-          displayName="Abcd"
-          home="Home"
-          upcomingCars="Upcoming cars"
-          outgoingCars="Outgoing cars"
-          scheduleAppointment="Schedule appointment"
-        />
-      </div>
+import React, { useState } from "react";
+import "../styles/upcomingAndSchedule.css";
+import SearchBar from "../reusableComponent/SearchBar";
+import ServiceInfoCard from "../reusableComponent/ServiceInfoCard";
+import upcomingInfo from "../data/upcomingData";
 
-      <div className="upcomingPage">
-        <ServicesBase navigation1="Upcoming cars" navRoute1="/upcoming" />
+const Upcoming = () => {
+  const [value, setSearchValue] = useState("");
+  return (
+    <div className="servicePageContainer">
+      <div className="searchWrapper">
+        <SearchBar value={value} setSearchValue={setSearchValue} />
+      </div>
+      <div className="detailsSection">
+        {upcomingInfo.map((data) => {
+          return (
+            <ServiceInfoCard
+              ownerName={data.ownerName}
+              carName={data.carName}
+              carNo={data.carNo}
+              date={data.date}
+              time={data.time}
+              status={data.status}
+            />
+          );
+        })}
       </div>
     </div>
   );

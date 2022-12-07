@@ -8,19 +8,16 @@ import Input from "../reusableComponent/Input";
 import { AiOutlineEye } from "react-icons/ai";
 import Modal from "react-modal";
 import { RiDeleteBinLine } from "react-icons/ri";
-import PaymentModal from "../components/PaymentModal";
-import DeleteInfo from "../components/DeleteInfoModal";
-import { useSelector } from "react-redux";
+import PaymentModal from "../components/modal/PaymentModal";
+import DeleteInfo from "../components/modal/DeleteInfoModal";
 
 const Delivered = () => {
   const [data, setData] = useState(deliveredInfo);
   const [dateFilters, setDateFilters] = useState({});
-
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [showPaymentModal, setShowPaymentModal] = useState(false);
-
   const [value, setSearchValue] = useState("");
-  // const modalToggle = useSelector((state) => state.toggle.closeModal);
+
   const customStyles = {
     content: {
       top: "50%",
@@ -40,12 +37,9 @@ const Delivered = () => {
       eachItem.ownerName.toLowerCase().includes(input.toLowerCase())
     );
     setData(filteredSearch);
-    // if (data !== input) {
-    // }
   };
 
   const searchWithDate = () => {
-    // console.log(dateFilters);
     dateFilters.start &&
       dateFilters.end &&
       setData(
@@ -84,7 +78,6 @@ const Delivered = () => {
           ) : (
             <DeleteInfo hideModal={hideModal} id={showDeleteModal} />
           )}
-          {/* <PaymentModal /> */}
         </>
       </Modal>
       <div className="deliveredPage">

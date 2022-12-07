@@ -10,7 +10,7 @@ import {
 const sideBarData = [
   {
     id: 1,
-    icon: <MdOutlineHome className="sidebarIcon" />,
+    icon: <MdOutlineHome className="sidebarIcon" size={20} />,
     name: "Home",
     route: "/",
   },
