@@ -8,11 +8,11 @@
 }
 
 .serviceParticularsInnerContainer {
-  width: 60%;
+  width: 50%;
   height: 90%;
-  /* border: 1px solid lightgrey; */
+  border: 1px solid lightgrey;
   overflow-y: auto;
-  padding: 10px 50px 10px 50px;
+  padding: 20px 50px 20px 50px;
 }
 
 .serviceParticularsHeader {
@@ -48,8 +48,10 @@
 }
 
 .inputWrapper {
-  float: left;
+  float: right;
+    width: 100%;
 }
+
 .multilineInput {
   width: 100%;
   border: 1px solid #f0ce1b;
@@ -59,6 +61,7 @@
   font-size: 14px;
   outline: none;
   padding: 0px 0px 10px 10px;
+  float: right;
 }
 
 .serviceParticularsField {
@@ -66,16 +69,32 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
 }
 
 .checkboxSection {
-  width: 100%;
-  display: flex;
+  width: 70%;
   accent-color: #f0ce1b;
   margin-top: 10px;
 }
 
 .formSubmitBtn {
   margin-top: 20px;
+}
+.paymentIcon {
+  font-size: 30px;
+}
+
+.paymentOption {
+  display: flex;
+  justify-content: space-between;
+}
+
+.dropdownWrapper {
+  width: 100%;
+  float: right;
+}
+
+.costDetails {
+  padding-bottom: 20px;
 }

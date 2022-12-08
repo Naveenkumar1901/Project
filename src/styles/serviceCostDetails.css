@@ -1,0 +1,32 @@
+.eachCostSection {
+    width: 100%;
+    display: flex;
+    font-size: 14px;
+    margin-bottom: 10px;
+    flex: 1;
+}
+
+.costParticularPrimary {
+    background-color: red;
+}
+
+.costParticular {
+    flex: 0.5;
+    text-align: left;
+    color: #1A30AC;
+}
+
+
+.costValue {
+    color: #232323;
+    font-weight: 400;
+    flex: 0.5;
+    text-align: left;
+}
+
+.totalCostValue {
+    color: #232323;
+    font-weight: 500;
+    flex: 0.5;
+    text-align: left;
+}

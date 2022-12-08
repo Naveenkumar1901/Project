@@ -9,6 +9,7 @@ import Schedule from "./Schedule";
 import EachServiceForm from "./EachServiceForm";
 import Home from "./Home";
 import Upcoming from "./Upcoming";
+import Payment from "./Payment";
 
 function App() {
   return (
@@ -33,7 +34,10 @@ function App() {
             path="/schedule"
             element={<LayoutWrapper children={<Schedule />} />}
           />
-          <Route path="/schedule/payment" element={<LayoutWrapper />} />
+          <Route
+            path="/schedule/payment"
+            element={<LayoutWrapper children={<Payment />} />}
+          />
 
           <Route
             path="/services/:serviceName"

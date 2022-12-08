@@ -114,6 +114,7 @@ const EachServiceForm = () => {
         onSubmit={(e) => submitForm(e)}
       >
         <ServiceParticularsField
+          cularsField
           fieldName="Customer name"
           onChange={(value) => {
             setState(value, "customerName");
@@ -122,6 +123,7 @@ const EachServiceForm = () => {
         <ServiceParticularsField
           fieldName="Mobile number"
           type="number"
+          maxlength="10"
           onChange={(value) => {
             setState(value, "mobileNumber");
           }}

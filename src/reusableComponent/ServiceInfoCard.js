@@ -36,16 +36,12 @@ const ServiceInfoCard = (props) => {
           <p className="ownerNameText">Owner name</p>
           <p className="ownerNameValue">{props.ownerName}</p>
         </div>
-        {/* <div className="carNameSection">
-          <p className="carNameText">Car name </p>
-          <p className="carNameProps">{props.carName}</p>
-        </div> */}
         <div className="carNoSection">
           <p className="carNoText">Car no</p>
           <p className="carNoValue">{props.carNo}</p>
         </div>
         <div className="serviceNameSection">
-          <p className="serviceNameText">Service name</p>
+          <p className="serviceNameText">Service type</p>
           <p className="serviceNameValue">{props.serviceName}</p>
         </div>
         <hr className="separationLine" />

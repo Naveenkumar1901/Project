@@ -1,0 +1,15 @@
+.commonDropdownStyle,
+option {
+    width: 100%;
+    font-family: Poppins;
+    font-size: 14px;
+    text-align: justify;
+    padding: 10px;
+    border: 1px solid #f0ce1b;
+    border-radius: 5px;
+    cursor: pointer;
+    outline: none;
+    color: #232323;
+}
+
+option {}

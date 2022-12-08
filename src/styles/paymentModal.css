@@ -37,48 +37,5 @@
 .paymentDetailsBody {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     padding: 20px 20px 10px 20px;
-}
-
-
-.paymentStatusSection,
-.paymentModeSection,
-.bookingFeesSection,
-.waterWashSection,
-.totalServiceSection,
-.totalAmountSection {
-    display: flex;
-    font-size: 14px;
-    margin-bottom: 10px;
-    flex: 1;
-}
-
-.paymentStatus,
-.paymentMode,
-.bookingFees,
-.waterWash,
-.totalService,
-.totalAmount {
-    flex: 0.6;
-    text-align: left;
-    color: #1A30AC;
-}
-
-.totalAmount {
-    color: #232323;
-    font-size: 16px;
-    font-weight: 500;
-}
-
-.paymentStatusValue,
-.paymentModeValue,
-.bookingFeesValue,
-.waterWashValue,
-.totalServiceValue,
-.totalAmountValue {
-    color: #232323;
-    font-weight: 500;
-    flex: 0.4;
-    text-align: right;
 }
