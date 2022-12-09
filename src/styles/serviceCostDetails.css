@@ -6,27 +6,36 @@
     flex: 1;
 }
 
-.costParticularPrimary {
-    background-color: red;
-}
-
-.costParticular {
-    flex: 0.5;
+.costParticular,
+.totalCostParticular {
+    flex: 0.6;
     text-align: left;
     color: #1A30AC;
 }
 
+.totalCostParticular {
+    color: #232323;
+    font-size: 16px;
+    font-weight: 500;
+}
 
-.costValue {
+.costValue,
+.totalCostValue {
     color: #232323;
     font-weight: 400;
-    flex: 0.5;
-    text-align: left;
+    flex: 0.4;
+        text-align: right;
 }
 
 .totalCostValue {
-    color: #232323;
+    font-size: 16px;
     font-weight: 500;
-    flex: 0.5;
-    text-align: left;
+}
+
+.greenColor {
+    color: #3a7f0d;
+}
+
+.redColor {
+    color: #eb4335;
 }

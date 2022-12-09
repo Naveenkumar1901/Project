@@ -1,15 +1,31 @@
 import React from "react";
 import "../styles/serviceCostDetails.css";
-const ServiceCostDetails = (props, { children, variant }) => {
+const ServiceCostDetails = (props, { variant }) => {
   return (
     <div>
       {" "}
       <div className={`eachCostSection ${variant || ""}`}>
-        <p className="costParticular">{props.costParticular}</p>
         {props.costParticular === "Total amount" ? (
-          <p className="totalCostValue">Rs</p>
+          <>
+            <p className="totalCostParticular">{props.costParticular}</p>
+            <p className="totalCostValue">₹</p>
+          </>
         ) : (
-          <p className="costValue">{props.costValue}</p>
+          <>
+            <p className="costParticular">{props.costParticular}</p>
+            <p
+              className={`costValue ${
+                props.costValue === "Not Payed!"
+                  ? "redColor"
+                  : props.costValue === "Payed!"
+                  ? "greenColor"
+                  : "#232323"
+              } 
+              `}
+            >
+              {props.costValue}
+            </p>
+          </>
         )}
       </div>
     </div>

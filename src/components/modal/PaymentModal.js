@@ -18,10 +18,7 @@ const PaymentModal = ({ id, hidePaymentModal }) => {
       </div>
       <div className="paymentDetailsBody">
         <ServiceCostDetails
-          variant={"costParticularPrimary"}
-          className={`paymentStatusValue ${
-            result.paymentStatus === "Payed!" ? "greenColor" : "redColor"
-          }`}
+          className="paymentStatusValue"
           costParticular="Payment status"
           costValue={result.paymentStatus}
         />

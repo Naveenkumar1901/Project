@@ -1,20 +1,44 @@
-import React, { useState } from "react";
-import "../styles/serviceParticulars.css";
+import React, { useEffect, useState } from "react";
+import "../styles/eachServiceAndPaymentForm.css";
 import Button from "../reusableComponent/Button";
 import ServiceParticularsField from "../reusableComponent/ServiceParticularsField";
 import { HiOutlineCurrencyRupee } from "react-icons/hi";
-import ServiceCostDetails from "../reusableComponent/ServiceCostDetails";
 import { useNavigate } from "react-router-dom";
 const Payment = () => {
   const navigate = useNavigate();
   const [formValue, setFormValue] = useState({});
-  const [paymentMode, setPaymentMode] = useState("");
+  const [paymentMode, setPaymentMode] = useState(0);
+  const [costValue, setCostValue] = useState({
+    bookingFees: 0,
+    waterWash: 0,
+    spareCharges: 0,
+    labourCharges: 0,
+    serviceCharges: 0,
+  });
+  const [totalValue, setTotalValue] = useState(0);
+
   const submitForm = (e) => {
     e.preventDefault();
     console.log(formValue);
+    console.log(costValue);
+    console.log(totalValue);
   };
-  const setState = (value, fieldName) => {
+  const handleValue = (value, fieldName) => {
     setFormValue((prevState) => ({ ...prevState, [fieldName]: value }));
+  };
+
+  useEffect(() => {
+    setTotalValue(
+      parseInt(costValue.bookingFees) +
+        parseInt(costValue.waterWash) +
+        parseInt(costValue.spareCharges) +
+        parseInt(costValue.labourCharges) +
+        parseInt(costValue.serviceCharges)
+    );
+  }, [costValue]);
+
+  const handleChange = (value, fieldName) => {
+    setCostValue({ ...costValue, [fieldName]: value });
   };
 
   return (
@@ -28,27 +52,55 @@ const Payment = () => {
         onSubmit={(e) => submitForm(e)}
       >
         <div className="costDetails">
-          <ServiceCostDetails costParticular="Booking Fees" costValue="50Rs" />
-          <ServiceCostDetails costParticular="Water wash" costValue="150Rs" />
-          <ServiceCostDetails
-            costParticular="Spare charges"
-            costValue="2000Rs"
+          <ServiceParticularsField
+            fieldName="Booking fees"
+            type="number"
+            value={costValue.bookingFees}
+            onChange={(value) => {
+              handleChange(value, "bookingFees");
+            }}
           />
-          <ServiceCostDetails
-            costParticular="Labour charges"
-            costValue="500Rs"
+          <ServiceParticularsField
+            fieldName="Water wash"
+            value={costValue.waterWash}
+            type="number"
+            onChange={(value) => {
+              handleChange(value, "waterWash");
+            }}
           />
-          <ServiceCostDetails
-            costParticular="Service charges"
-            costValue="2000Rs"
+          <ServiceParticularsField
+            fieldName="Spare charges"
+            type="number"
+            value={costValue.spareCharges}
+            onChange={(value) => {
+              handleChange(value, "spareCharges");
+            }}
           />
-          <ServiceCostDetails costParticular="GST" costValue="18%" />
-          <ServiceCostDetails costParticular="Total amount" />
+          <ServiceParticularsField
+            fieldName="Labour charges"
+            type="number"
+            value={costValue.labourCharges}
+            onChange={(value) => {
+              handleChange(value, "labourCharges");
+            }}
+          />
+          <ServiceParticularsField
+            fieldName="Service charges"
+            type="number"
+            value={costValue.serviceCharges}
+            onChange={(value) => {
+              handleChange(value, "serviceCharges");
+            }}
+          />
+          <div className="totalAmountSection">
+            <p className="totalAmountParticular">Total amount</p>
+            <p className="totalAmountValue">₹{totalValue} </p>
+          </div>
         </div>
         <ServiceParticularsField
           fieldName="Payment mode"
           onChange={(value) => {
-            setState(value, "paymentMode");
+            handleValue(value, "paymentMode");
             setPaymentMode(value);
           }}
         />
@@ -59,13 +111,13 @@ const Payment = () => {
               type="number"
               maxLength="16"
               onChange={(value) => {
-                setState(value, "cardNumber");
+                handleValue(value, "cardNumber");
               }}
             />
             <ServiceParticularsField
               fieldName="Card holder name"
               onChange={(value) => {
-                setState(value, "cardHolderName");
+                handleValue(value, "cardHolderName");
               }}
             />
             <ServiceParticularsField
@@ -73,7 +125,7 @@ const Payment = () => {
               type="number"
               maxLength="3"
               onChange={(value) => {
-                setState(value, "cvvCode");
+                handleValue(value, "cvvCode");
               }}
             />
           </>
@@ -82,13 +134,13 @@ const Payment = () => {
             <ServiceParticularsField
               fieldName="Bank name"
               onChange={(value) => {
-                setState(value, "bankName");
+                handleValue(value, "bankName");
               }}
             />
             <ServiceParticularsField
               fieldName="IFSC code"
               onChange={(value) => {
-                setState(value, "ifscCode");
+                handleValue(value, "ifscCode");
               }}
             />
           </>
@@ -97,7 +149,7 @@ const Payment = () => {
             <ServiceParticularsField
               fieldName="UPI id"
               onChange={(value) => {
-                setState(value, "upiId");
+                handleValue(value, "upiId");
               }}
             />
             <ServiceParticularsField
@@ -105,7 +157,7 @@ const Payment = () => {
               type="number"
               maxLength="10"
               onChange={(value) => {
-                setState(value, "upiMobileNumber");
+                handleValue(value, "upiMobileNumber");
               }}
             />
           </>

@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import services from "../data/serviceSection";
-import "../styles/serviceParticulars.css";
 import Button from "../reusableComponent/Button";
 import ServiceParticularsField from "../reusableComponent/ServiceParticularsField";
+import "../styles/eachServiceAndPaymentForm.css";
+
 const EachServiceForm = () => {
   const [formValue, setFormValue] = useState({});
   const { serviceName } = useParams();

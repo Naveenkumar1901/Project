@@ -9,7 +9,6 @@ const Input = (props) => {
       <input
         type={!showPassword ? props.type : "text"}
         placeholder={props.placeholder}
-        maxLength={props.maxLength}
         className="reusableInput"
         onChange={(e) => {
           props.onChange(e.target.value);
@@ -30,7 +29,9 @@ const Input = (props) => {
   ) : (
     <input
       type={props.type}
+      name={props.name}
       placeholder={props.placeholder}
+      maxLength={props.maxLength}
       className="reusableInput"
       onChange={(e) => {
         const value =

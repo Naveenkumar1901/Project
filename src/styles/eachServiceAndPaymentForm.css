@@ -33,6 +33,18 @@
   font-weight: 500;
 }
 
+.paymentIcon {
+  font-size: 30px;
+}
+
+.serviceParticularsField {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
 .fieldName {
   width: 50%;
   font-family: Poppins;
@@ -49,7 +61,7 @@
 
 .inputWrapper {
   float: right;
-    width: 100%;
+  width: 100%;
 }
 
 .multilineInput {
@@ -64,13 +76,37 @@
   float: right;
 }
 
-.serviceParticularsField {
+.costDetails {
+  padding-bottom: 10px;
+}
+
+.totalAmountSection {
+  padding: 10px 0px;
   width: 100%;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 10px;
+  flex: 1;
+  font-weight: 500;
+  font-size: 16px;
 }
+
+.totalAmountParticular {
+  flex: 0.5;
+  text-align: left;
+  color: #232323;
+}
+
+.totalAmountValue {
+  flex: 0.5;
+  text-align: left;
+  color: #f0ce1b;
+
+}
+
+.dropdownWrapper {
+  width: 100%;
+  float: right;
+}
+
 
 .checkboxSection {
   width: 70%;
@@ -80,21 +116,4 @@
 
 .formSubmitBtn {
   margin-top: 20px;
-}
-.paymentIcon {
-  font-size: 30px;
-}
-
-.paymentOption {
-  display: flex;
-  justify-content: space-between;
-}
-
-.dropdownWrapper {
-  width: 100%;
-  float: right;
-}
-
-.costDetails {
-  padding-bottom: 20px;
 }
