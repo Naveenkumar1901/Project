@@ -21,20 +21,21 @@ const Payment = () => {
     e.preventDefault();
     console.log(formValue);
     console.log(costValue);
-    console.log(totalValue);
+    console.log("Total", totalValue);
   };
   const handleValue = (value, fieldName) => {
     setFormValue((prevState) => ({ ...prevState, [fieldName]: value }));
   };
 
   useEffect(() => {
-    setTotalValue(
+    const sum =
       parseInt(costValue.bookingFees) +
-        parseInt(costValue.waterWash) +
-        parseInt(costValue.spareCharges) +
-        parseInt(costValue.labourCharges) +
-        parseInt(costValue.serviceCharges)
-    );
+      parseInt(costValue.waterWash) +
+      parseInt(costValue.spareCharges) +
+      parseInt(costValue.labourCharges) +
+      parseInt(costValue.serviceCharges);
+    const value = sum + sum * 0.18;
+    sum ? setTotalValue(value) : setTotalValue(0);
   }, [costValue]);
 
   const handleChange = (value, fieldName) => {
@@ -53,7 +54,7 @@ const Payment = () => {
       >
         <div className="costDetails">
           <ServiceParticularsField
-            fieldName="Booking fees"
+            fieldName="Booking fees (Rs)"
             type="number"
             value={costValue.bookingFees}
             onChange={(value) => {
@@ -61,7 +62,7 @@ const Payment = () => {
             }}
           />
           <ServiceParticularsField
-            fieldName="Water wash"
+            fieldName="Water wash (Rs)"
             value={costValue.waterWash}
             type="number"
             onChange={(value) => {
@@ -69,7 +70,7 @@ const Payment = () => {
             }}
           />
           <ServiceParticularsField
-            fieldName="Spare charges"
+            fieldName="Spare charges (Rs)"
             type="number"
             value={costValue.spareCharges}
             onChange={(value) => {
@@ -77,7 +78,7 @@ const Payment = () => {
             }}
           />
           <ServiceParticularsField
-            fieldName="Labour charges"
+            fieldName="Labour charges (Rs)"
             type="number"
             value={costValue.labourCharges}
             onChange={(value) => {
@@ -85,7 +86,7 @@ const Payment = () => {
             }}
           />
           <ServiceParticularsField
-            fieldName="Service charges"
+            fieldName="Service charges (Rs)"
             type="number"
             value={costValue.serviceCharges}
             onChange={(value) => {
@@ -93,7 +94,9 @@ const Payment = () => {
             }}
           />
           <div className="totalAmountSection">
-            <p className="totalAmountParticular">Total amount</p>
+            <p className="totalAmountParticular">
+              Total amount including 18% GST
+            </p>
             <p className="totalAmountValue">₹{totalValue} </p>
           </div>
         </div>

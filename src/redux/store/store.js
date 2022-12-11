@@ -1,8 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
-import toggleReducer from "../store/toggleSlice";
+import themeSlice from "../slices/themeSlice";
+import toggleReducer from "../slices/toggleSlice";
 
 export const store = configureStore({
   reducer: {
     toggle: toggleReducer,
+    color: themeSlice,
   },
 });

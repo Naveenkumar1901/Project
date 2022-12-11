@@ -4,9 +4,10 @@ import sideBarData from "../../data/sideBarData";
 import "../../styles/sidebar.css";
 import { Tooltip, Zoom } from "@mui/material";
 
-const SideBarOption = ({ isOpen }) => {
+const SideBarOption = ({ isOpen, theme }) => {
   const activeStyle = {
     backgroundColor: "gold",
+    color:theme !== "dark-theme" ? "black": "white"
   };
   return (
     <div className="sidebarOptions">
@@ -21,7 +22,9 @@ const SideBarOption = ({ isOpen }) => {
                 TransitionComponent={Zoom}
               >
                 <NavLink
-                  className="eachOption"
+                  className={`eachOption ${
+                    theme === "dark-theme" ? "eachOptionDark" : "eachOptionWhite"
+                  }`}
                   to={eachData.route}
                   style={({ isActive }) => (isActive ? activeStyle : undefined)}
                 >
@@ -38,7 +41,9 @@ const SideBarOption = ({ isOpen }) => {
               </Tooltip>
             ) : (
               <NavLink
-                className="eachOption"
+                className={`eachOption ${
+                  theme === "dark-theme" ? "eachOptionDark" : "eachOptionWhite"
+                }`}
                 to={eachData.route}
                 style={({ isActive }) => (isActive ? activeStyle : undefined)}
               >

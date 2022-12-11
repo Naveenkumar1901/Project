@@ -25,7 +25,6 @@
 }
 
 .dateFilterText {
-  color: #232323;
   margin: 0 5px 10px 5px;
   text-align: center;
 }
@@ -33,7 +32,6 @@
 .dateSearch {
   width: 50px;
   cursor: pointer;
-  color: #232323;
 }
 
 .tableContainer {
@@ -47,7 +45,6 @@
 
 .tableParticulars {
   width: 100%;
-  color: #232323;
   font-family: Poppins;
   font-size: 100%;
   font-weight: 400;
@@ -105,7 +102,6 @@ tr:hover {
   align-items: center;
   justify-content: space-between;
   cursor: pointer;
-  color: #232323;
   font-size: 20px;
 }
 
@@ -123,5 +119,4 @@ tr:hover {
 }
 
 .modalClose {
-  color: #232323;
 }

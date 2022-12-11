@@ -18,9 +18,8 @@ code {
 }
 
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 8px;
 }
 ::-webkit-scrollbar-thumb {
   background: #e3dddd;
-  border-radius: 10px;
 }

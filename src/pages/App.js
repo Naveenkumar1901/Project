@@ -19,7 +19,7 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
           <Route path="/resetPassword" element={<ResetPassword />} />
-          <Route path="/" element={<LayoutWrapper children={<Home />} />} />
+          <Route path="/home" element={<LayoutWrapper children={<Home />} />} />
           <Route path="/profile" element={<LayoutWrapper />} />
           <Route path="/offers" element={<LayoutWrapper />} />
           <Route
@@ -40,7 +40,7 @@ function App() {
           />
 
           <Route
-            path="/services/:serviceName"
+            path="/home/services/:serviceName"
             element={<LayoutWrapper children={<EachServiceForm />} />}
           />
         </Routes>

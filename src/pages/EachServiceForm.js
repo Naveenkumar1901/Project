@@ -17,7 +17,7 @@ const EachServiceForm = () => {
     console.log(formValue);
   };
 
-  const setState = (value, fieldName) => {
+  const handleChange = (value, fieldName) => {
     setFormValue((prevState) => ({ ...prevState, [fieldName]: value }));
   };
 
@@ -118,7 +118,7 @@ const EachServiceForm = () => {
           cularsField
           fieldName="Customer name"
           onChange={(value) => {
-            setState(value, "customerName");
+            handleChange(value, "customerName");
           }}
         />
         <ServiceParticularsField
@@ -126,39 +126,39 @@ const EachServiceForm = () => {
           type="number"
           maxlength="10"
           onChange={(value) => {
-            setState(value, "mobileNumber");
+            handleChange(value, "mobileNumber");
           }}
         />
         <ServiceParticularsField
           fieldName="Address"
           onChange={(value) => {
-            setState(value, "address");
+            handleChange(value, "address");
           }}
         />
         <ServiceParticularsField
           fieldName="Car name & model"
           onChange={(value) => {
-            setState(value, "carName&Model");
+            handleChange(value, "carName&Model");
           }}
         />
         <ServiceParticularsField
           fieldName="Entry date"
           type="date"
           onChange={(value) => {
-            setState(value, "entryDate");
+            handleChange(value, "entryDate");
           }}
         />
         <ServiceParticularsField
           fieldName="Delivery date"
           type="date"
           onChange={(value) => {
-            setState(value, "deliveryDate");
+            handleChange(value, "deliveryDate");
           }}
         />
         <ServiceParticularsField
           fieldName="Description"
           onChange={(value) => {
-            setState(value, "description");
+            handleChange(value, "description");
           }}
         />
         {checkboxArray?.map((val) => {
@@ -168,7 +168,7 @@ const EachServiceForm = () => {
                 fieldName={val.fieldName}
                 type="checkbox"
                 onChange={(value) => {
-                  setState(value, val.fieldName);
+                  handleChange(value, val.fieldName);
                 }}
               />
             </div>

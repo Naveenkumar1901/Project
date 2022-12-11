@@ -50,9 +50,9 @@
   font-family: Poppins;
   font-size: 14px;
   font-weight: 500;
-  color: #232323;
   display: flex;
   align-items: center;
+  text-align: left;
 }
 
 .inputField {
@@ -68,7 +68,6 @@
   width: 100%;
   border: 1px solid #f0ce1b;
   border-radius: 7px;
-  color: #1e232c;
   font-family: Poppins;
   font-size: 14px;
   outline: none;
@@ -92,21 +91,19 @@
 .totalAmountParticular {
   flex: 0.5;
   text-align: left;
-  color: #232323;
+  padding-right: 10px;
 }
 
 .totalAmountValue {
   flex: 0.5;
   text-align: left;
   color: #f0ce1b;
-
 }
 
 .dropdownWrapper {
   width: 100%;
   float: right;
 }
-
 
 .checkboxSection {
   width: 70%;

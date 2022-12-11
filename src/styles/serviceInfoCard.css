@@ -34,7 +34,6 @@
 .carNameValue,
 .carNoValue,
 .serviceNameValue {
-  color: #232323;
   flex: 0.5;
   text-align: left;
 }
@@ -64,7 +63,6 @@
 .dateValue,
 .timeValue,
 .statusInfo {
-  color: #232323;
   font-family: Poppins;
   font-size: 12px;
   margin-left: 5px;

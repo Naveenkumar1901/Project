@@ -1,4 +1,4 @@
-.base-container {
+.baseContainer {
   height: 100vh;
   width: 100%;
   display: flex;
@@ -7,7 +7,7 @@
   justify-content: center;
 }
 
-.base-innerContainer {
+.baseInnerContainer {
   display: flex;
   width: 300px;
   padding: 20px 10px;
@@ -19,17 +19,16 @@
   box-shadow: 0px 5px 5px 5px rgba(135, 135, 135, 0.25);
 }
 
-.logo-image {
+.logoImage {
   margin-bottom: 1rem;
   width: 80px;
 }
 
-.form-heading {
+.formHeading {
   font-family: Poppins;
   font-size: 16px;
   font-style: normal;
   text-align: center;
-  color: #1e232c;
   margin-bottom: 20px;
 }
 
@@ -38,7 +37,6 @@
   border: 1px solid #f0ce1b;
   border-radius: 5px;
   padding: 10px;
-  color: #1e232c;
   font-family: Poppins;
   font-size: 14px;
   outline: none;
@@ -48,29 +46,28 @@
   width: 90%;
   margin-bottom: 10px;
 }
-.eye-icon {
+.eyeIcon {
   width: 100%;
   position: relative;
 }
 
-.eye-icon input {
+.eyeIcon input {
   width: 100%;
 }
 
-.eyeIcon-closed,
-.eyeIcon-opened {
+.eyeIconClosed,
+.eyeIconCpened {
   position: absolute;
-  color: #232323;
   cursor: pointer;
   top: 50%;
   transform: translate(-50%, -50%);
   right: 0;
 }
 
-.eyeIcon-opened {
+.eyeIconOpened {
   color: #f0ce1b;
 }
-.forgot-link {
+.forgotLink {
   color: #f0ce1b;
   font-family: Poppins;
   margin-bottom: 10px;
@@ -80,40 +77,38 @@
 }
 
 .ques {
-  color: #232323;
   font-family: Poppins;
   font-size: 16px;
   margin-top: 10px;
 }
 
-.route-link,
-.google-auth {
+.routeLink,
+.googleAuth {
   text-decoration: none;
   color: #f0ce1b;
   font-family: Poppins;
   font-size: 16px;
 }
 
-.route-link {
+.routeLink {
   margin-left: 10px;
 }
 
-.route-link:hover,
-.google-auth:hover,
-.forgot-link:hover {
+.routeLink:hover,
+.googleAuth:hover,
+.forgotLink:hover {
   text-decoration: underline;
 }
 
-.or-section {
+.orSection {
   display: flex;
   align-items: center;
   margin: 20px 0px 10px 0px;
 }
 
-.or-text {
+.orText {
   margin-left: 10px;
   margin-right: 10px;
-  color: #232323;
   font-family: Poppins;
   font-size: 13px;
   font-weight: 600;
@@ -128,7 +123,7 @@
   border: none;
 }
 
-.google-icon {
+.googleIcon {
   margin-top: 10px;
   width: 20px;
 }
@@ -138,7 +133,6 @@
   font-size: 30px;
   font-weight: bold;
   cursor: pointer;
-  color: #232323;
   background-color: #f0ce1b;
   border-radius: 50%;
   padding: 5px;

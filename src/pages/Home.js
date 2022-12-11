@@ -8,7 +8,7 @@ import SearchBar from "../reusableComponent/SearchBar";
 import Button from "../reusableComponent/Button";
 import { BiMenuAltLeft } from "react-icons/bi";
 import { useDispatch, useSelector } from "react-redux";
-import { toggleSideBar } from "../store/toggleSlice";
+import { toggleSideBar } from "../redux/slices/toggleSlice";
 import { Tooltip } from "@mui/material";
 import Zoom from "@mui/material/Zoom";
 
@@ -19,7 +19,7 @@ const Home = () => {
   const sidebarToggle = useSelector((state) => state.toggle.showSidebar);
 
   return (
-    <div className="basePageContainer">
+    <div>
       <div className="navbar">
         <div className="homeSearch">
           <Tooltip
@@ -61,7 +61,7 @@ const Home = () => {
               <ServiceCategory
                 icon={data.icon}
                 name={data.name}
-                serviceParticularsPage={`/services/${data.routeName}`}
+                serviceParticularsPage={`/home/services/${data.routeName}`}
               />
             );
           })}

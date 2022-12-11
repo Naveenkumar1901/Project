@@ -14,7 +14,7 @@ const AuthenticationBase = (props) => {
   const home = () => {
     props.formName !== "Create new password" &&
       localStorage.setItem("userInfo", JSON.stringify(commonState));
-    navigate("/");
+    navigate("/home");
   };
 
   const setCommonStateFunc = (value, fieldName) => {
@@ -22,11 +22,11 @@ const AuthenticationBase = (props) => {
   };
 
   return (
-    <div className="base-container">
+    <div className="baseContainer">
       {/* <loading /> */}
-      <img src={Logo} alt="" className="logo-image" />
-      <div className="base-innerContainer">
-        <h2 className="form-heading">{props.formName}</h2>
+      <img src={Logo} alt="" className="logoImage" />
+      <div className="baseInnerContainer">
+        <h2 className="formHeading">{props.formName}</h2>
         {props.renderObjectInputs?.map((value) => (
           <div className="authenticationFields">
             <Input
@@ -37,7 +37,7 @@ const AuthenticationBase = (props) => {
           </div>
         ))}
 
-        <Link className="forgot-link" to="/resetPassword">
+        <Link className="forgotLink" to="/resetPassword">
           {props.forgot}
         </Link>
         <Button variant="primary" onClick={home}>
@@ -45,21 +45,21 @@ const AuthenticationBase = (props) => {
         </Button>
         <span className="ques">
           {props.ques}
-          <Link className="route-link" to={props.routeLink}>
+          <Link className="routeLink" to={props.routeLink}>
             {props.routeName}
           </Link>
         </span>
         {props.formName === "Reset Password" ? null : (
-          <div className="or-section">
+          <div className="orSection">
             <hr className="line1" />
-            <p className="or-text">OR</p>
+            <p className="orText">OR</p>
             <hr className="line2" />
           </div>
         )}
         {props.formName === "Reset Password" ? null : (
           <>
-            <Link className="google-auth">{props.googleAuth}</Link>
-            <img src={Google} alt="" className="google-icon" />
+            <Link className="googleAuth">{props.googleAuth}</Link>
+            <img src={Google} alt="" className="googleIcon" />
           </>
         )}
         {props.formName === "Reset Password" ? (
