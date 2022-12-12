@@ -3,14 +3,21 @@ import { NavLink } from "react-router-dom";
 import sideBarData from "../../data/sideBarData";
 import "../../styles/sidebar.css";
 import { Tooltip, Zoom } from "@mui/material";
+import { useSelector } from "react-redux";
 
-const SideBarOption = ({ isOpen, theme }) => {
+const SideBarOption = ({ isOpen }) => {
+  const theme = useSelector((state) => state.color.theme);
   const activeStyle = {
-    backgroundColor: "gold",
-    color:theme !== "dark-theme" ? "black": "white"
+    backgroundColor: theme === "dark" ? "orange" : "gold",
+    color: theme === "dark" ? "white" : "black",
   };
+
   return (
-    <div className="sidebarOptions">
+    <div
+      className={`sidebarOptions ${
+        theme === "dark" ? "dark-theme" : "light-theme"
+      }`}
+    >
       {sideBarData.map((eachData) => {
         return (
           <>
@@ -23,7 +30,7 @@ const SideBarOption = ({ isOpen, theme }) => {
               >
                 <NavLink
                   className={`eachOption ${
-                    theme === "dark-theme" ? "eachOptionDark" : "eachOptionWhite"
+                    theme === "dark" ? "dark-theme" : "light-theme"
                   }`}
                   to={eachData.route}
                   style={({ isActive }) => (isActive ? activeStyle : undefined)}

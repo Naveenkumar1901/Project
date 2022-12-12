@@ -6,6 +6,7 @@ import Button from "./Button";
 import Modal from "react-modal";
 import DeleteInfo from "../components/modal/DeleteInfoModal";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 const ServiceInfoCard = (props) => {
   const customStyles = {
     content: {
@@ -26,12 +27,18 @@ const ServiceInfoCard = (props) => {
     setShowDeleteModal(false);
   };
   const navigate = useNavigate();
+  const theme = useSelector((state) => state.color.theme);
+
   return (
     <>
       <Modal isOpen={showDeleteModal} style={customStyles}>
         <DeleteInfo hideModal={hideModal} />
       </Modal>
-      <div className="serviceInfoContainer">
+      <div
+        className={`serviceInfoContainer ${
+          theme === "dark" ? "dark-theme" : "light-theme"
+        }`}
+      >
         <div className="ownerNameSection">
           <p className="ownerNameText">Owner name</p>
           <p className="ownerNameValue">{props.ownerName}</p>
@@ -79,7 +86,7 @@ const ServiceInfoCard = (props) => {
             </Button>
             <Button
               variant={"compact"}
-              onClick={() => navigate("/services/carService")}
+              onClick={() => navigate("/home/services/carService")}
             >
               Reschedule
             </Button>

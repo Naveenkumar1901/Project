@@ -1,24 +1,34 @@
 .searchSection {
   display: flex;
+  width: 100%;
   align-items: center;
   justify-content: space-between;
-  width: 100%;
   border-radius: 5px;
   border: 1px solid lightgray;
-  padding: 10px;
+  padding: 5px 5px;
+  }
+  
+  .searchSection .dark-theme {
+    background-color: white;
+    color: black;
+  }
+  
+  .searchSection .light-theme {
+    background-color: white;
+    color: white;
 }
 
 .searchIcon,
 .closeIcon {
   cursor: pointer;
-  margin-right: 5px;
 }
 
 .search {
-  border: none;
-  font-family: Poppins;
-  outline: none;
   width: 100%;
+  border: none;
+  outline: none;
+  padding: 5px;
+    border-radius: 5px;
 }
 
 .searchSection:focus-within {

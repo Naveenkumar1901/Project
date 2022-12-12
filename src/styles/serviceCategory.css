@@ -12,6 +12,17 @@
     transition: 0.20s;
 }
 
+.serviceOptions.dark-theme {
+    background-color: #001E3C;
+    color: white;
+    box-shadow: none;
+    border: 1px solid lightgray;
+}
+
+.serviceOptions.light-theme {
+    background-color: white;
+    color: black;
+}
 .serviceOptions:hover {
     transform: scale(1.1);
     outline: auto;
@@ -27,6 +38,5 @@
 }
 
 .serviceName {
-    font-family: Poppins;
     font-size: 16px;
 }

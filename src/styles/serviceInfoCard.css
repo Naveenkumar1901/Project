@@ -8,6 +8,17 @@
   flex-direction: column;
 }
 
+.serviceInfoContainer.dark-theme {
+  background-color: #001E3C;
+  color: white;
+  box-shadow: none;
+  border: 1px solid lightgray;
+}
+
+.serviceInfoContainer.light-theme {
+  background-color: white;
+  color: black;
+}
 .ownerNameSection,
 .carNameSection,
 .carNoSection,
@@ -15,7 +26,6 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-family: Poppins;
   font-size: 14px;
   margin-bottom: 10px;
   flex: 1;
@@ -25,7 +35,7 @@
 .carNameText,
 .carNoText,
 .serviceNameText {
-  color: #1a30ac;
+  color: #0071E3;
   flex: 0.5;
   text-align: left;
 }
@@ -63,7 +73,6 @@
 .dateValue,
 .timeValue,
 .statusInfo {
-  font-family: Poppins;
   font-size: 12px;
   margin-left: 5px;
 }

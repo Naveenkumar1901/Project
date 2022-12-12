@@ -7,6 +7,7 @@ import "../styles/authenticationBase.css";
 import { BsArrowLeft } from "react-icons/bs";
 import Input from "./Input";
 import Button from "./Button";
+import { useSelector } from "react-redux";
 const AuthenticationBase = (props) => {
   const [commonState, setCommonState] = useState({});
 
@@ -20,12 +21,20 @@ const AuthenticationBase = (props) => {
   const setCommonStateFunc = (value, fieldName) => {
     setCommonState((prevState) => ({ ...prevState, [fieldName]: value }));
   };
-
+  const theme = useSelector((state) => state.color.theme);
   return (
-    <div className="baseContainer">
+    <div
+      className={`baseContainer ${
+        theme === "dark" ? "dark-theme" : "light-theme"
+      }`}
+    >
       {/* <loading /> */}
       <img src={Logo} alt="" className="logoImage" />
-      <div className="baseInnerContainer">
+      <div
+        className={`baseInnerContainer ${
+          theme === "dark" ? "dark-theme" : "light-theme"
+        }`}
+      >
         <h2 className="formHeading">{props.formName}</h2>
         {props.renderObjectInputs?.map((value) => (
           <div className="authenticationFields">
@@ -64,7 +73,9 @@ const AuthenticationBase = (props) => {
         )}
         {props.formName === "Reset Password" ? (
           <BsArrowLeft
-            className="backwardArrow"
+            className={`backwardArrow ${
+              theme === "dark" ? "dark-theme" : "light-theme"
+            }`}
             onClick={() => {
               navigate("/login");
             }}

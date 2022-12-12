@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import { BsEyeFill, BsEyeSlashFill } from "react-icons/bs";
+import { useSelector } from "react-redux";
 import "../styles/authenticationBase.css";
 
 const Input = (props) => {
   console.log(props.value);
   const [showPassword, setShowPassword] = useState(false);
+  const theme = useSelector((state) => state.color.theme);
+
   return props.type === "password" ? (
     <div className="eyeIcon">
       <input
@@ -17,12 +20,16 @@ const Input = (props) => {
       />
       {!showPassword ? (
         <BsEyeSlashFill
-          className="eyeIconClosed"
+          className={`eyeIconClosed ${
+            theme === "dark" ? "dark-theme" : "light-theme"
+          }`}
           onClick={() => setShowPassword((prevState) => !prevState)}
         />
       ) : (
         <BsEyeFill
-          className="eyeIconOpened"
+          className={`eyeIconOpened ${
+            theme === "dark" ? "dark-theme" : "light-theme"
+          }`}
           onClick={() => setShowPassword((prevState) => !prevState)}
         />
       )}

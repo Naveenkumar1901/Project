@@ -1,0 +1,36 @@
+.profileContainer {
+    display: flex;
+    width: 300px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: left;
+    padding: 70px 0px 10px 10px;
+}
+
+.userInfo,
+.mobileNumberSection,
+.switchTheme {
+    display: flex;
+    width: 100%;
+    flex: 1;
+    align-items: center;
+    padding: 10px 0px;
+}
+
+.profilePicture,
+.mobileIcon,
+.switchBtn {
+    flex: 0.3;
+    font-size: 40px;
+    color: darkgray;
+    text-align: left;
+}
+
+
+.userName,
+.mobileNumber,
+.themeText {
+    flex: 0.7;
+    text-align: left;
+    font-size: 14px;
+}

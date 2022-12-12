@@ -10,6 +10,7 @@ import EachServiceForm from "./EachServiceForm";
 import Home from "./Home";
 import Upcoming from "./Upcoming";
 import Payment from "./Payment";
+import Profile from "./Profile";
 
 function App() {
   return (
@@ -20,7 +21,10 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/resetPassword" element={<ResetPassword />} />
           <Route path="/home" element={<LayoutWrapper children={<Home />} />} />
-          <Route path="/profile" element={<LayoutWrapper />} />
+          <Route
+            path="/profile"
+            element={<LayoutWrapper children={<Profile />} />}
+          />
           <Route path="/offers" element={<LayoutWrapper />} />
           <Route
             path="/upcoming"

@@ -1,11 +1,18 @@
 import React from "react";
 import { BiSearchAlt2 } from "react-icons/bi";
 import { IoClose } from "react-icons/io5";
+import { useSelector } from "react-redux";
 import "../styles/searchBar.css";
 
 const SearchBar = ({ value, setSearchValue, filterFunction }) => {
+  const theme = useSelector((state) => state.color.theme);
+
   return (
-    <div className="searchSection">
+    <div
+      className={`searchSection ${
+        theme === "dark" ? "dark-theme" : "light-theme"
+      }`}
+    >
       <BiSearchAlt2 className="searchIcon" />
       <input
         type="text"

@@ -19,7 +19,7 @@ const Home = () => {
   const sidebarToggle = useSelector((state) => state.toggle.showSidebar);
 
   return (
-    <div>
+    <div className="basePageContainer">
       <div className="navbar">
         <div className="homeSearch">
           <Tooltip

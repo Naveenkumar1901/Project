@@ -16,16 +16,16 @@
   justify-content: space-between;
   padding: 10px;
   border-bottom: 1px solid gold;
-  height: 60px;
+  height: 80px;
 }
 
 .sidebarHeader img {
   width: 50px;
   height: 50px;
+  border-radius: 5px;
 }
 
 .sidebarHeader .displayUsername {
-  font-family: Poppins;
   font-size: 12px;
   font-weight: 500;
 }
@@ -50,6 +50,13 @@
   align-items: center;
 }
 
+.sidebarOptions.dark-theme {
+  color: white;
+}
+
+.sidebarOptions.light-theme {
+  color: black;
+}
 .sidebarOptions .eachOption {
   width: 100%;
   margin-bottom: 10px;
@@ -61,14 +68,19 @@
   border-left: 5px solid transparent;
 }
 
-.sidebarOptions .eachOptionDark {
+.eachOption.dark-theme {
   color: white;
 }
-.sidebarOptions .eachOptionWhite {
+.eachOption.light-theme {
   color: black;
 }
-.eachOption:hover {
-  background-color: orange;
+.dark-theme .eachOption:hover {
+  background-color: #f0ce1b;
+  border-left: 5px solid orange;
+}
+
+.light-theme .eachOption:hover {
+  background-color: #fff1da;
   border-left: 5px solid #f0ce1b;
 }
 
@@ -94,7 +106,6 @@
 }
 
 .sidebarOptionText {
-  font-family: Poppins;
   transition: all 0.1s ease-out 0.1s;
   opacity: 1;
   margin-left: 15px;

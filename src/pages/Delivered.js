@@ -10,6 +10,7 @@ import { RiDeleteBinLine } from "react-icons/ri";
 import PaymentModal from "../components/modal/PaymentModal";
 import DeleteInfo from "../components/modal/DeleteInfoModal";
 import moment from "moment";
+import { useSelector } from "react-redux";
 
 const Delivered = () => {
   const [data, setData] = useState(deliveredInfo);
@@ -71,6 +72,8 @@ const Delivered = () => {
     setShowPaymentModal(false);
   };
 
+  const theme = useSelector((state) => state.color.theme);
+
   return (
     <>
       <Modal isOpen={showPaymentModal || showDeleteModal} style={customStyles}>
@@ -110,7 +113,11 @@ const Delivered = () => {
             </div>
           </div>
         </div>
-        <div className="tableContainer">
+        <div
+          className={`tableContainer ${
+            theme === "dark" ? "dark-theme" : "light-theme"
+          }`}
+        >
           <table className="tableParticulars">
             <thead>
               <tr>
