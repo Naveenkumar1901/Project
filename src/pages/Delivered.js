@@ -11,23 +11,30 @@ import PaymentModal from "../components/modal/PaymentModal";
 import DeleteInfo from "../components/modal/DeleteInfoModal";
 import moment from "moment";
 import { useSelector } from "react-redux";
+// import _ from "lodash";
+import { Pagination } from "@mui/material";
+import EditPaymentModal from "../components/modal/EditPaymentModal";
 
 const Delivered = () => {
   const [data, setData] = useState(deliveredInfo);
+  // const [paginatedData, setPaginatedData] = useState();
   const [dateFilters, setDateFilters] = useState({
     start: moment().format("yyyy-MM-DD"),
     end: "",
   });
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [showPaymentModal, setShowPaymentModal] = useState(false);
-  const [value, setSearchValue] = useState("");
+  const [showEditPaymentModal, setShowEditPaymentModal] = useState(false);
 
+  const [value, setSearchValue] = useState("");
+  // const pageSize = 10;
   const customStyles = {
     content: {
       top: "50%",
       left: "50%",
       right: "auto",
       bottom: "auto",
+      width: "350px",
       transform: "translate(-50%, -50%)",
       boxShadow: "10px 10px 10px 10px rgba(135, 135, 135, 0.25)",
       borderRadius: "10px",
@@ -44,6 +51,7 @@ const Delivered = () => {
       )
     );
     setData(filteredSearch);
+    // setPaginatedData(_(filteredSearch).slice(0).take(pageSize).value());
   };
 
   const searchWithDate = () => {
@@ -57,7 +65,7 @@ const Delivered = () => {
         )
       );
   };
-  const setDateFilter = (e, type) => {
+  const handleChange = (e, type) => {
     setDateFilters((prevState) => ({
       ...prevState,
       [type]: moment(e).format("yyyy-MM-DD"),
@@ -68,24 +76,53 @@ const Delivered = () => {
     setShowDeleteModal(false);
   };
 
-  const hidePaymentModal = () => {
+  const hidePaymentDetails = () => {
     setShowPaymentModal(false);
   };
 
+  const showPaymentDetails = () => {
+    setShowPaymentModal(true);
+  };
+
+  const hideEditPaymentDetails = () => {
+    setShowEditPaymentModal(false);
+  };
+  const showEditPaymentDetails = () => {
+    setShowEditPaymentModal(true);
+  };
+
+
+
   const theme = useSelector((state) => state.color.theme);
+  // const pageCount = data ? Math.ceil(data.length / pageSize) : 0;
+  // if (pageCount === 1) return null;
+  // const pages = _.range(1, pageCount + 1);
+
 
   return (
     <>
-      <Modal isOpen={showPaymentModal || showDeleteModal} style={customStyles}>
+      <Modal isOpen={showPaymentModal || showDeleteModal || showEditPaymentModal} style={customStyles}>
         {" "}
         {showPaymentModal ? (
           <PaymentModal
             id={showPaymentModal}
-            hidePaymentModal={hidePaymentModal}
+  
+            showEditPaymentDetails={showEditPaymentDetails}
+            hidePaymentDetails={hidePaymentDetails}
+          
+
           />
-        ) : (
-          <DeleteInfo hideModal={hideModal} id={showDeleteModal} />
-        )}
+        ) : showDeleteModal?
+          (<DeleteInfo
+            hideModal={hideModal}
+              id={showDeleteModal}
+            />) : (<EditPaymentModal
+              showPaymentDetails={showPaymentDetails}
+            showEditPaymentDetails={showEditPaymentDetails}
+              hideEditPaymentDetails={hideEditPaymentDetails}
+              hidePaymentDetails={ hidePaymentDetails} />)
+
+        }
       </Modal>
       <div className="deliveredPage">
         <div className="deliveredNavBar">
@@ -100,13 +137,13 @@ const Delivered = () => {
             <Input
               type="date"
               value={dateFilters.start}
-              onChange={(e) => setDateFilter(e, "start")}
+              onChange={(e) => handleChange(e, "start")}
             />
             <p className="dateFilterText"> - </p>
             <Input
               type="date"
               value={dateFilters.end}
-              onChange={(e) => setDateFilter(e, "end")}
+              onChange={(e) => handleChange(e, "end")}
             />
             <div className="dateSearchWrapper">
               <BiSearchAlt2 className="dateSearch" onClick={searchWithDate} />
@@ -173,7 +210,9 @@ const Delivered = () => {
             )}
           </table>
         </div>
-        <div className="paginationContainer"></div>
+        <div className="paginationContainer">
+          <Pagination count={2} variant="outlined" shape="rounded" />
+        </div>
       </div>
     </>
   );

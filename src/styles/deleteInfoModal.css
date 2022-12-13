@@ -1,5 +1,5 @@
 .deleteInfoContainer {
-    width: 250px;
+    width: 300px;
     height: 250px;
     border-radius: 10px;
     display: flex;
@@ -28,6 +28,6 @@
 .deleteAction {
     width: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     margin-bottom: 20px;
 }

@@ -2,8 +2,21 @@ import Button from "../../reusableComponent/Button";
 import React from "react";
 import { RiDeleteBinLine } from "react-icons/ri";
 import "../../styles/deleteInfoModal.css";
+import deliveredInfo from "../../data/deliveredData";
 
-const DeleteInfo = ({ hideModal }) => {
+const DeleteInfo = ({ hideModal, id }) => {
+  const result = deliveredInfo.find(function (eachData) {
+    return eachData.id === id;
+  });
+
+  const handleDelete = () => {
+    const indexPosition = deliveredInfo.indexOf(result);
+    if (indexPosition >= 0) {
+      deliveredInfo.splice(indexPosition, 1);
+    }
+    hideModal(true);
+  };
+
   return (
     <div className="deleteInfoContainer">
       <RiDeleteBinLine className="deleteIcon" />
@@ -13,7 +26,9 @@ const DeleteInfo = ({ hideModal }) => {
         <Button variant={"secondary"} onClick={hideModal}>
           Cancel
         </Button>
-        <Button variant={"primary"}>Delete</Button>
+        <Button variant={"primary"} onClick={handleDelete}>
+          Delete
+        </Button>
       </div>
     </div>
   );

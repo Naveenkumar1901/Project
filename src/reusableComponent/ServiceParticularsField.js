@@ -13,7 +13,8 @@ const ServiceParticularsField = (props) => {
             className="multilineInput"
             onChange={(e) => props.onChange(e.target.value)}
           ></textarea>
-        ) : props.fieldName === "Payment mode" ? (
+        ) : props.fieldName === "Payment mode" ||
+          props.fieldName === "Payment status" ? (
           <div className="dropdownWrapper">
             <Dropdown onChange={(e) => props.onChange(e)} />
           </div>

@@ -119,5 +119,7 @@ tr:hover {
   justify-content: center;
 }
 
-.modalClose {
+.paginationContainer {
+  display: flex;
+  justify-content: center;
 }

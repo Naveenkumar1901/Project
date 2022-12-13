@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import ".././styles/dropdown.css";
 const Dropdown = (props, { variant }) => {
-  const options = [
+  const payment = [
     {
       value: "",
       text: "- Choose an option -",
@@ -22,8 +22,17 @@ const Dropdown = (props, { variant }) => {
       value: "upi",
       text: "UPI",
     },
+    {
+      value: "payed",
+      text: "Payed!",
+    },
+    {
+      value: "notPayed",
+      text: "Not Payed!",
+    },
   ];
-  const [select, setSelect] = useState(options[0].text);
+
+  const [select, setSelect] = useState(payment[0].text);
 
   return (
     <select
@@ -34,7 +43,7 @@ const Dropdown = (props, { variant }) => {
         props.onChange(e.target.value);
       }}
     >
-      {options.map((eachOption) => (
+      {payment.map((eachOption) => (
         <option value={eachOption.value}>{eachOption.text}</option>
       ))}
     </select>

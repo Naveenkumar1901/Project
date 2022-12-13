@@ -15,6 +15,7 @@ const Payment = () => {
     labourCharges: 0,
     serviceCharges: 0,
   });
+
   const [totalValue, setTotalValue] = useState(0);
 
   const submitForm = (e) => {

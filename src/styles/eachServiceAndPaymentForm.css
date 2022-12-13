@@ -45,7 +45,7 @@
 }
 
 .fieldName {
-  width: 50%;
+  width: 60%;
   font-size: 14px;
   font-weight: 500;
   display: flex;
@@ -54,7 +54,7 @@
 }
 
 .inputField {
-  width: 50%;
+  width: 40%;
 }
 
 .inputWrapper {
@@ -86,13 +86,13 @@
 }
 
 .totalAmountParticular {
-  flex: 0.5;
+  flex: 0.6;
   text-align: left;
   padding-right: 10px;
 }
 
 .totalAmountValue {
-  flex: 0.5;
+  flex: 0.4;
   text-align: left;
   color: #f0ce1b;
 }
