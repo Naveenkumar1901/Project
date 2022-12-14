@@ -1,22 +1,23 @@
-import React, { useState } from "react";
 import "../styles/delivered.css";
-import deliveredInfo from "../data/deliveredData";
-import SearchBar from "../reusableComponent/SearchBar";
 import { BiSearchAlt2 } from "react-icons/bi";
-import Input from "../reusableComponent/Input";
-import { AiOutlineEye } from "react-icons/ai";
-import Modal from "react-modal";
 import { RiDeleteBinLine } from "react-icons/ri";
-import PaymentModal from "../components/modal/PaymentModal";
-import DeleteInfo from "../components/modal/DeleteInfoModal";
+import { AiOutlineEye } from "react-icons/ai";
+import { TbEdit } from "react-icons/tb";
+import React, { useState } from "react";
 import moment from "moment";
 import { useSelector } from "react-redux";
-// import _ from "lodash";
 import { Pagination } from "@mui/material";
-import EditPaymentModal from "../components/modal/EditPaymentModal";
+import SearchBar from "../reusableComponent/SearchBar";
+import Input from "../reusableComponent/Input";
+import Modal from "react-modal";
+import PaymentModal from "../components/modal/PaymentModal";
+import DeleteInfo from "../components/modal/DeleteInfoModal";
+import EditModal from "../components/modal/EditModal";
+import customerData from "../data/CustomerData";
+// import _ from "lodash";
 
 const Delivered = () => {
-  const [data, setData] = useState(deliveredInfo);
+  const [data, setData] = useState(customerData);
   // const [paginatedData, setPaginatedData] = useState();
   const [dateFilters, setDateFilters] = useState({
     start: moment().format("yyyy-MM-DD"),
@@ -24,8 +25,7 @@ const Delivered = () => {
   });
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [showPaymentModal, setShowPaymentModal] = useState(false);
-  const [showEditPaymentModal, setShowEditPaymentModal] = useState(false);
-
+  const [showEditModal, setShowEditModal] = useState(false);
   const [value, setSearchValue] = useState("");
   // const pageSize = 10;
   const customStyles = {
@@ -38,14 +38,22 @@ const Delivered = () => {
       transform: "translate(-50%, -50%)",
       boxShadow: "10px 10px 10px 10px rgba(135, 135, 135, 0.25)",
       borderRadius: "10px",
-      backgroundColor: "#ffffff",
       border: "none",
     },
   };
-  const keys = ["ownerName", "carName", "carNo", "time", "status"];
+  const keys = [
+    "serviceType",
+    "customerName",
+    "carName",
+    "carNo",
+    "deliveryTime",
+    "deliveryStatus",
+    "paymentStatus",
+    "paymentMode",
+  ];
 
   const handleSearch = (input) => {
-    let filteredSearch = deliveredInfo.filter((eachItem) =>
+    let filteredSearch = customerData.filter((eachItem) =>
       keys.some((key) =>
         eachItem[key].toLowerCase().includes(input.toLowerCase())
       )
@@ -58,10 +66,10 @@ const Delivered = () => {
     dateFilters.start &&
       dateFilters.end &&
       setData(
-        deliveredInfo.filter(
-          ({ date }) =>
-            moment(date).format("yyyy-MM-DD") >= dateFilters.start &&
-            moment(date).format("yyyy-MM-DD") <= dateFilters.end
+        customerData.filter(
+          ({ deliveryDate }) =>
+            moment(deliveryDate).format("yyyy-MM-DD") >= dateFilters.start &&
+            moment(deliveryDate).format("yyyy-MM-DD") <= dateFilters.end
         )
       );
   };
@@ -72,7 +80,7 @@ const Delivered = () => {
     }));
   };
 
-  const hideModal = () => {
+  const hideDeleteModal = () => {
     setShowDeleteModal(false);
   };
 
@@ -84,45 +92,41 @@ const Delivered = () => {
     setShowPaymentModal(true);
   };
 
-  const hideEditPaymentDetails = () => {
-    setShowEditPaymentModal(false);
+  const hideEditDetails = () => {
+    setShowEditModal(false);
   };
-  const showEditPaymentDetails = () => {
-    setShowEditPaymentModal(true);
+  const showEditDetails = () => {
+    setShowEditModal(true);
   };
-
-
 
   const theme = useSelector((state) => state.color.theme);
   // const pageCount = data ? Math.ceil(data.length / pageSize) : 0;
   // if (pageCount === 1) return null;
   // const pages = _.range(1, pageCount + 1);
 
-
   return (
     <>
-      <Modal isOpen={showPaymentModal || showDeleteModal || showEditPaymentModal} style={customStyles}>
+      <Modal
+        isOpen={showPaymentModal || showDeleteModal || showEditModal}
+        style={customStyles}
+      >
         {" "}
         {showPaymentModal ? (
           <PaymentModal
             id={showPaymentModal}
-  
-            showEditPaymentDetails={showEditPaymentDetails}
+            showEditDetails={showEditDetails}
             hidePaymentDetails={hidePaymentDetails}
-          
-
           />
-        ) : showDeleteModal?
-          (<DeleteInfo
-            hideModal={hideModal}
-              id={showDeleteModal}
-            />) : (<EditPaymentModal
-              showPaymentDetails={showPaymentDetails}
-            showEditPaymentDetails={showEditPaymentDetails}
-              hideEditPaymentDetails={hideEditPaymentDetails}
-              hidePaymentDetails={ hidePaymentDetails} />)
-
-        }
+        ) : showDeleteModal ? (
+          <DeleteInfo hideDeleteModal={hideDeleteModal} id={showDeleteModal} />
+        ) : (
+          <EditModal
+            showPaymentDetails={showPaymentDetails}
+            showEditDetails={showEditDetails}
+            hideEditDetails={hideEditDetails}
+            hidePaymentDetails={hidePaymentDetails}
+          />
+        )}
       </Modal>
       <div className="deliveredPage">
         <div className="deliveredNavBar">
@@ -159,11 +163,11 @@ const Delivered = () => {
             <thead>
               <tr>
                 <th>SI.no</th>
-                <th>Owner name</th>
+                <th>Customer name</th>
                 <th>Car name</th>
                 <th>Car no</th>
-                <th>Date</th>
-                <th>Time</th>
+                <th>Delivery date</th>
+                <th>Delivery time</th>
                 <th>Status</th>
                 <th>Action</th>
               </tr>
@@ -174,27 +178,31 @@ const Delivered = () => {
                   <tbody>
                     <tr>
                       <td>{filteredData.id}</td>
-                      <td>{filteredData.ownerName}</td>
+                      <td>{filteredData.customerName}</td>
                       <td>{filteredData.carName}</td>
                       <td>{filteredData.carNo}</td>
-                      <td>{filteredData.date}</td>
-                      <td>{filteredData.time}</td>
+                      <td>{filteredData.deliveryDate}</td>
+                      <td>{filteredData.deliveryTime}</td>
                       <td
                         style={{
                           color:
-                            filteredData.status === "Delivered"
+                            filteredData.deliveryStatus === "Delivered"
                               ? "#3A7F0D"
                               : "#EB4335",
                         }}
                       >
-                        {filteredData.status}
+                        {filteredData.deliveryStatus}
                       </td>
                       <td>
                         <div className="actionIcons">
                           <AiOutlineEye
                             className="actionEyeIcon"
                             onClick={() => setShowPaymentModal(filteredData.id)}
-                          />{" "}
+                          />
+                          <TbEdit
+                            className="actionEditIcon"
+                            onClick={() => setShowEditModal(filteredData.id)}
+                          />
                           <RiDeleteBinLine
                             className="actionDeleteIcon"
                             onClick={() => setShowDeleteModal(filteredData.id)}

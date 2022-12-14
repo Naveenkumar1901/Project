@@ -2,19 +2,19 @@ import Button from "../../reusableComponent/Button";
 import React from "react";
 import { RiDeleteBinLine } from "react-icons/ri";
 import "../../styles/deleteInfoModal.css";
-import deliveredInfo from "../../data/deliveredData";
+import CustomerData from "../../data/CustomerData";
 
-const DeleteInfo = ({ hideModal, id }) => {
-  const result = deliveredInfo.find(function (eachData) {
+const DeleteInfo = ({ hideDeleteModal, id }) => {
+  const result = CustomerData.find(function (eachData) {
     return eachData.id === id;
   });
 
   const handleDelete = () => {
-    const indexPosition = deliveredInfo.indexOf(result);
+    const indexPosition = CustomerData.indexOf(result);
     if (indexPosition >= 0) {
-      deliveredInfo.splice(indexPosition, 1);
+      CustomerData.splice(indexPosition, 1);
     }
-    hideModal(true);
+    hideDeleteModal(true);
   };
 
   return (
@@ -23,7 +23,7 @@ const DeleteInfo = ({ hideModal, id }) => {
       <h1 className="deleteQuestion">Are you sure?</h1>
       <p className="deleteStatement">Do you really want to delete.</p>
       <div className="deleteAction">
-        <Button variant={"secondary"} onClick={hideModal}>
+        <Button variant={"secondary"} onClick={hideDeleteModal}>
           Cancel
         </Button>
         <Button variant={"primary"} onClick={handleDelete}>

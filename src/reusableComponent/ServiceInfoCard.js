@@ -23,7 +23,7 @@ const ServiceInfoCard = (props) => {
   };
   const [showDeleteModal, setShowDeleteModal] = useState(false);
 
-  const hideModal = () => {
+  const hideDeleteModal = () => {
     setShowDeleteModal(false);
   };
   const navigate = useNavigate();
@@ -32,7 +32,7 @@ const ServiceInfoCard = (props) => {
   return (
     <>
       <Modal isOpen={showDeleteModal} style={customStyles}>
-        <DeleteInfo hideModal={hideModal} />
+        <DeleteInfo hideDeleteModal={hideDeleteModal} />
       </Modal>
       <div
         className={`serviceInfoContainer ${
@@ -40,31 +40,31 @@ const ServiceInfoCard = (props) => {
         }`}
       >
         <div className="ownerNameSection">
-          <p className="ownerNameText">Owner name</p>
-          <p className="ownerNameValue">{props.ownerName}</p>
+          <p className="ownerNameText">Customer name</p>
+          <p className="ownerNameValue">{props.customerName}</p>
         </div>
         <div className="carNoSection">
-          <p className="carNoText">Car no</p>
+          <p className="carNoText">Car number</p>
           <p className="carNoValue">{props.carNo}</p>
         </div>
         <div className="serviceNameSection">
           <p className="serviceNameText">Service type</p>
-          <p className="serviceNameValue">{props.serviceName}</p>
+          <p className="serviceNameValue">{props.serviceType}</p>
         </div>
         <hr className="separationLine" />
         <div className="scheduleStatus">
           <div className="calendar">
             <BiCalendar color="gray" />
-            <p className="dateValue">{props.date}</p>
+            <p className="dateValue">{props.deliveryDate}</p>
           </div>
           <div className="time">
             <MdAccessTimeFilled color="gray" />
-            <p className="timeValue">{props.time}</p>
+            <p className="timeValue">{props.deliveryTime}</p>
           </div>
           <div className="status">
             <span
               className={`dotIcon ${
-                props.status === "confirmed"
+                props.scheduleStatus === "Confirmed"
                   ? "greenColor"
                   : "redColor" && props.status === "upcoming"
                   ? "yellowColor"
@@ -73,10 +73,10 @@ const ServiceInfoCard = (props) => {
             >
               &#x2022;
             </span>
-            <p className="statusInfo">{props.status}</p>
+            <p className="statusInfo">{props.scheduleStatus}</p>
           </div>
         </div>
-        {props.status === "upcoming" ? null : (
+        {props.scheduleStatus === "Not confirmed" ? null : (
           <div className="actionBtn">
             <Button
               variant={"secondary"}

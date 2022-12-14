@@ -1,26 +1,27 @@
-import React, { useState } from "react";
 import "../styles/upcomingAndSchedule.css";
+import React, { useState } from "react";
 import SearchBar from "../reusableComponent/SearchBar";
-import appointmentInfo from "../data/appointmentData";
 import ServiceInfo from "../reusableComponent/ServiceInfoCard";
+import customerData from "../data/CustomerData";
 
 const Schedule = () => {
   const [value, setSearchValue] = useState("");
+
   return (
     <div className="servicePageContainer">
       <div className="searchWrapper">
         <SearchBar value={value} setSearchValue={setSearchValue} />
       </div>
       <div className="detailsSection">
-        {appointmentInfo.map((data) => {
+        {customerData.map((data) => {
           return (
             <ServiceInfo
-              ownerName={data.ownerName}
+              customerName={data.customerName}
               carNo={data.carNo}
-              serviceName={data.serviceName}
-              date={data.date}
-              time={data.time}
-              status={data.status}
+              serviceType={data.serviceType}
+              deliveryDate={data.deliveryDate}
+              deliveryTime={data.deliveryTime}
+              scheduleStatus={data.scheduleStatus}
             />
           );
         })}

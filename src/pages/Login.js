@@ -9,14 +9,14 @@ const Login = () => {
         btnName="Log in"
         renderObjectInputs={[
           {
-            fieldName: "username",
+            fieldName: "mobileNumber",
             type: "text",
-            placeholder: "username",
+            placeholder: "Mobile number",
           },
           {
             fieldName: "password",
             type: "password",
-            placeholder: "password",
+            placeholder: "Password",
           },
         ]}
         forgot="Forgot password?"

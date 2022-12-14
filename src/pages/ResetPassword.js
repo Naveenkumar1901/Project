@@ -9,14 +9,14 @@ const ResetPassword = () => {
         btnName="Continue"
         renderObjectInputs={[
           {
-            fieldName: "username",
+            fieldName: "newPassword",
             type: "password",
-            placeholder: "new password",
+            placeholder: "New password",
           },
           {
-            fieldName: "Mobile number",
+            fieldName: "confirmNewPassword",
             type: "password",
-            placeholder: "confirm new password",
+            placeholder: "Confirm new password",
           },
         ]}
       />

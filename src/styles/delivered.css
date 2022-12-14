@@ -74,7 +74,7 @@ th:last-child {
 td {
   border-bottom: 1px solid #f0ce1b;
   border-right: 1px solid #f0ce1b;
-  padding: 10px;
+  padding: 10px 5px;
 }
 
 td:first-child {
@@ -87,7 +87,7 @@ td:last-child {
 }
 
 tr:hover {
-  /* background-color: #fff1da; */
+
     background-color: orange;
 }
 
@@ -101,13 +101,15 @@ tr:hover {
 .actionIcons {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-evenly;
   cursor: pointer;
   font-size: 20px;
+  gap: 5px;
 }
 
 .actionEyeIcon:hover,
-.actionDeleteIcon:hover {
+.actionDeleteIcon:hover,
+.actionEditIcon:hover {
   color: #f0ce1b;
 }
 

@@ -1,8 +1,8 @@
-import React, { useState } from "react";
 import "../styles/upcomingAndSchedule.css";
+import React, { useState } from "react";
 import SearchBar from "../reusableComponent/SearchBar";
 import ServiceInfoCard from "../reusableComponent/ServiceInfoCard";
-import upcomingInfo from "../data/upcomingData";
+import customerData from "../data/CustomerData";
 
 const Upcoming = () => {
   const [value, setSearchValue] = useState("");
@@ -12,15 +12,15 @@ const Upcoming = () => {
         <SearchBar value={value} setSearchValue={setSearchValue} />
       </div>
       <div className="detailsSection">
-        {upcomingInfo.map((data) => {
+        {customerData.map((data) => {
           return (
             <ServiceInfoCard
-              ownerName={data.ownerName}
+              customerName={data.customerName}
               carNo={data.carNo}
-              serviceName={data.serviceName}
-              date={data.date}
-              time={data.time}
-              status={data.status}
+              serviceType={data.serviceType}
+              deliveryDate={data.deliveryDate}
+              deliveryTime={data.deliveryTime}
+              scheduleStatus={data.scheduleStatus}
             />
           );
         })}

@@ -1,24 +1,13 @@
 import React from "react";
-import deliveredInfo from "../../data/deliveredData";
 import "../../styles/paymentModal.css";
 import { IoClose } from "react-icons/io5";
 import ServiceCostDetails from "../../reusableComponent/ServiceCostDetails";
-import Button from "../../reusableComponent/Button";
+import CustomerData from "../../data/CustomerData";
 
-const PaymentModal = ({
-  variant,
-  id,
-  hidePaymentDetails,
-  showEditPaymentDetails,
-}) => {
-  const result = deliveredInfo.find(function (eachData) {
+const PaymentModal = ({ variant, id, hidePaymentDetails }) => {
+  const result = CustomerData.find(function (eachData) {
     return eachData.id === id;
   });
-
-  const handleClick = () => {
-    hidePaymentDetails(true);
-    showEditPaymentDetails(true);
-  };
 
   return (
     <div className="paymentModalContainer">
@@ -60,16 +49,11 @@ const PaymentModal = ({
           costParticular="Service charges (Rs)"
           costValue={result.serviceCharges}
         />
-        <ServiceCostDetails costParticular="GST" costValue="18%" />
         <ServiceCostDetails
           variant={"modalPrimary"}
-          costParticular="Total amount"
+          costParticular="Total amount with GST"
+          costValue={result.totalAmount}
         />
-      </div>
-      <div className="editBtn">
-        <Button variant={"primary"} onClick={handleClick}>
-          Edit details
-        </Button>
       </div>
     </div>
   );

@@ -45,6 +45,7 @@ const Home = () => {
         <Button
           variant={"primary"}
           onClick={() => {
+            localStorage.removeItem("userInfo");
             navigate("/login");
           }}
         >

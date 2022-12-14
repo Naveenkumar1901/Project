@@ -5,7 +5,7 @@ import { IoClose } from "react-icons/io5";
 import Button from "../../reusableComponent/Button";
 import ServiceParticularsField from "../../reusableComponent/ServiceParticularsField";
 
-const EditPaymentModal = ({ hideEditPaymentDetails, showPaymentDetails }) => {
+const EditModal = ({ hideEditDetails, showPaymentDetails }) => {
   const [costValue, setCostValue] = useState({
     bookingFees: 0,
     waterWash: 0,
@@ -40,9 +40,9 @@ const EditPaymentModal = ({ hideEditPaymentDetails, showPaymentDetails }) => {
     <form className="paymentModalContainer" onSubmit={(e) => submitForm(e)}>
       <div className="paymentDetailsHeader">
         <div className="closeModalSection">
-          <IoClose className="closeIcon" onClick={hideEditPaymentDetails} />
+          <IoClose className="closeIcon" onClick={hideEditDetails} />
         </div>
-        <h1 className="headerTitle">Edit Payment Details</h1>
+        <h1 className="headerTitle">Edit Details</h1>
       </div>
       <div className="paymentDetailsBody">
         <ServiceParticularsField
@@ -106,4 +106,4 @@ const EditPaymentModal = ({ hideEditPaymentDetails, showPaymentDetails }) => {
   );
 };
 
-export default EditPaymentModal;
+export default EditModal;

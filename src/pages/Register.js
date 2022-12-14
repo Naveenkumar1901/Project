@@ -10,19 +10,19 @@ const Register = () => {
         btnName="Sign up"
         renderObjectInputs={[
           {
-            fieldName: "username",
+            fieldName: "userName",
             type: "text",
-            placeholder: "username",
+            placeholder: "User name",
           },
           {
-            fieldName: "Mobile number",
+            fieldName: "mobileNumber",
             type: "number",
             placeholder: "Mobile number",
           },
           {
             fieldName: "password",
             type: "password",
-            placeholder: "password",
+            placeholder: "Password",
           },
         ]}
         ques="Already have an account"
