@@ -32,13 +32,17 @@ const AuthenticationBase = (props) => {
   const [err, setErr] = useState(false);
 
   const loginOperation = async (e) => {
+    console.log("click");
     e.preventDefault();
+    console.log(loginMobileNumber, loginPassword);
     if (!loginMobileNumber.length || !loginPassword.length) return;
     setLoading(true);
     try {
       const response = await axiosInstance.post("/login", {
-        mobileNumber: loginMobileNumber,
+        userName: loginMobileNumber,
         password: loginPassword,
+        grant_type: "password",
+        Type: "service",
       });
       localStorage.setItem("userInfo", JSON.stringify(response.data.user));
       navigate("/home");
@@ -47,10 +51,12 @@ const AuthenticationBase = (props) => {
       setErr(true);
     }
   };
-  const setCommonStateFunc = (value, fieldName) => {
-    setLoginMobileNumber((prevState) => ({ ...prevState, [fieldName]: value }));
-    setLoginPassword((prevState) => ({ ...prevState, [fieldName]: value }));
-  };
+
+  // const setCommonStateFunc = (value, fieldName) => {
+  //   setLoginMobileNumber((prevState) => ({ ...prevState, [fieldName]: value }));
+  //   setLoginPassword((prevState) => ({ ...prevState, [fieldName]: value }));
+  // };
+
   const theme = useSelector((state) => state.color.theme);
 
   return (
@@ -75,7 +81,11 @@ const AuthenticationBase = (props) => {
                 <Input
                   type={value.type}
                   placeholder={value.placeholder}
-                  onChange={(e) => setCommonStateFunc(e, value.placeholder)}
+                  onChange={(e) => {
+                    if (value.placeholder === "Password") {
+                      setLoginPassword(e);
+                    } else setLoginMobileNumber(e);
+                  }}
                 />
               </div>
             ))}
