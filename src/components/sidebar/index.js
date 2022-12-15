@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 
 const SideBar = (props) => {
   const sidebarToggle = useSelector((state) => state.toggle.showSidebar);
+  const userInfo = JSON.parse(localStorage.getItem("currentUser"));
 
   return (
     <div
@@ -15,7 +16,7 @@ const SideBar = (props) => {
     >
       <div className="sidebarHeader">
         <img src={logo} alt="" />
-        <p className="displayUsername">Hello {props.displayName}</p>
+        <p className="displayUsername">Hello {userInfo.UserName}</p>
       </div>
       <SideBarOption isOpen={!sidebarToggle} theme={props.theme} />
     </div>

@@ -4,7 +4,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: left;
-    padding: 70px 0px 10px 10px;
+    padding: 80px 0px 20px 0px;
 }
 
 .userInfo,
@@ -14,23 +14,23 @@
     width: 100%;
     flex: 1;
     align-items: center;
-    padding: 10px 0px;
+    padding: 5px 0px;
 }
 
 .profilePicture,
 .mobileIcon,
 .switchBtn {
-    flex: 0.3;
+    flex: 0.25;
     font-size: 40px;
     color: darkgray;
-    text-align: left;
+    text-align: center;
 }
 
 
 .userName,
 .mobileNumber,
 .themeText {
-    flex: 0.7;
+    flex: 0.75;
     text-align: left;
     font-size: 14px;
 }

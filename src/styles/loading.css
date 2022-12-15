@@ -9,7 +9,7 @@ loading {
 }
 
 loading {
-  animation: 2s linear infinite RefreshedLoadingBarProgress,
+  animation: 3s linear infinite RefreshedLoadingBarProgress,
     0.5s ease-out LoadingBarEnter;
   background: linear-gradient(
     to right,

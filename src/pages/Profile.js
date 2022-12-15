@@ -8,20 +8,20 @@ import "../styles/profile.css";
 const Profile = () => {
   const theme = useSelector((state) => state.color.theme);
   const dispatch = useDispatch();
-
+  const userInfo = JSON.parse(localStorage.getItem("currentUser"));
   return (
     <div className="profileContainer">
       <div className="userInfo">
         <div className="profilePicture">
           <CgProfile />
         </div>
-        <p className="userName">Naveen</p>
+        <p className="userName">{userInfo.UserName}</p>
       </div>
       <div className="mobileNumberSection">
         <div className="mobileIcon">
           <GiSmartphone />
         </div>
-        <p className="mobileNumber">Mobile number </p>
+        <p className="mobileNumber">{userInfo.PhoneNumber}</p>
       </div>
       <div className="switchTheme">
         <div className="switchBtn">
