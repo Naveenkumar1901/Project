@@ -118,7 +118,10 @@ const Delivered = () => {
             hidePaymentDetails={hidePaymentDetails}
           />
         ) : showDeleteModal ? (
-          <DeleteInfo hideDeleteModal={hideDeleteModal} id={showDeleteModal} />
+          <DeleteInfo
+            hideDeleteModal={hideDeleteModal}
+            deliveredId={showDeleteModal}
+          />
         ) : (
           <EditModal
             showPaymentDetails={showPaymentDetails}

@@ -94,10 +94,13 @@ const Login = () => {
             </Button>
             {err && (
               <>
-                {loginMobileNumber.length < 10 ? (
+                {loginMobileNumber.length < 10 ||
+                loginMobileNumber.length > 10 ? (
                   <span className="errorMessage">Invalid mobile number!</span>
-                ) : (
+                ) : loginPassword.length < 6 ? (
                   <span className="errorMessage">Invalid password!</span>
+                ) : (
+                  <span className="errorMessage">Not an authorized user!</span>
                 )}
               </>
             )}

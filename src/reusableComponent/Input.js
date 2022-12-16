@@ -15,6 +15,8 @@ const Input = (props) => {
         placeholder={props.placeholder}
         maxLength={props.maxLength}
         minLength={props.minLength}
+        min={props.min}
+        max={props.max}
         className="reusableInput"
         onChange={(e) => {
           props.onChange(e.target.value);
@@ -42,6 +44,8 @@ const Input = (props) => {
       placeholder={props.placeholder}
       maxLength={props.maxLength}
       minLength={props.minLength}
+      min={props.min}
+      max={props.max}
       className="reusableInput"
       value={props.value}
       onChange={(e) => {

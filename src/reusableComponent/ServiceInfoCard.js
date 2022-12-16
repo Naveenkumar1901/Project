@@ -1,39 +1,17 @@
-import React, { useState } from "react";
+import React from "react";
 import { BiCalendar } from "react-icons/bi";
 import { MdAccessTimeFilled } from "react-icons/md";
 import "../styles/serviceInfoCard.css";
 import Button from "./Button";
-import Modal from "react-modal";
-import DeleteInfo from "../components/modal/DeleteInfoModal";
+
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 const ServiceInfoCard = (props) => {
-  const customStyles = {
-    content: {
-      top: "50%",
-      left: "50%",
-      right: "auto",
-      bottom: "auto",
-      transform: "translate(-50%, -50%)",
-      boxShadow: "10px 10px 10px 10px rgba(135, 135, 135, 0.25)",
-      borderRadius: "10px",
-      backgroundColor: "#ffffff",
-      border: "none",
-    },
-  };
-  const [showDeleteModal, setShowDeleteModal] = useState(false);
-
-  const hideDeleteModal = () => {
-    setShowDeleteModal(false);
-  };
   const navigate = useNavigate();
   const theme = useSelector((state) => state.color.theme);
 
   return (
     <>
-      <Modal isOpen={showDeleteModal} style={customStyles}>
-        <DeleteInfo hideDeleteModal={hideDeleteModal} />
-      </Modal>
       <div
         className={`serviceInfoContainer ${
           theme === "dark" ? "dark-theme" : "light-theme"
@@ -78,10 +56,7 @@ const ServiceInfoCard = (props) => {
         </div>
         {props.scheduleStatus === "Not confirmed" ? null : (
           <div className="actionBtn">
-            <Button
-              variant={"secondary"}
-              onClick={() => setShowDeleteModal(true)}
-            >
+            <Button variant={"secondary"} onClick={props.onClick}>
               Cancel
             </Button>
             <Button

@@ -1,24 +1,27 @@
+import "../styles/eachServiceAndPaymentForm.css";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import moment from "moment";
 import services from "../data/serviceSection";
 import Button from "../reusableComponent/Button";
 import ServiceParticularsField from "../reusableComponent/ServiceParticularsField";
-import "../styles/eachServiceAndPaymentForm.css";
 
 const EachServiceForm = () => {
   const [formValue, setFormValue] = useState({});
+  const [dateInput, setDateInput] = useState({
+    entryDate: moment().format("yyyy-MM-DD"),
+    deliveryDate: "",
+  });
   const { serviceName } = useParams();
   const [checkboxArray, setCheckArray] = useState();
   const [icon, setIcon] = useState();
   const [name, setName] = useState();
 
-  const submitForm = (e) => {
-    e.preventDefault();
-    console.log(formValue);
-  };
-
   const handleChange = (value, fieldName) => {
-    setFormValue((prevState) => ({ ...prevState, [fieldName]: value }));
+    setFormValue((prevState) => ({
+      ...prevState,
+      [fieldName]: value,
+    }));
   };
 
   useEffect(() => {
@@ -35,6 +38,7 @@ const EachServiceForm = () => {
     });
     setIcon(result.icon);
     setName(result.name);
+
     switch (serviceName) {
       case "carService":
         return setCheckArray([
@@ -98,7 +102,6 @@ const EachServiceForm = () => {
           { fieldName: "Engine oil change" },
           { fieldName: "Grease apply" },
         ]);
-
       default:
         setCheckArray([]);
     }
@@ -112,7 +115,10 @@ const EachServiceForm = () => {
       </div>
       <form
         className="serviceParticularsInnerContainer"
-        onSubmit={(e) => submitForm(e)}
+        onSubmit={(e) => {
+          e.preventDefault();
+          console.log(formValue);
+        }}
       >
         <ServiceParticularsField
           cularsField
@@ -123,8 +129,8 @@ const EachServiceForm = () => {
         />
         <ServiceParticularsField
           fieldName="Mobile number"
-          type="number"
-          maxlength="10"
+          maxLength="10"
+          minLength="10"
           onChange={(value) => {
             handleChange(value, "mobileNumber");
           }}
@@ -144,14 +150,18 @@ const EachServiceForm = () => {
         <ServiceParticularsField
           fieldName="Entry date"
           type="date"
+          value={dateInput.entryDate}
           onChange={(value) => {
+            setDateInput(value);
             handleChange(value, "entryDate");
           }}
         />
         <ServiceParticularsField
           fieldName="Delivery date"
           type="date"
+          value={dateInput.deliveryDate}
           onChange={(value) => {
+            setDateInput(value);
             handleChange(value, "deliveryDate");
           }}
         />

@@ -107,12 +107,6 @@ tr:hover {
   gap: 5px;
 }
 
-.actionEyeIcon:hover,
-.actionDeleteIcon:hover,
-.actionEditIcon:hover {
-  color: #f0ce1b;
-}
-
 .modalPopup {
   width: 100%;
   background-color: none;

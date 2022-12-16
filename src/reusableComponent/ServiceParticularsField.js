@@ -23,7 +23,11 @@ const ServiceParticularsField = (props) => {
             <Input
               type={props.type}
               name={props.name}
+              value={props.value}
+              minLength={props.minLength}
               maxLength={props.maxLength}
+              min={props.min}
+              max={props.max}
               onChange={(e) => props.onChange(e)}
             />
           </div>

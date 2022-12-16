@@ -100,13 +100,18 @@ const Register = () => {
             </Button>
             {err && (
               <>
-                {signupMobileNumber.length < 10 ? (
+                {signupUserName.length < 4 ? (
                   <span className="errorMessage">
-                    Mobile number should be 10 digits atleast
+                    User name should be 4 characters atleast!
                   </span>
-                ) : setSignupPassword.length < 6 ? (
+                ) : signupMobileNumber.length < 10 ||
+                  signupMobileNumber.length > 10 ? (
                   <span className="errorMessage">
-                    Password should be 6 characters atleast
+                    Mobile number should be 10 digit!
+                  </span>
+                ) : signupPassword.length < 6 ? (
+                  <span className="errorMessage">
+                    Password should be 6 characters atleast!
                   </span>
                 ) : null}
               </>

@@ -5,13 +5,13 @@ import { IoClose } from "react-icons/io5";
 import Button from "../../reusableComponent/Button";
 import ServiceParticularsField from "../../reusableComponent/ServiceParticularsField";
 
-const EditModal = ({ hideEditDetails, showPaymentDetails }) => {
+const EditModal = ({ hideEditDetails }) => {
   const [costValue, setCostValue] = useState({
-    bookingFees: 0,
-    waterWash: 0,
-    spareCharges: 0,
-    serviceCharges: 0,
-    labourCharges: 0,
+    bookingFees: "",
+    waterWash: "",
+    spareCharges: "",
+    serviceCharges: "",
+    labourCharges: "",
   });
 
   const [totalValue, setTotalValue] = useState(0);

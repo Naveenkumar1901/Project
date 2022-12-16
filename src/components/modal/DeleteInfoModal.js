@@ -1,16 +1,16 @@
-import Button from "../../reusableComponent/Button";
+import "../../styles/deleteInfoModal.css";
 import React from "react";
 import { RiDeleteBinLine } from "react-icons/ri";
-import "../../styles/deleteInfoModal.css";
+import Button from "../../reusableComponent/Button";
 import CustomerData from "../../data/CustomerData";
 
-const DeleteInfo = ({ hideDeleteModal, id }) => {
+const DeleteInfo = ({ hideDeleteModal, deliveredId, scheduleId }) => {
   const result = CustomerData.find(function (eachData) {
-    return eachData.id === id;
+    return eachData.id === deliveredId || eachData.id === scheduleId;
   });
 
   const handleDelete = () => {
-    const indexPosition = CustomerData.indexOf(result);
+    let indexPosition = CustomerData.indexOf(result);
     if (indexPosition >= 0) {
       CustomerData.splice(indexPosition, 1);
     }

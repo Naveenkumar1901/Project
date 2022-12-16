@@ -9,11 +9,11 @@ const Payment = () => {
   const [formValue, setFormValue] = useState({});
   const [paymentMode, setPaymentMode] = useState(0);
   const [costValue, setCostValue] = useState({
-    bookingFees: 0,
-    waterWash: 0,
-    spareCharges: 0,
-    labourCharges: 0,
-    serviceCharges: 0,
+    bookingFees: "",
+    waterWash: "",
+    spareCharges: "",
+    labourCharges: "",
+    serviceCharges: "",
   });
 
   const [totalValue, setTotalValue] = useState(0);
@@ -56,7 +56,6 @@ const Payment = () => {
         <div className="costDetails">
           <ServiceParticularsField
             fieldName="Booking fees (Rs)"
-            type="number"
             value={costValue.bookingFees}
             onChange={(value) => {
               handleChange(value, "bookingFees");
@@ -65,14 +64,12 @@ const Payment = () => {
           <ServiceParticularsField
             fieldName="Water wash (Rs)"
             value={costValue.waterWash}
-            type="number"
             onChange={(value) => {
               handleChange(value, "waterWash");
             }}
           />
           <ServiceParticularsField
             fieldName="Spare charges (Rs)"
-            type="number"
             value={costValue.spareCharges}
             onChange={(value) => {
               handleChange(value, "spareCharges");
@@ -80,7 +77,6 @@ const Payment = () => {
           />
           <ServiceParticularsField
             fieldName="Labour charges (Rs)"
-            type="number"
             value={costValue.labourCharges}
             onChange={(value) => {
               handleChange(value, "labourCharges");
@@ -88,7 +84,6 @@ const Payment = () => {
           />
           <ServiceParticularsField
             fieldName="Service charges (Rs)"
-            type="number"
             value={costValue.serviceCharges}
             onChange={(value) => {
               handleChange(value, "serviceCharges");
@@ -112,8 +107,8 @@ const Payment = () => {
           <>
             <ServiceParticularsField
               fieldName="Card number"
-              type="number"
-              maxLength="16"
+              minLength="08"
+              maxLength="19"
               onChange={(value) => {
                 handleValue(value, "cardNumber");
               }}
@@ -126,8 +121,8 @@ const Payment = () => {
             />
             <ServiceParticularsField
               fieldName="CVV code"
-              type="number"
-              maxLength="3"
+              minLength="3"
+              maxLength="4"
               onChange={(value) => {
                 handleValue(value, "cvvCode");
               }}
@@ -158,7 +153,7 @@ const Payment = () => {
             />
             <ServiceParticularsField
               fieldName="UPI mobile number"
-              type="number"
+              minLength="10"
               maxLength="10"
               onChange={(value) => {
                 handleValue(value, "upiMobileNumber");
