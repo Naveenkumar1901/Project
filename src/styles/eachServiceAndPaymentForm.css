@@ -45,7 +45,7 @@
 }
 
 .fieldName {
-  width: 60%;
+  width: 50%;
   font-size: 14px;
   font-weight: 500;
   display: flex;
@@ -54,7 +54,7 @@
 }
 
 .inputField {
-  width: 40%;
+  width: 50%;
 }
 
 .inputWrapper {
@@ -103,7 +103,7 @@
 }
 
 .checkboxSection {
-  width: 77%;
+  width: 70%;
   accent-color: #f0ce1b;
   margin-top: 10px;
 }

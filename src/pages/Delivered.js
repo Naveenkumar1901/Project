@@ -5,11 +5,11 @@ import { AiOutlineEye } from "react-icons/ai";
 import { TbEdit } from "react-icons/tb";
 import React, { useState } from "react";
 import moment from "moment";
+import Modal from "react-modal";
 import { useSelector } from "react-redux";
-import { Pagination } from "@mui/material";
+import { Pagination, Tooltip, Zoom } from "@mui/material";
 import SearchBar from "../reusableComponent/SearchBar";
 import Input from "../reusableComponent/Input";
-import Modal from "react-modal";
 import PaymentModal from "../components/modal/PaymentModal";
 import DeleteInfo from "../components/modal/DeleteInfoModal";
 import EditModal from "../components/modal/EditModal";
@@ -113,7 +113,7 @@ const Delivered = () => {
         {" "}
         {showPaymentModal ? (
           <PaymentModal
-            id={showPaymentModal}
+            paymentModalId={showPaymentModal}
             showEditDetails={showEditDetails}
             hidePaymentDetails={hidePaymentDetails}
           />
@@ -128,6 +128,7 @@ const Delivered = () => {
             showEditDetails={showEditDetails}
             hideEditDetails={hideEditDetails}
             hidePaymentDetails={hidePaymentDetails}
+            editModalId={showEditModal}
           />
         )}
       </Modal>
@@ -198,18 +199,51 @@ const Delivered = () => {
                       </td>
                       <td>
                         <div className="actionIcons">
-                          <AiOutlineEye
-                            className="actionEyeIcon"
-                            onClick={() => setShowPaymentModal(filteredData.id)}
-                          />
-                          <TbEdit
-                            className="actionEditIcon"
-                            onClick={() => setShowEditModal(filteredData.id)}
-                          />
-                          <RiDeleteBinLine
-                            className="actionDeleteIcon"
-                            onClick={() => setShowDeleteModal(filteredData.id)}
-                          />
+                          <Tooltip
+                            placement="top"
+                            title="Show details"
+                            arrow
+                            TransitionComponent={Zoom}
+                          >
+                            <div>
+                              <AiOutlineEye
+                                className="actionEyeIcon"
+                                onClick={() =>
+                                  setShowPaymentModal(filteredData.id)
+                                }
+                              />
+                            </div>
+                          </Tooltip>
+                          <Tooltip
+                            placement="top"
+                            title="Edit details"
+                            arrow
+                            TransitionComponent={Zoom}
+                          >
+                            <div>
+                              <TbEdit
+                                className="actionEditIcon"
+                                onClick={() =>
+                                  setShowEditModal(filteredData.id)
+                                }
+                              />
+                            </div>
+                          </Tooltip>
+                          <Tooltip
+                            placement="top"
+                            title="Delete"
+                            arrow
+                            TransitionComponent={Zoom}
+                          >
+                            <div>
+                              <RiDeleteBinLine
+                                className="actionDeleteIcon"
+                                onClick={() =>
+                                  setShowDeleteModal(filteredData.id)
+                                }
+                              />
+                            </div>
+                          </Tooltip>
                         </div>
                       </td>
                     </tr>

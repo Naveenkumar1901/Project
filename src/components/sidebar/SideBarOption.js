@@ -1,7 +1,7 @@
+import "../../styles/sidebar.css";
 import React from "react";
 import { NavLink } from "react-router-dom";
 import sideBarData from "../../data/sideBarData";
-import "../../styles/sidebar.css";
 import { Tooltip, Zoom } from "@mui/material";
 import { useSelector } from "react-redux";
 

@@ -1,7 +1,6 @@
 import "../styles/authenticationBase.css";
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Google from "../assets/google-icon.png";
 import Logo from "../assets/Logo.png";
@@ -16,33 +15,29 @@ const Register = () => {
   const [signupPassword, setSignupPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [err, setErr] = useState(false);
-  useEffect(() => {
-    let user = JSON.parse(localStorage.getItem("currentUser"));
-    if (user) navigate("/home");
-  }, [navigate]);
+
   const signupOperation = async (e) => {
     e.preventDefault();
     if (!signupUserName.length || !signupMobileNumber.length || !signupPassword)
       return;
     setLoading(true);
     let body =
-      "userName=" +
-      signupUserName +
-      "&mobileNumber=" +
+      "phNum=" +
       signupMobileNumber +
+      "&name=" +
+      signupUserName +
       "&password=" +
       signupPassword +
-      "&grant_type=password&Type=service";
+      "&type=service";
     try {
-      const response = await axiosInstance("/register", {
+      await axiosInstance("/User/AddUser", {
         method: "POST",
         data: body,
         headers: {
           "Content-Type": "application/x-www-form-urlencoded",
         },
       });
-      localStorage.setItem("currentUser", JSON.stringify(response.data));
-      navigate("/home");
+      navigate("/login");
     } catch (err) {
       setLoading(false);
       setErr(true);

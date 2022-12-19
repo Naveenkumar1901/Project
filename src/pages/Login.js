@@ -15,10 +15,12 @@ const Login = () => {
   const [loginPassword, setLoginPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [err, setErr] = useState(false);
+
   useEffect(() => {
     let user = JSON.parse(localStorage.getItem("currentUser"));
     if (user) navigate("/home");
   }, [navigate]);
+
   const loginOperation = async (e) => {
     e.preventDefault();
     if (!loginMobileNumber.length || !loginPassword.length) return;

@@ -54,8 +54,8 @@ const services = [
   {
     id: 7,
     icon: <MdHealthAndSafety />,
-    name: "Insurance Claims",
-    routeName: "insuranceService",
+    name: "Insurance Renewal",
+    routeName: "insuranceRenewal",
   },
   {
     id: 8,

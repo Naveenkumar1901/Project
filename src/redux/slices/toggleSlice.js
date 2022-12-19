@@ -5,7 +5,7 @@ const initialState = {
 };
 
 export const toggleSlice = createSlice({
-  name: "counter",
+  name: "toggle",
   initialState,
   reducers: {
     toggleSideBar: (state) => {

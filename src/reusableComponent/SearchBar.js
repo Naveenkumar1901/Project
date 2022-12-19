@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import "../styles/searchBar.css";
 
 const SearchBar = ({ value, setSearchValue, filterFunction }) => {
-  const theme = useSelector((state) => state.color.theme);
+const theme = useSelector((state) => state.color.theme);
 
   return (
     <div

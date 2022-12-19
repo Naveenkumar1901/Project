@@ -12,64 +12,64 @@ import { toggleSideBar } from "../redux/slices/toggleSlice";
 import { Tooltip } from "@mui/material";
 import Zoom from "@mui/material/Zoom";
 
-const Home = () => {
-  const navigate = useNavigate();
-  const [value, setSearchValue] = useState("");
-  const dispatch = useDispatch();
-  const sidebarToggle = useSelector((state) => state.toggle.showSidebar);
+  const Home = () => {
+    const navigate = useNavigate();
+    const [value, setSearchValue] = useState("");
+    const dispatch = useDispatch();
+    const sidebarToggle = useSelector((state) => state.toggle.showSidebar);
 
-  return (
-    <div className="basePageContainer">
-      <div className="navbar">
-        <div className="homeSearch">
-          <Tooltip
-            placement="bottom"
-            title={sidebarToggle ? "Hide Sidebar " : "Show Sidebar"}
-            arrow
-            TransitionComponent={Zoom}
+    return (
+      <div className="basePageContainer">
+        <div className="navbar">
+          <div className="homeSearch">
+            <Tooltip
+              placement="bottom"
+              title={sidebarToggle ? "Hide Sidebar " : "Show Sidebar"}
+              arrow
+              TransitionComponent={Zoom}
+            >
+              <div>
+                {" "}
+                <BiMenuAltLeft
+                  size={30}
+                  color={"gold"}
+                  className="menuIcon"
+                  onClick={() => {
+                    dispatch(toggleSideBar());
+                  }}
+                />
+              </div>
+            </Tooltip>
+            <SearchBar value={value} setSearchValue={setSearchValue} />
+          </div>
+          <Button
+            variant={"primary"}
+            onClick={() => {
+              localStorage.removeItem("currentUser");
+              navigate("/login");
+            }}
           >
-            <div>
-              {" "}
-              <BiMenuAltLeft
-                size={30}
-                color={"gold"}
-                className="menuIcon"
-                onClick={() => {
-                  dispatch(toggleSideBar());
-                }}
-              />
-            </div>
-          </Tooltip>
-          <SearchBar value={value} setSearchValue={setSearchValue} />
+            Log out
+          </Button>
         </div>
-        <Button
-          variant={"primary"}
-          onClick={() => {
-            localStorage.removeItem("currentUser");
-            navigate("/login");
-          }}
-        >
-          Log out
-        </Button>
+
+        <img src={banner} alt="" className="banner" />
+
+        <>
+          <div className="eachService">
+            {services.map((data) => {
+              return (
+                <ServiceCategory
+                  icon={data.icon}
+                  name={data.name}
+                  serviceParticularsPage={`/home/services/${data.routeName}`}
+                />
+              );
+            })}
+          </div>
+        </>
       </div>
-
-      <img src={banner} alt="" className="banner" />
-
-      <>
-        <div className="eachService">
-          {services.map((data) => {
-            return (
-              <ServiceCategory
-                icon={data.icon}
-                name={data.name}
-                serviceParticularsPage={`/home/services/${data.routeName}`}
-              />
-            );
-          })}
-        </div>
-      </>
-    </div>
-  );
-};
+    );
+  };
 
 export default Home;

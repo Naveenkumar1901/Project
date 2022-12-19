@@ -50,14 +50,7 @@
   align-items: center;
 }
 
-.sidebarOptions.dark-theme {
-  color: white;
-}
-
-.sidebarOptions.light-theme {
-  color: black;
-}
-.sidebarOptions .eachOption {
+.eachOption {
   width: 100%;
   margin-bottom: 10px;
   display: flex;
@@ -68,12 +61,13 @@
   border-left: 5px solid transparent;
 }
 
-.eachOption.dark-theme {
+.dark-theme .eachOption {
   color: white;
 }
-.eachOption.light-theme {
+.light-theme .eachOption {
   color: black;
 }
+
 .dark-theme .eachOption:hover {
   background-color: #f0ce1b;
   border-left: 5px solid orange;
@@ -107,7 +101,6 @@
 
 .sidebarOptionText {
   transition: all 0.1s ease-out 0.1s;
-  opacity: 1;
   margin-left: 15px;
   font-size: 16px;
 }

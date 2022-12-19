@@ -1,9 +1,56 @@
-import React from "react";
-import Input from "./Input";
-import Dropdown from "./Dropdown";
 import "../styles/eachServiceAndPaymentForm.css";
+import ".././styles/dropdown.css";
+import React, { useState } from "react";
+import Input from "./Input";
 
-const ServiceParticularsField = (props) => {
+const ServiceParticularsField = (props, { variant }) => {
+  const paymentMode = [
+    {
+      value: "",
+      text: "- Choose an option -",
+    },
+    {
+      value: "debitCard",
+      text: "Debit card",
+    },
+    {
+      value: "creditCard",
+      text: "Credit card",
+    },
+    {
+      value: "netBanking",
+      text: "Net banking",
+    },
+    {
+      value: "upi",
+      text: "UPI",
+    },
+  ];
+
+  const paymentStatus = [
+    {
+      value: "payed",
+      text: "Payed!",
+    },
+    {
+      value: "notPayed",
+      text: "Not Payed!",
+    },
+  ];
+
+  const deliveryStatus = [
+    {
+      value: "delivered",
+      text: "Delivered",
+    },
+    {
+      value: "notDelivered",
+      text: "Not delivered",
+    },
+  ];
+
+  const [select, setSelect] = useState(paymentMode[0].text);
+
   return (
     <div className="serviceParticularsField">
       <p className="fieldName">{props.fieldName}</p>
@@ -14,9 +61,29 @@ const ServiceParticularsField = (props) => {
             onChange={(e) => props.onChange(e.target.value)}
           ></textarea>
         ) : props.fieldName === "Payment mode" ||
-          props.fieldName === "Payment status" ? (
+          props.fieldName === "Payment status" ||
+          props.fieldName === "Delivery status" ? (
           <div className="dropdownWrapper">
-            <Dropdown onChange={(e) => props.onChange(e)} />
+            <select
+              className={`commonDropdownStyle ${variant || ""}`}
+              value={select}
+              onChange={(e) => {
+                setSelect(e.target.value);
+                props.onChange(e.target.value);
+              }}
+            >
+              {props.fieldName === "Payment mode"
+                ? paymentMode.map((eachOption) => (
+                    <option value={eachOption.value}>{eachOption.text}</option>
+                  ))
+                : props.fieldName === "Payment status"
+                ? paymentStatus.map((eachOption) => (
+                    <option>{eachOption.text}</option>
+                  ))
+                : deliveryStatus.map((eachOption) => (
+                    <option>{eachOption.text}</option>
+                  ))}
+            </select>
           </div>
         ) : (
           <div className={`inputWrapper`}>

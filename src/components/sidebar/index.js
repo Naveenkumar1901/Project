@@ -1,8 +1,8 @@
-import React from "react";
-import logo from "../../assets/Logo.png";
 import "../../styles/sidebar.css";
-import SideBarOption from "./SideBarOption";
+import React from "react";
 import { useSelector } from "react-redux";
+import logo from "../../assets/Logo.png";
+import SideBarOption from "./SideBarOption";
 
 const SideBar = (props) => {
   const sidebarToggle = useSelector((state) => state.toggle.showSidebar);
