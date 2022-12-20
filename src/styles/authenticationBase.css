@@ -174,3 +174,44 @@
   background-color: #f0ce1b;
   color: black;
 }
+loading {
+  left: 0;
+  right: 0;
+  top: 0;
+  z-index: 12;
+  position: fixed;
+  --gradient-yellow: #f0ce1b;
+  --gradient-white: #ffffff;
+}
+
+loading {
+  animation: 3s linear infinite RefreshedLoadingBarProgress,
+    0.5s ease-out LoadingBarEnter;
+  background: linear-gradient(to right,
+      var(--gradient-white),
+      var(--gradient-yellow));
+  background-size: 500%;
+  height: 3px;
+  transform-origin: left;
+  width: 100%;
+}
+
+@keyframes RefreshedLoadingBarProgress {
+  0% {
+    background-position: 125% 0;
+  }
+
+  100% {
+    background-position: 0% 0;
+  }
+}
+
+@keyframes LoadingBarEnter {
+  0% {
+    transform: scaleX(0);
+  }
+
+  100% {
+    transform: scaleX(1);
+  }
+}

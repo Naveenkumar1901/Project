@@ -1,12 +1,12 @@
 import "../styles/authenticationBase.css";
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import Google from "../assets/google-icon.png";
 import Logo from "../assets/Logo.png";
 import Input from "../reusableComponent/Input";
 import Button from "../reusableComponent/Button";
-import axiosInstance from "../config/axiosInstance";
+import { signUpUser } from "../redux/slices/authSlice";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -16,6 +16,7 @@ const Register = () => {
   const [loading, setLoading] = useState(false);
   const [err, setErr] = useState(false);
 
+  const dispatch = useDispatch();
   const signupOperation = async (e) => {
     e.preventDefault();
     if (!signupUserName.length || !signupMobileNumber.length || !signupPassword)
@@ -29,19 +30,12 @@ const Register = () => {
       "&password=" +
       signupPassword +
       "&type=service";
-    try {
-      await axiosInstance("/User/AddUser", {
-        method: "POST",
-        data: body,
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
-        },
-      });
-      navigate("/login");
-    } catch (err) {
-      setLoading(false);
-      setErr(true);
-    }
+
+    dispatch(signUpUser(body));
+
+    navigate("/login");
+    setLoading(false);
+    setErr(true);
   };
   const theme = useSelector((state) => state.color.theme);
 
@@ -69,15 +63,19 @@ const Register = () => {
 
             <div className="authenticationFields">
               <Input
-                type="text"
                 placeholder="User name"
+                type="text"
+                minLength="4"
+                min="4"
                 onChange={(e) => {
                   setSignupUserName(e);
                 }}
               />
               <Input
-                type="text"
                 placeholder="Mobile number"
+                type="text"
+                minLength="10"
+                maxLength="10"
                 onChange={(e) => {
                   setSignupMobileNumber(e);
                 }}
@@ -85,6 +83,7 @@ const Register = () => {
               <Input
                 type="password"
                 placeholder="Password"
+                minLength="6"
                 onChange={(e) => {
                   setSignupPassword(e);
                 }}

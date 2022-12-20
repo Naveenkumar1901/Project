@@ -15,9 +15,14 @@ const EditModal = ({ hideEditDetails, editModalId }) => {
     carName: result.carName,
     deliveryStatus: result.deliveryStatus,
     deliveryDate: result.deliveryDate,
-    deliverYTime: result.deliveryTime,
+    deliveryTime: result.deliveryTime,
     paymentStatus: result.paymentStatus,
   });
+
+  const handleEdit = () => {
+    const obj = { ...result, customerDetails };
+    console.log(obj, "check");
+  };
 
   const submitForm = (e) => {
     e.preventDefault();
@@ -74,7 +79,8 @@ const EditModal = ({ hideEditDetails, editModalId }) => {
         />
         <ServiceParticularsField
           fieldName="Delivery time"
-          value={customerDetails.deliverYTime}
+          value={customerDetails.deliveryTime}
+          type="time"
           onChange={(value) => {
             handleChange(value, "deliveryTime");
           }}
@@ -88,7 +94,7 @@ const EditModal = ({ hideEditDetails, editModalId }) => {
         />
       </div>
       <div className="editBtn">
-        <Button variant={"primary"} type="submit">
+        <Button variant={"primary"} type="submit" onClick={handleEdit}>
           Save changes
         </Button>
       </div>

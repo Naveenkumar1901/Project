@@ -97,7 +97,7 @@ const customerData = [
     carName: "BMW",
     entryDate: "2022-11-22",
     deliveryDate: "2022-12-01",
-    deliveryTime: "9:30",
+    deliveryTime: "09:30",
     scheduleStatus: "Confirmed",
     paymentStatus: "Payed!",
     paymentMode: "Credit card",

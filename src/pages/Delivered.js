@@ -27,6 +27,8 @@ const Delivered = () => {
   const [showPaymentModal, setShowPaymentModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
   const [value, setSearchValue] = useState("");
+  const [deleteId, setDeleteId] = useState("");
+
   // const pageSize = 10;
   const customStyles = {
     content: {
@@ -118,19 +120,17 @@ const Delivered = () => {
             hidePaymentDetails={hidePaymentDetails}
           />
         ) : showDeleteModal ? (
-          <DeleteInfo
-            hideDeleteModal={hideDeleteModal}
-            deliveredId={showDeleteModal}
-          />
-        ) : (
+          <DeleteInfo hideDeleteModal={hideDeleteModal} deleteId={deleteId} />
+        ) : showEditDetails ? (
           <EditModal
             showPaymentDetails={showPaymentDetails}
             showEditDetails={showEditDetails}
             hideEditDetails={hideEditDetails}
             hidePaymentDetails={hidePaymentDetails}
             editModalId={showEditModal}
+            tableData={data}
           />
-        )}
+        ) : null}
       </Modal>
       <div className="deliveredPage">
         <div className="deliveredNavBar">
@@ -238,9 +238,10 @@ const Delivered = () => {
                             <div>
                               <RiDeleteBinLine
                                 className="actionDeleteIcon"
-                                onClick={() =>
-                                  setShowDeleteModal(filteredData.id)
-                                }
+                                onClick={() => {
+                                  setShowDeleteModal(true);
+                                  setDeleteId(filteredData.id);
+                                }}
                               />
                             </div>
                           </Tooltip>

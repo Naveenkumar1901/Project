@@ -4,7 +4,12 @@ import { IoClose } from "react-icons/io5";
 import ServiceCostDetails from "../../reusableComponent/ServiceCostDetails";
 import CustomerData from "../../data/CustomerData";
 
-const PaymentModal = ({ variant, paymentModalId, hidePaymentDetails }) => {
+const PaymentModal = ({
+  variant,
+  paymentModalId,
+  hidePaymentDetails,
+  text,
+}) => {
   const result = CustomerData.find(function (eachData) {
     return eachData.id === paymentModalId;
   });

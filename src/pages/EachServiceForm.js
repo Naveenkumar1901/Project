@@ -73,12 +73,12 @@ const EachServiceForm = () => {
       case "lightService":
         return setCheckArray([
           { fieldName: "Wind shield service" },
-          { fieldName: "Lights wirirg" },
+          { fieldName: "Lights wiring" },
         ]);
       case "clutchService":
         return setCheckArray([
-          { fieldName: "Clutch plate replace" },
-          { fieldName: "Brake shoe replace" },
+          { fieldName: "Clutch plate service" },
+          { fieldName: "Brake shoe service" },
         ]);
       case "dryCleanService":
         return setCheckArray([
@@ -132,6 +132,12 @@ const EachServiceForm = () => {
           fieldName="Address"
           onChange={(value) => {
             handleChange(value, "address");
+          }}
+        />
+        <ServiceParticularsField
+          fieldName="Car number"
+          onChange={(value) => {
+            handleChange(value, "carNumber");
           }}
         />
         <ServiceParticularsField

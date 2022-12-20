@@ -4,9 +4,9 @@ import { RiDeleteBinLine } from "react-icons/ri";
 import Button from "../../reusableComponent/Button";
 import CustomerData from "../../data/CustomerData";
 
-const DeleteInfo = ({ hideDeleteModal, deliveredId, scheduleId }) => {
+const DeleteInfo = ({ hideDeleteModal, deleteId, scheduleId }) => {
   const result = CustomerData.find(function (eachData) {
-    return eachData.id === deliveredId || eachData.id === scheduleId;
+    return eachData.id === deleteId || eachData.id === scheduleId;
   });
 
   const handleDelete = () => {

@@ -1,55 +1,44 @@
 import "../styles/eachServiceAndPaymentForm.css";
 import ".././styles/dropdown.css";
-import React, { useState } from "react";
+import React from "react";
 import Input from "./Input";
 
 const ServiceParticularsField = (props, { variant }) => {
   const paymentMode = [
     {
-      value: "",
       text: "- Choose an option -",
     },
     {
-      value: "debitCard",
       text: "Debit card",
     },
     {
-      value: "creditCard",
       text: "Credit card",
     },
     {
-      value: "netBanking",
       text: "Net banking",
     },
     {
-      value: "upi",
       text: "UPI",
     },
   ];
 
   const paymentStatus = [
     {
-      value: "payed",
       text: "Payed!",
     },
     {
-      value: "notPayed",
       text: "Not Payed!",
     },
   ];
 
   const deliveryStatus = [
     {
-      value: "delivered",
       text: "Delivered",
     },
     {
-      value: "notDelivered",
       text: "Not delivered",
     },
   ];
-
-  const [select, setSelect] = useState(paymentMode[0].text);
 
   return (
     <div className="serviceParticularsField">
@@ -66,15 +55,14 @@ const ServiceParticularsField = (props, { variant }) => {
           <div className="dropdownWrapper">
             <select
               className={`commonDropdownStyle ${variant || ""}`}
-              value={select}
+              value={props.value}
               onChange={(e) => {
-                setSelect(e.target.value);
                 props.onChange(e.target.value);
               }}
             >
               {props.fieldName === "Payment mode"
                 ? paymentMode.map((eachOption) => (
-                    <option value={eachOption.value}>{eachOption.text}</option>
+                    <option>{eachOption.text}</option>
                   ))
                 : props.fieldName === "Payment status"
                 ? paymentStatus.map((eachOption) => (
