@@ -1,37 +1,31 @@
 import React from "react";
 import { useState } from "react";
 import { IoClose } from "react-icons/io5";
-import customerData from "../../data/CustomerData";
 import Button from "../../reusableComponent/Button";
 import ServiceParticularsField from "../../reusableComponent/ServiceParticularsField";
 
-const EditModal = ({ hideEditDetails, editModalId }) => {
-  const result = customerData.find((eachData) => {
+const EditModal = ({ hideEditDetails, editModalId, data, setData }) => {
+  console.log(data);
+  const result = data.find((eachData) => {
     return eachData.id === editModalId;
   });
-  const [customerDetails, setCustomerDetails] = useState({
-    customerName: result.customerName,
-    carNumber: result.carNo,
-    carName: result.carName,
-    deliveryStatus: result.deliveryStatus,
-    deliveryDate: result.deliveryDate,
-    deliveryTime: result.deliveryTime,
-    paymentStatus: result.paymentStatus,
-  });
+
+  const [customerDetails, setCustomerDetails] = useState(result);
 
   const handleEdit = () => {
-    const obj = { ...result, customerDetails };
-    console.log(obj, "check");
+    const newData = data.map((eachData) =>
+      eachData.id === editModalId ? customerDetails : eachData
+    );
+    setData(newData);
+    hideEditDetails(true);
   };
 
   const submitForm = (e) => {
     e.preventDefault();
-    console.log(customerDetails);
   };
   const handleChange = (value, fieldName) => {
-    setCustomerDetails({ ...customerDetails, [fieldName]: value });
+    setCustomerDetails((prevState) => ({ ...prevState, [fieldName]: value }));
   };
-
   return (
     <form className="paymentModalContainer" onSubmit={(e) => submitForm(e)}>
       <div className="paymentDetailsHeader">

@@ -128,7 +128,8 @@ const Delivered = () => {
             hideEditDetails={hideEditDetails}
             hidePaymentDetails={hidePaymentDetails}
             editModalId={showEditModal}
-            tableData={data}
+            data={data}
+            setData={setData}
           />
         ) : null}
       </Modal>
