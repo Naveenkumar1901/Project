@@ -16,30 +16,43 @@ const Login = () => {
   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
 
-  // useEffect(() => {
-  //   let user = JSON.parse(localStorage.getItem("currentUser"));
-  //   if (user) navigate("/home");
-  // }, [navigate]);
+  useEffect(() => {
+    let user = localStorage.getItem(
+      "currentUser",
+      JSON.stringify("currentUser")
+    );
+    if (user) navigate("/home");
+  }, [navigate]);
 
   const loginOperation = async (e) => {
     e.preventDefault();
-    if (!loginMobileNumber.length || !loginPassword.length) return;
-    setLoading(true);
-    // try {
-    let data =
-      "userName=" +
-      loginMobileNumber +
-      "&password=" +
-      loginPassword +
-      "&grant_type=password&Type=service";
-
-    dispatch(loginUser(data));
-    navigate("/home");
-    setLoading(false);
+    if (loginMobileNumber.length < 10) {
+      alert("Mobile number should be 10 digits");
+    } else if (loginPassword.length < 6) {
+      alert("Password should be 6 characters atleast");
+    } else {
+      setLoading(true);
+      let data =
+        "userName=" +
+        loginMobileNumber +
+        "&password=" +
+        loginPassword +
+        "&grant_type=password&Type=service";
+      dispatch(loginUser(data))
+        .unwrap()
+        .then(() => {
+          navigate("/home");
+          setLoading(false);
+        })
+        .catch(() => {
+          setLoading(false);
+          error(true);
+        });
+    }
   };
-  const error = useSelector((state) => state.user.err);
-  const theme = useSelector((state) => state.color.theme);
 
+  const error = useSelector((state) => state.user.loginErr);
+  const theme = useSelector((state) => state.color.theme);
   return (
     <>
       {loading ? (
@@ -87,7 +100,7 @@ const Login = () => {
             <Button variant="primary" onClick={loginOperation}>
               Log In
             </Button>
-            {error.length && <span className="errorMessage">{error}</span>}
+            {error && <span className="errorMessage">{error}</span>}
             <span className="question">
               Dont't have an account?
               <Link className="routeLink" to={"/register"}>

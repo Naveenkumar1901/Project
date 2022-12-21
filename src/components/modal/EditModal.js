@@ -44,9 +44,9 @@ const EditModal = ({ hideEditDetails, editModalId, data, setData }) => {
         />
         <ServiceParticularsField
           fieldName="Car number"
-          value={customerDetails.carNumber}
+          value={customerDetails.carNo}
           onChange={(value) => {
-            handleChange(value, "carNumber");
+            handleChange(value, "carNor");
           }}
         />
         <ServiceParticularsField
