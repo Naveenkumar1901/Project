@@ -6,7 +6,8 @@ import SideBarOption from "./SideBarOption";
 
 const SideBar = (props) => {
   const sidebarToggle = useSelector((state) => state.toggle.showSidebar);
-  // const userInfo = JSON.parse(localStorage.getItem("currentUser"));
+  const userInfo = useSelector((state) => state.user.userInfo);
+
   return (
     <div
       className={`sidebarContainer ${props.theme} ${
@@ -15,7 +16,8 @@ const SideBar = (props) => {
     >
       <div className="sidebarHeader">
         <img src={logo} alt="" />
-        <p className="displayUsername">Hello {""}</p>
+
+        <p className="displayUsername">Hello {userInfo.UserName}</p>
       </div>
       <SideBarOption isOpen={!sidebarToggle} theme={props.theme} />
     </div>
