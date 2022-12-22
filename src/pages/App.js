@@ -11,6 +11,7 @@ import Home from "./Home";
 import Upcoming from "./Upcoming";
 import Payment from "./Payment";
 import Profile from "./Profile";
+import CreateCustomer from "./CreateCustomer";
 
 function App() {
   return (
@@ -21,6 +22,11 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/resetPassword" element={<ResetPassword />} />
           <Route path="/home" element={<LayoutWrapper children={<Home />} />} />
+          <Route
+            path="/home/createCustomer"
+            element={<LayoutWrapper children={<CreateCustomer />} />}
+          />
+
           <Route
             path="/profile"
             element={<LayoutWrapper children={<Profile />} />}

@@ -49,9 +49,9 @@ const Input = (props) => {
       className="reusableInput"
       value={props.value}
       onChange={(e) => {
-        const value =
-          props.type === "checkbox" ? e.target.checked : e.target.value;
-        props.onChange(value);
+        // const value =
+        //   props.type === "checkbox" ? e.target.checked : e.target.value;
+        props.onChange(e.target.value);
       }}
     />
   );

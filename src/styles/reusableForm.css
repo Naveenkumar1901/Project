@@ -1,4 +1,4 @@
-.serviceParticularsContainer {
+.formContainer {
   width: 100%;
   height: 100%;
   display: flex;
@@ -7,15 +7,25 @@
   justify-content: center;
 }
 
-.serviceParticularsInnerContainer {
+.formInnerContainer,
+.createCustomerFormInnerContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   width: 50%;
-  height: 90%;
+  height: 85%;
   border: 1px solid lightgrey;
   overflow-y: auto;
   padding: 20px 50px 20px 50px;
 }
 
-.serviceParticularsHeader {
+.createCustomerFormInnerContainer {
+  width: 40%;
+  height: 70%;
+}
+
+.formHeader {
   width: 100%;
   height: 5%;
   display: flex;
@@ -28,7 +38,7 @@
   margin-bottom: 10px;
 }
 
-.serviceParticularsTitle {
+.formTitle {
   font-weight: 500;
 }
 
@@ -36,7 +46,7 @@
   font-size: 30px;
 }
 
-.serviceParticularsField {
+.formFields {
   width: 100%;
   display: flex;
   align-items: center;
@@ -73,6 +83,7 @@
 }
 
 .costDetails {
+  width: 100%;
   padding-bottom: 10px;
 }
 
@@ -103,11 +114,11 @@
 }
 
 .checkboxSection {
-  width: 70%;
+  width: 100%;
   accent-color: #f0ce1b;
   margin-top: 10px;
 }
 
-.formSubmitBtn {
+.formBtn {
   margin-top: 20px;
 }

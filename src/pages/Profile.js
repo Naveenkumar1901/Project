@@ -7,7 +7,9 @@ import "../styles/profile.css";
 const Profile = () => {
   const dispatch = useDispatch();
   const theme = useSelector((state) => state.color.theme);
-  const userInfo = useSelector((state) => state.user.userInfo);
+  // const userInfo = useSelector((state) => state.user.userInfo);
+  const userInfo = JSON.parse(localStorage.getItem("currentUser"));
+
   return (
     <div className="profileContainer">
       <div className="userInfo">

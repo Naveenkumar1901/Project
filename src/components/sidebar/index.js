@@ -6,7 +6,8 @@ import SideBarOption from "./SideBarOption";
 
 const SideBar = (props) => {
   const sidebarToggle = useSelector((state) => state.toggle.showSidebar);
-  const userInfo = useSelector((state) => state.user.userInfo);
+  // const userInfo = useSelector((state) => state.user.userInfo);
+  const userInfo = JSON.parse(localStorage.getItem("currentUser"));
 
   return (
     <div

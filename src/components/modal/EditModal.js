@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { IoClose } from "react-icons/io5";
 import Button from "../../reusableComponent/Button";
-import ServiceParticularsField from "../../reusableComponent/ServiceParticularsField";
+import FormFields from "../../reusableComponent/FormFields";
 
 const EditModal = ({ hideEditDetails, editModalId, data, setData }) => {
   console.log(data);
@@ -35,35 +35,35 @@ const EditModal = ({ hideEditDetails, editModalId, data, setData }) => {
         <h1 className="headerTitle">Edit Details</h1>
       </div>
       <div className="paymentDetailsBody">
-        <ServiceParticularsField
+        <FormFields
           fieldName="Customer name"
           value={customerDetails.customerName}
           onChange={(value) => {
             handleChange(value, "customerName");
           }}
         />
-        <ServiceParticularsField
+        <FormFields
           fieldName="Car number"
           value={customerDetails.carNo}
           onChange={(value) => {
             handleChange(value, "carNor");
           }}
         />
-        <ServiceParticularsField
+        <FormFields
           fieldName="Car name"
           value={customerDetails.carName}
           onChange={(value) => {
             handleChange(value, "carName");
           }}
         />
-        <ServiceParticularsField
+        <FormFields
           fieldName="Delivery status"
           value={customerDetails.deliveryStatus}
           onChange={(value) => {
             handleChange(value, "deliveryStatus");
           }}
         />
-        <ServiceParticularsField
+        <FormFields
           fieldName="Delivery date"
           value={customerDetails.deliveryDate}
           type="date"
@@ -71,7 +71,7 @@ const EditModal = ({ hideEditDetails, editModalId, data, setData }) => {
             handleChange(value, "deliveryDate");
           }}
         />
-        <ServiceParticularsField
+        <FormFields
           fieldName="Delivery time"
           value={customerDetails.deliveryTime}
           type="time"
@@ -79,7 +79,7 @@ const EditModal = ({ hideEditDetails, editModalId, data, setData }) => {
             handleChange(value, "deliveryTime");
           }}
         />
-        <ServiceParticularsField
+        <FormFields
           fieldName="Payment status"
           value={customerDetails.paymentStatus}
           onChange={(value) => {

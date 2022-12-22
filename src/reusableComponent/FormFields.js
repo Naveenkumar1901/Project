@@ -1,9 +1,9 @@
-import "../styles/eachServiceAndPaymentForm.css";
+import "../styles/reusableForm.css";
 import ".././styles/dropdown.css";
 import React from "react";
 import Input from "./Input";
 
-const ServiceParticularsField = (props, { variant }) => {
+const FormFields = (props, { variant }) => {
   const paymentMode = [
     {
       text: "- Choose an option -",
@@ -41,7 +41,7 @@ const ServiceParticularsField = (props, { variant }) => {
   ];
 
   return (
-    <div className="serviceParticularsField">
+    <div className="formFields">
       <p className="fieldName">{props.fieldName}</p>
       <div className="inputField">
         {props.fieldName === "Description" || props.fieldName === "Address" ? (
@@ -92,4 +92,4 @@ const ServiceParticularsField = (props, { variant }) => {
   );
 };
 
-export default ServiceParticularsField;
+export default FormFields;

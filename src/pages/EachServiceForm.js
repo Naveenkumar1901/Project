@@ -1,10 +1,12 @@
-import "../styles/eachServiceAndPaymentForm.css";
+import "../styles/reusableForm.css";
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import moment from "moment";
 import services from "../data/serviceSection";
 import Button from "../reusableComponent/Button";
-import ServiceParticularsField from "../reusableComponent/ServiceParticularsField";
+import FormFields from "../reusableComponent/FormFields";
+import { serviceBooking } from "../redux/slices/customerSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 const EachServiceForm = () => {
   const [formValue, setFormValue] = useState({});
@@ -26,7 +28,7 @@ const EachServiceForm = () => {
 
   useEffect(() => {
     const checkObj = checkboxArray?.reduce(
-      (obj, val) => ({ ...obj, [val.fieldName]: false }),
+      (obj) => ({ ...obj, ServiceCode: "" }),
       {}
     );
     setFormValue(checkObj);
@@ -44,147 +46,180 @@ const EachServiceForm = () => {
         return setCheckArray([{ fieldName: "Generel service" }]);
       case "wheelService":
         return setCheckArray([
-          { fieldName: "New tyre" },
-          { fieldName: "Rim design" },
+          {
+            fieldName: "New tyre",
+            serviceCode: 101,
+          },
+          {
+            fieldName: "Rim design",
+            serviceCode: 102,
+          },
         ]);
       case "paintingService":
         return setCheckArray([
-          { fieldName: "Full painting" },
-          { fieldName: "Ceramic coating" },
-          { fieldName: "Premium polish" },
+          {
+            fieldName: "Full painting",
+            serviceCode: 103,
+          },
+          { fieldName: "Ceramic coating", serviceCode: 104 },
         ]);
       case "acService":
         return setCheckArray([
-          { fieldName: "Filter cleaning" },
-          { fieldName: "Gas refilling" },
+          { fieldName: "Filter cleaning", serviceCode: 105 },
+          { fieldName: "Gas refilling", serviceCode: 106 },
         ]);
       case "cleaningService":
         return setCheckArray([
-          { fieldName: "Exterior cleaning" },
-          { fieldName: "Interior cleaning" },
+          { fieldName: "Exterior cleaning", serviceCode: 107 },
+          { fieldName: "Interior cleaning", serviceCode: 108 },
         ]);
       case "batteryService":
         return setCheckArray([
-          { fieldName: "Battery change" },
-          { fieldName: "Battery recharge" },
+          { fieldName: "Battery change", serviceCode: 109 },
+          { fieldName: "Battery recharge", serviceCode: 110 },
         ]);
       case "insuranceRenewal":
-        return setCheckArray([{ fieldName: "Insurance renewal" }]);
+        return setCheckArray([
+          { fieldName: "Insurance renewal", serviceCode: 111 },
+        ]);
       case "lightService":
         return setCheckArray([
-          { fieldName: "Wind shield service" },
-          { fieldName: "Lights wiring" },
+          { fieldName: "Wind shield service", serviceCode: 112 },
+          { fieldName: "Lights wiring", serviceCode: 113 },
         ]);
       case "clutchService":
         return setCheckArray([
-          { fieldName: "Clutch plate service" },
-          { fieldName: "Brake shoe service" },
+          { fieldName: "Clutch plate service", serviceCode: 114 },
+          { fieldName: "Brake shoe service", serviceCode: 115 },
         ]);
       case "dryCleanService":
         return setCheckArray([
-          { fieldName: "Exterior cleaning" },
-          { fieldName: "Interior cleaning" },
+          { fieldName: "Exterior cleaning", serviceCode: 107 },
+          { fieldName: "Interior cleaning", serviceCode: 108 },
         ]);
       case "washService":
-        return setCheckArray([
-          { fieldName: "Premium wash" },
-          { fieldName: "General wash" },
-        ]);
+        return setCheckArray([{ fieldName: "General wash", serviceCode: 116 }]);
       case "oilingService":
         return setCheckArray([
-          { fieldName: "Engine oil change" },
-          { fieldName: "Brake oil change" },
+          { fieldName: "Engine oil change", serviceCode: 117 },
+          { fieldName: "Brake oil change", serviceCode: 118 },
         ]);
       default:
         setCheckArray([]);
     }
   }, [serviceName]);
 
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const servicebookingOperation = async () => {
+    let data = formValue;
+    dispatch(serviceBooking(data))
+      .unwrap()
+      .then(() => {
+        navigate("/home");
+      });
+    // .catch(() => {
+    //   error(true);
+    // });
+  };
+  // const error = useSelector((state) => state.customer.serviceBookingErr);
+
   return (
-    <div className="serviceParticularsContainer">
-      <div className="serviceParticularsHeader">
+    <div className="formContainer">
+      <div className="formHeader">
         {icon}
-        <p className="serviceParticularsTitle">{name}</p>
+        <p className="formTitle">{name}</p>
       </div>
       <form
-        className="serviceParticularsInnerContainer"
+        className="formInnerContainer"
         onSubmit={(e) => {
           e.preventDefault();
           console.log(formValue);
         }}
       >
-        <ServiceParticularsField
+        <FormFields
           cularsField
           fieldName="Customer name"
-          onChange={(value) => {
-            handleChange(value, "customerName");
-          }}
+          // onChange={(value) => {
+          //   handleChange(value, "CustomerName");
+          // }}
         />
-        <ServiceParticularsField
+        <FormFields
           fieldName="Mobile number"
           maxLength="10"
           minLength="10"
           onChange={(value) => {
-            handleChange(value, "mobileNumber");
+            handleChange(value, "MobileNum");
           }}
         />
-        <ServiceParticularsField
+        <FormFields
           fieldName="Address"
+          // onChange={(value) => {
+          //   handleChange(value, "address");
+          // }}
+        />
+        <FormFields
+          fieldName="Register number"
           onChange={(value) => {
-            handleChange(value, "address");
+            handleChange(value, "RegNum");
           }}
         />
-        <ServiceParticularsField
-          fieldName="Car number"
-          onChange={(value) => {
-            handleChange(value, "carNumber");
-          }}
+        <FormFields
+          fieldName="Car name"
+          // onChange={(value) => {
+          //   handleChange(value, "CarName");
+          // }}
         />
-        <ServiceParticularsField
-          fieldName="Car name & model"
-          onChange={(value) => {
-            handleChange(value, "carName&Model");
-          }}
+        <FormFields
+          fieldName="Car model"
+          // onChange={(value) => {
+          //   handleChange(value, "CarModel");
+          // }}
         />
-        <ServiceParticularsField
+        <FormFields
           fieldName="Entry date"
           type="date"
           value={dateInput.entryDate}
-          onChange={(value) => {
-            setDateInput(value);
-            handleChange(value, "entryDate");
-          }}
+          // onChange={(value) => {
+          //   setDateInput(value);
+          //   handleChange(value, "EntryDate");
+          // }}
         />
-        <ServiceParticularsField
+        <FormFields
           fieldName="Delivery date"
           type="date"
           value={dateInput.deliveryDate}
-          onChange={(value) => {
-            setDateInput(value);
-            handleChange(value, "deliveryDate");
-          }}
+          // onChange={(value) => {
+          //   setDateInput(value);
+          //   handleChange(value, "DeliveryDate");
+          // }}
         />
-        <ServiceParticularsField
+        <FormFields
           fieldName="Description"
           onChange={(value) => {
-            handleChange(value, "description");
+            handleChange(value, "Dscription");
           }}
         />
         {checkboxArray?.map((val) => {
           return (
             <div className="checkboxSection">
-              <ServiceParticularsField
+              <FormFields
                 fieldName={val.fieldName}
+                value={val.serviceCode}
                 type="checkbox"
                 onChange={(value) => {
-                  handleChange(value, val.fieldName);
+                  handleChange(value, "ServiceCode");
                 }}
               />
             </div>
           );
         })}
-        <div className="formSubmitBtn">
-          <Button variant={"primary"} type="submit">
+        <div className="formBtn">
+          <Button
+            variant={"primary"}
+            type="submit"
+            onClick={servicebookingOperation}
+          >
             Submit
           </Button>
         </div>

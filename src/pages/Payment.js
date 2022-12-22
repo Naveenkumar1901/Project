@@ -1,9 +1,10 @@
+import "../styles/reusableForm.css";
 import React, { useEffect, useState } from "react";
-import "../styles/eachServiceAndPaymentForm.css";
-import Button from "../reusableComponent/Button";
-import ServiceParticularsField from "../reusableComponent/ServiceParticularsField";
 import { HiOutlineCurrencyRupee } from "react-icons/hi";
 import { useNavigate } from "react-router-dom";
+import FormFields from "../reusableComponent/FormFields";
+import Button from "../reusableComponent/Button";
+
 const Payment = () => {
   const navigate = useNavigate();
   const [formValue, setFormValue] = useState({});
@@ -44,45 +45,42 @@ const Payment = () => {
   };
 
   return (
-    <div className="serviceParticularsContainer">
-      <div className="serviceParticularsHeader">
+    <div className="formContainer">
+      <div className="formHeader">
         <HiOutlineCurrencyRupee className="paymentIcon" />
-        <p className="serviceParticularsTitle">Payment</p>
+        <p className="formTitle">Payment</p>
       </div>
-      <form
-        className="serviceParticularsInnerContainer"
-        onSubmit={(e) => submitForm(e)}
-      >
+      <form className="formInnerContainer" onSubmit={(e) => submitForm(e)}>
         <div className="costDetails">
-          <ServiceParticularsField
+          <FormFields
             fieldName="Booking fees (Rs)"
             value={costValue.bookingFees}
             onChange={(value) => {
               handleChange(value, "bookingFees");
             }}
           />
-          <ServiceParticularsField
+          <FormFields
             fieldName="Water wash (Rs)"
             value={costValue.waterWash}
             onChange={(value) => {
               handleChange(value, "waterWash");
             }}
           />
-          <ServiceParticularsField
+          <FormFields
             fieldName="Spare charges (Rs)"
             value={costValue.spareCharges}
             onChange={(value) => {
               handleChange(value, "spareCharges");
             }}
           />
-          <ServiceParticularsField
+          <FormFields
             fieldName="Labour charges (Rs)"
             value={costValue.labourCharges}
             onChange={(value) => {
               handleChange(value, "labourCharges");
             }}
           />
-          <ServiceParticularsField
+          <FormFields
             fieldName="Service charges (Rs)"
             value={costValue.serviceCharges}
             onChange={(value) => {
@@ -96,7 +94,7 @@ const Payment = () => {
             <p className="totalAmountValue">₹{totalValue} </p>
           </div>
         </div>
-        <ServiceParticularsField
+        <FormFields
           fieldName="Payment mode"
           onChange={(value) => {
             handleValue(value, "paymentMode");
@@ -105,7 +103,7 @@ const Payment = () => {
         />
         {paymentMode === "debitCard" || paymentMode === "creditCard" ? (
           <>
-            <ServiceParticularsField
+            <FormFields
               fieldName="Card number"
               minLength="08"
               maxLength="19"
@@ -113,13 +111,13 @@ const Payment = () => {
                 handleValue(value, "cardNumber");
               }}
             />
-            <ServiceParticularsField
+            <FormFields
               fieldName="Card holder name"
               onChange={(value) => {
                 handleValue(value, "cardHolderName");
               }}
             />
-            <ServiceParticularsField
+            <FormFields
               fieldName="CVV code"
               minLength="3"
               maxLength="4"
@@ -130,13 +128,13 @@ const Payment = () => {
           </>
         ) : paymentMode === "netBanking" ? (
           <>
-            <ServiceParticularsField
+            <FormFields
               fieldName="Bank name"
               onChange={(value) => {
                 handleValue(value, "bankName");
               }}
             />
-            <ServiceParticularsField
+            <FormFields
               fieldName="IFSC code"
               onChange={(value) => {
                 handleValue(value, "ifscCode");
@@ -145,13 +143,13 @@ const Payment = () => {
           </>
         ) : paymentMode === "" ? null : (
           <>
-            <ServiceParticularsField
+            <FormFields
               fieldName="UPI id"
               onChange={(value) => {
                 handleValue(value, "upiId");
               }}
             />
-            <ServiceParticularsField
+            <FormFields
               fieldName="UPI mobile number"
               minLength="10"
               maxLength="10"
@@ -162,7 +160,7 @@ const Payment = () => {
           </>
         )}
 
-        <div className="formSubmitBtn">
+        <div className="formBtn">
           <Button
             variant={"primary"}
             type="submit"
