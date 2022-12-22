@@ -29,7 +29,7 @@ export const getCustomerDetails = createAsyncThunk(
   async (customer) => {
     let userToken = JSON.parse(localStorage.getItem("currentUser"));
     try {
-      const response = await axiosInstance("/GetCustomerServList", {
+      const response = await axiosInstance("/Customer/GetCustomerServList", {
         method: "GET",
         data: customer,
         headers: {
@@ -40,8 +40,8 @@ export const getCustomerDetails = createAsyncThunk(
       console.log(response);
       return response.data;
     } catch (error) {
-      const createCustomerError = error?.response?.data ?? "Unknown error";
-      throw new Error(createCustomerError);
+      const getCustomerDetailsError = error?.response?.data ?? "Unknown error";
+      throw new Error(getCustomerDetailsError);
     }
   }
 );
@@ -51,7 +51,7 @@ export const serviceBooking = createAsyncThunk(
   async (customer) => {
     let userToken = JSON.parse(localStorage.getItem("currentUser"));
     try {
-      const response = await axiosInstance("/AddService", {
+      const response = await axiosInstance("/Customer/AddService", {
         method: "POST",
         data: customer,
         headers: {
@@ -72,12 +72,15 @@ export const serviceBooking = createAsyncThunk(
 export const customerSlice = createSlice({
   name: "customer",
   initialState: {
+    customerDetails: [],
     createCustomerErr: "",
     serviceBookingErr: "",
+    getCustomerDetailsErr: "",
   },
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(createCustomer.fulfilled, (state, action) => {});
+    builder.addCase(createCustomer.fulfilled, (state, action) => {
+    });
 
     builder.addCase(createCustomer.pending, (state, action) => {});
 
@@ -90,6 +93,16 @@ export const customerSlice = createSlice({
 
     builder.addCase(serviceBooking.rejected, (state, action) => {
       state.serviceBookingErr = action.error.message;
+    });
+    builder.addCase(getCustomerDetails.fulfilled, (state, action) => {
+      state.customerDetails = action.payload;
+      
+    });
+
+    builder.addCase(getCustomerDetails.pending, (state, action) => {});
+
+    builder.addCase(getCustomerDetails.rejected, (state, action) => {
+      state.getCustomerDetailsErr = action.error.message;
     });
   },
 });

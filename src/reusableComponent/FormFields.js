@@ -47,6 +47,7 @@ const FormFields = (props, { variant }) => {
         {props.fieldName === "Description" || props.fieldName === "Address" ? (
           <textarea
             className="multilineInput"
+            value={props.value}
             onChange={(e) => props.onChange(e.target.value)}
           ></textarea>
         ) : props.fieldName === "Payment mode" ||

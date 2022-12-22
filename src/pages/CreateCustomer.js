@@ -22,25 +22,24 @@ const CreateCustomer = () => {
       [fieldName]: value,
     }));
   };
+
   const createCustomerOperation = async () => {
     let data = formValue;
     dispatch(createCustomer(data))
       .unwrap()
       .then(() => {
+        dispatch(getCustomerDetails());
         navigate("/home");
       });
     // .catch(() => {
     //   error(true);
     // });
   };
-  // const getCustomerOperation = async () => {
-  //   dispatch(getCustomerDetails())
-  //     .unwrap()
-  //     .then(() => {})
-  //     .catch(() => {
-  //       error(true);
-  //     });
-  // };
+  const getCustomerOperation = async () => {
+    dispatch(getCustomerDetails())
+      .unwrap()
+      .then(() => {});
+  };
 
   // const error = useSelector((state) => state.customer.createCustomerErr);
 

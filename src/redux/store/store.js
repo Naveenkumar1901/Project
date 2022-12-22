@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import authSlice from "../slices/authSlice";
-import { customerSlice } from "../slices/customerSlice";
+import customerSlice from "../slices/customerSlice";
 import themeSlice from "../slices/themeSlice";
 import toggleReducer from "../slices/toggleSlice";
 

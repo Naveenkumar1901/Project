@@ -9,7 +9,13 @@ import { serviceBooking } from "../redux/slices/customerSlice";
 import { useDispatch, useSelector } from "react-redux";
 
 const EachServiceForm = () => {
-  const [formValue, setFormValue] = useState({});
+  const customerDetails = useSelector(
+    (state) => state.customer.customerDetails
+  );
+  // console.log(customerDetails[customerDetails.length - 1]);
+  const [formValue, setFormValue] = useState(
+    customerDetails[customerDetails.length - 1]
+  );
   const [dateInput, setDateInput] = useState({
     entryDate: moment().format("yyyy-MM-DD"),
     deliveryDate: "",
@@ -25,6 +31,10 @@ const EachServiceForm = () => {
       [fieldName]: value,
     }));
   };
+
+  useEffect(() => {
+    setFormValue(customerDetails[customerDetails.length - 1]);
+  }, [customerDetails]);
 
   useEffect(() => {
     const checkObj = checkboxArray?.reduce(
@@ -140,6 +150,7 @@ const EachServiceForm = () => {
         <FormFields
           cularsField
           fieldName="Customer name"
+          value={formValue?.CustomerName}
           // onChange={(value) => {
           //   handleChange(value, "CustomerName");
           // }}
@@ -148,30 +159,35 @@ const EachServiceForm = () => {
           fieldName="Mobile number"
           maxLength="10"
           minLength="10"
+          value={formValue?.MobileNumber}
           onChange={(value) => {
             handleChange(value, "MobileNum");
           }}
         />
         <FormFields
           fieldName="Address"
+          value={formValue?.Address}
           // onChange={(value) => {
           //   handleChange(value, "address");
           // }}
         />
         <FormFields
           fieldName="Register number"
+          value={formValue?.RegNumber}
           onChange={(value) => {
             handleChange(value, "RegNum");
           }}
         />
         <FormFields
           fieldName="Car name"
+          value={formValue?.CarBrand}
           // onChange={(value) => {
           //   handleChange(value, "CarName");
           // }}
         />
         <FormFields
           fieldName="Car model"
+          value={formValue?.CarModel}
           // onChange={(value) => {
           //   handleChange(value, "CarModel");
           // }}
@@ -180,22 +196,23 @@ const EachServiceForm = () => {
           fieldName="Entry date"
           type="date"
           value={dateInput.entryDate}
-          // onChange={(value) => {
-          //   setDateInput(value);
-          //   handleChange(value, "EntryDate");
-          // }}
+          onChange={(value) => {
+            setDateInput(value);
+            // handleChange(value, "EntryDate");
+          }}
         />
         <FormFields
           fieldName="Delivery date"
           type="date"
-          value={dateInput.deliveryDate}
-          // onChange={(value) => {
-          //   setDateInput(value);
-          //   handleChange(value, "DeliveryDate");
-          // }}
+          value={formValue?.DeliveryDate}
+          onChange={(value) => {
+            setDateInput(value);
+            // handleChange(value, "DeliveryDate");
+          }}
         />
         <FormFields
           fieldName="Description"
+          value={formValue?.Dscription}
           onChange={(value) => {
             handleChange(value, "Dscription");
           }}
@@ -208,7 +225,7 @@ const EachServiceForm = () => {
                 value={val.serviceCode}
                 type="checkbox"
                 onChange={(value) => {
-                  handleChange(value, "ServiceCode");
+                  handleChange(parseInt(value), "ServiceCode");
                 }}
               />
             </div>
