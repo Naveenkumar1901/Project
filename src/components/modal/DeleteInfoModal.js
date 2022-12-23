@@ -2,17 +2,20 @@ import "../../styles/deleteInfoModal.css";
 import React from "react";
 import { RiDeleteBinLine } from "react-icons/ri";
 import Button from "../../reusableComponent/Button";
-import CustomerData from "../../data/CustomerData";
+import { useSelector } from "react-redux";
 
 const DeleteInfo = ({ hideDeleteModal, deleteId, scheduleId }) => {
-  const result = CustomerData.find(function (eachData) {
-    return eachData.id === deleteId || eachData.id === scheduleId;
+  const customerDetails = useSelector(
+    (state) => state.customer.customerDetails
+  );
+  const result = customerDetails.find(function (eachData) {
+    return eachData.ID === deleteId || eachData.ID === scheduleId;
   });
-
+  console.log(result, "id");
   const handleDelete = () => {
-    let indexPosition = CustomerData.indexOf(result);
+    let indexPosition = customerDetails.indexOf(result);
     if (indexPosition >= 0) {
-      CustomerData.splice(indexPosition, 1);
+      customerDetails.splice(indexPosition, 1);
     }
     hideDeleteModal(true);
   };

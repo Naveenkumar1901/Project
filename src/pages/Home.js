@@ -16,6 +16,10 @@ const Home = () => {
   const navigate = useNavigate();
   const [value, setSearchValue] = useState("");
   const dispatch = useDispatch();
+  const customerDetails = useSelector(
+    (state) => state.customer.customerDetails
+  );
+  const customer = customerDetails[customerDetails.length - 1];
   const sidebarToggle = useSelector((state) => state.toggle.showSidebar);
 
   return (
@@ -45,6 +49,7 @@ const Home = () => {
           >
             Create customer
           </Button>
+          <p>Customer :</p>
         </div>
 
         <div className="homeSearch">

@@ -1,21 +1,27 @@
 import "../styles/reusableForm.css";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import moment from "moment";
 import services from "../data/serviceSection";
 import Button from "../reusableComponent/Button";
 import FormFields from "../reusableComponent/FormFields";
-import { serviceBooking } from "../redux/slices/customerSlice";
+import {
+  getCustomerDetails,
+  serviceBooking,
+} from "../redux/slices/customerSlice";
 import { useDispatch, useSelector } from "react-redux";
 
 const EachServiceForm = () => {
   const customerDetails = useSelector(
     (state) => state.customer.customerDetails
   );
-  // console.log(customerDetails[customerDetails.length - 1]);
   const [formValue, setFormValue] = useState(
     customerDetails[customerDetails.length - 1]
   );
+
+  useEffect(() => {
+    setFormValue(customerDetails[customerDetails.length - 1]);
+  }, [customerDetails]);
   const [dateInput, setDateInput] = useState({
     entryDate: moment().format("yyyy-MM-DD"),
     deliveryDate: "",
@@ -33,10 +39,6 @@ const EachServiceForm = () => {
   };
 
   useEffect(() => {
-    setFormValue(customerDetails[customerDetails.length - 1]);
-  }, [customerDetails]);
-
-  useEffect(() => {
     const checkObj = checkboxArray?.reduce(
       (obj) => ({ ...obj, ServiceCode: "" }),
       {}
@@ -44,6 +46,28 @@ const EachServiceForm = () => {
     setFormValue(checkObj);
   }, [checkboxArray]);
 
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const scrollRef = useRef();
+
+  const scrollToBottom = () => {
+    scrollRef.current.srollBottom = 0;
+  };
+  const servicebookingOperation = async () => {
+    let data = formValue;
+    dispatch(serviceBooking(data))
+      .unwrap()
+      .then(() => {
+        dispatch(getCustomerDetails());
+        navigate("/schedule");
+        // scrollToBottom();
+      })
+      .catch(() => {
+        error(true);
+      });
+    console.log(data, "payload data");
+  };
+  const error = useSelector((state) => state.customer.serviceBookingErr);
   useEffect(() => {
     const result = services.find(function (eachData) {
       return eachData.routeName === serviceName;
@@ -119,41 +143,17 @@ const EachServiceForm = () => {
     }
   }, [serviceName]);
 
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const servicebookingOperation = async () => {
-    let data = formValue;
-    dispatch(serviceBooking(data))
-      .unwrap()
-      .then(() => {
-        navigate("/home");
-      });
-    // .catch(() => {
-    //   error(true);
-    // });
-  };
-  // const error = useSelector((state) => state.customer.serviceBookingErr);
-
   return (
     <div className="formContainer">
       <div className="formHeader">
         {icon}
         <p className="formTitle">{name}</p>
       </div>
-      <form
-        className="formInnerContainer"
-        onSubmit={(e) => {
-          e.preventDefault();
-          console.log(formValue);
-        }}
-      >
+      <form className="formInnerContainer">
         <FormFields
           cularsField
           fieldName="Customer name"
           value={formValue?.CustomerName}
-          // onChange={(value) => {
-          //   handleChange(value, "CustomerName");
-          // }}
         />
         <FormFields
           fieldName="Mobile number"
@@ -164,34 +164,17 @@ const EachServiceForm = () => {
             handleChange(value, "MobileNum");
           }}
         />
-        <FormFields
-          fieldName="Address"
-          value={formValue?.Address}
-          // onChange={(value) => {
-          //   handleChange(value, "address");
-          // }}
-        />
+        <FormFields fieldName="Address" value={formValue?.Address} />
+
         <FormFields
           fieldName="Register number"
           value={formValue?.RegNumber}
           onChange={(value) => {
-            handleChange(value, "RegNum");
+            handleChange(value, "RegNumber");
           }}
         />
-        <FormFields
-          fieldName="Car name"
-          value={formValue?.CarBrand}
-          // onChange={(value) => {
-          //   handleChange(value, "CarName");
-          // }}
-        />
-        <FormFields
-          fieldName="Car model"
-          value={formValue?.CarModel}
-          // onChange={(value) => {
-          //   handleChange(value, "CarModel");
-          // }}
-        />
+        <FormFields fieldName="Car name" value={formValue?.CarBrand} />
+        <FormFields fieldName="Car model" value={formValue?.CarModel} />
         <FormFields
           fieldName="Entry date"
           type="date"
@@ -206,13 +189,12 @@ const EachServiceForm = () => {
           type="date"
           value={formValue?.DeliveryDate}
           onChange={(value) => {
-            setDateInput(value);
+            // setDateInput(value);
             // handleChange(value, "DeliveryDate");
           }}
         />
         <FormFields
           fieldName="Description"
-          value={formValue?.Dscription}
           onChange={(value) => {
             handleChange(value, "Dscription");
           }}

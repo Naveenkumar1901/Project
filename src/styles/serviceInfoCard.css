@@ -48,6 +48,9 @@
   text-align: left;
 }
 
+.ownerNameValue {
+  text-transform: uppercase;
+}
 .separationLine {
   width: 100%;
   height: 1px;

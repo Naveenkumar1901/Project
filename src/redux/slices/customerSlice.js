@@ -14,7 +14,7 @@ export const createCustomer = createAsyncThunk(
           Authorization: `Bearer ${userToken.access_token}`,
         },
       });
-      console.log(response);
+      console.log(response.data);
       return response.data;
     } catch (error) {
       const createCustomerError =
@@ -37,7 +37,7 @@ export const getCustomerDetails = createAsyncThunk(
           Authorization: `Bearer ${userToken.access_token}`,
         },
       });
-      console.log(response);
+      console.log(response.data);
       return response.data;
     } catch (error) {
       const getCustomerDetailsError = error?.response?.data ?? "Unknown error";
@@ -59,7 +59,7 @@ export const serviceBooking = createAsyncThunk(
           Authorization: `Bearer ${userToken.access_token}`,
         },
       });
-      console.log(response);
+      console.log(response.data);
       return response.data;
     } catch (error) {
       const serviceBookingError =
@@ -80,6 +80,7 @@ export const customerSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(createCustomer.fulfilled, (state, action) => {
+      state.customerDetails = action.payload;
     });
 
     builder.addCase(createCustomer.pending, (state, action) => {});
@@ -87,16 +88,19 @@ export const customerSlice = createSlice({
     builder.addCase(createCustomer.rejected, (state, action) => {
       state.createCustomerErr = action.error.message;
     });
-    builder.addCase(serviceBooking.fulfilled, (state, action) => {});
+
+    builder.addCase(serviceBooking.fulfilled, (state, action) => {
+      state.customerDetails = action.payload;
+    });
 
     builder.addCase(serviceBooking.pending, (state, action) => {});
 
     builder.addCase(serviceBooking.rejected, (state, action) => {
       state.serviceBookingErr = action.error.message;
     });
+
     builder.addCase(getCustomerDetails.fulfilled, (state, action) => {
       state.customerDetails = action.payload;
-      
     });
 
     builder.addCase(getCustomerDetails.pending, (state, action) => {});

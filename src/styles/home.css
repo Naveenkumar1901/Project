@@ -17,12 +17,12 @@
   font-size: 30px;
   color: #f0ce1b;
   cursor: pointer;
-  margin-right: 10px;
 }
 
 .navbarLeftSection {
   display: flex;
   align-items: center;
+  column-gap: 5px;
 }
 .homeSearch {
   display: flex;

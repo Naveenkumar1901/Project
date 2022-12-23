@@ -19,15 +19,17 @@ const ServiceInfoCard = (props) => {
       >
         <div className="ownerNameSection">
           <p className="ownerNameText">Customer name</p>
-          <p className="ownerNameValue">{props.customerName}</p>
+          <p className="ownerNameValue">
+            {props.customerName}({props.city})
+          </p>
         </div>
         <div className="carNoSection">
           <p className="carNoText">Car number</p>
           <p className="carNoValue">{props.carNo}</p>
         </div>
         <div className="serviceNameSection">
-          <p className="serviceNameText">Service type</p>
-          <p className="serviceNameValue">{props.serviceType}</p>
+          <p className="serviceNameText">Total amount</p>
+          <p className="serviceNameValue">₹ {props.totalAmount}</p>
         </div>
         <hr className="separationLine" />
         <div className="scheduleStatus">
@@ -42,7 +44,7 @@ const ServiceInfoCard = (props) => {
           <div className="status">
             <span
               className={`dotIcon ${
-                props.scheduleStatus === "Confirmed"
+                props.status === "O"
                   ? "greenColor"
                   : "redColor" && props.status === "upcoming"
                   ? "yellowColor"
@@ -51,7 +53,7 @@ const ServiceInfoCard = (props) => {
             >
               &#x2022;
             </span>
-            <p className="statusInfo">{props.scheduleStatus}</p>
+            <p className="statusInfo">{props.status}</p>
           </div>
         </div>
         {props.scheduleStatus === "Not confirmed" ? null : (
@@ -69,7 +71,7 @@ const ServiceInfoCard = (props) => {
               variant={"compact"}
               onClick={() => navigate("/schedule/payment")}
             >
-              Payment
+              Service details
             </Button>
           </div>
         )}

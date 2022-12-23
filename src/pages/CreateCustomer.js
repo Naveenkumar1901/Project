@@ -35,12 +35,6 @@ const CreateCustomer = () => {
     //   error(true);
     // });
   };
-  const getCustomerOperation = async () => {
-    dispatch(getCustomerDetails())
-      .unwrap()
-      .then(() => {});
-  };
-
   // const error = useSelector((state) => state.customer.createCustomerErr);
 
   return (

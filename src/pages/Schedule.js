@@ -2,13 +2,16 @@ import "../styles/upcomingAndSchedule.css";
 import React, { useState } from "react";
 import SearchBar from "../reusableComponent/SearchBar";
 import ServiceInfo from "../reusableComponent/ServiceInfoCard";
-import customerData from "../data/CustomerData";
 import Modal from "react-modal";
 import DeleteInfo from "../components/modal/DeleteInfoModal";
+import { useSelector } from "react-redux";
 
 const Schedule = () => {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [value, setSearchValue] = useState("");
+  const customerDetails = useSelector(
+    (state) => state.customer.customerDetails
+  );
   const customStyles = {
     content: {
       top: "50%",
@@ -39,20 +42,21 @@ const Schedule = () => {
           <SearchBar value={value} setSearchValue={setSearchValue} />
         </div>
         <div className="detailsSection">
-          {customerData.map((data) => {
-            return (
+          {customerDetails.map((data) => {
+            return data.ServiceList.length >= 1 ? (
               <ServiceInfo
-                customerName={data.customerName}
-                carNo={data.carNo}
-                serviceType={data.serviceType}
-                deliveryDate={data.deliveryDate}
-                deliveryTime={data.deliveryTime}
-                scheduleStatus={data.scheduleStatus}
+                customerName={data.CustomerName}
+                city={data.City}
+                carNo={data.RegNumber}
+                totalAmount={data.TotalAmount}
+                deliveryDate={data.DeliveryDate}
+                deliveryTime={data.DeliveryTime}
+                status={data.Status}
                 onClick={() => {
-                  setShowDeleteModal(data.id);
+                  setShowDeleteModal(data.ID);
                 }}
               />
-            );
+            ) : null;
           })}
         </div>
       </div>
