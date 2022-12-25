@@ -76,11 +76,12 @@ export const customerSlice = createSlice({
     createCustomerErr: "",
     serviceBookingErr: "",
     getCustomerDetailsErr: "",
+    customerLoading: true,
   },
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(createCustomer.fulfilled, (state, action) => {
-      state.customerDetails = action.payload;
+      // state.customerDetails = action.payload;
     });
 
     builder.addCase(createCustomer.pending, (state, action) => {});
@@ -90,7 +91,7 @@ export const customerSlice = createSlice({
     });
 
     builder.addCase(serviceBooking.fulfilled, (state, action) => {
-      state.customerDetails = action.payload;
+      // state.customerDetails = action.payload;
     });
 
     builder.addCase(serviceBooking.pending, (state, action) => {});
@@ -101,12 +102,16 @@ export const customerSlice = createSlice({
 
     builder.addCase(getCustomerDetails.fulfilled, (state, action) => {
       state.customerDetails = action.payload;
+      state.customerLoading = false;
     });
 
-    builder.addCase(getCustomerDetails.pending, (state, action) => {});
+    builder.addCase(getCustomerDetails.pending, (state, action) => {
+      state.customerLoading = true;
+    });
 
     builder.addCase(getCustomerDetails.rejected, (state, action) => {
       state.getCustomerDetailsErr = action.error.message;
+      state.customerLoading = false;
     });
   },
 });

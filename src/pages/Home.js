@@ -21,7 +21,7 @@ const Home = () => {
   );
   const customer = customerDetails[customerDetails.length - 1];
   const sidebarToggle = useSelector((state) => state.toggle.showSidebar);
-
+  console.log(customer?.CustomerName, "name");
   return (
     <div className="basePageContainer">
       <div className="navbar">
@@ -49,7 +49,7 @@ const Home = () => {
           >
             Create customer
           </Button>
-          <p>Customer :</p>
+          <p>Customer: {customer?.CustomerName}</p>
         </div>
 
         <div className="homeSearch">

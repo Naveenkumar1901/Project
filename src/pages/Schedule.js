@@ -42,7 +42,7 @@ const Schedule = () => {
           <SearchBar value={value} setSearchValue={setSearchValue} />
         </div>
         <div className="detailsSection">
-          {customerDetails.map((data) => {
+          {customerDetails?.map((data) => {
             return data.ServiceList.length >= 1 ? (
               <ServiceInfo
                 customerName={data.CustomerName}
@@ -52,6 +52,7 @@ const Schedule = () => {
                 deliveryDate={data.DeliveryDate}
                 deliveryTime={data.DeliveryTime}
                 status={data.Status}
+                customerData={data}
                 onClick={() => {
                   setShowDeleteModal(data.ID);
                 }}

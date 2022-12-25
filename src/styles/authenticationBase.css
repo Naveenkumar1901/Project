@@ -19,7 +19,7 @@
 }
 
 .baseInnerContainer.dark-theme {
-  background-color: #001E3C;
+  background-color: #001e3c;
   box-shadow: none;
   border: 1px solid lightgray;
 }
@@ -49,10 +49,10 @@
 
 .authenticationFields {
   display: flex;
-    flex-direction: column;
+  flex-direction: column;
   width: 90%;
   row-gap: 10px;
-    margin-bottom: 10px;
+  margin-bottom: 10px;
 }
 
 .eyeIcon {
@@ -103,12 +103,12 @@
 .errorMessage {
   color: red;
   font-size: 14px;
-    margin-top: 10px;
-    }
-    
-    .question {
-      font-size: 14px;
-      margin-top: 10px;
+  margin-top: 10px;
+}
+
+.question {
+  font-size: 14px;
+  margin-top: 10px;
 }
 
 .routeLink,
@@ -174,7 +174,8 @@
   background-color: #f0ce1b;
   color: black;
 }
-loading {
+
+.loading {
   left: 0;
   right: 0;
   top: 0;
@@ -184,12 +185,14 @@ loading {
   --gradient-white: #ffffff;
 }
 
-loading {
+.loading {
   animation: 3s linear infinite RefreshedLoadingBarProgress,
     0.5s ease-out LoadingBarEnter;
-  background: linear-gradient(to right,
-      var(--gradient-white),
-      var(--gradient-yellow));
+  background: linear-gradient(
+    to right,
+    var(--gradient-white),
+    var(--gradient-yellow)
+  );
   background-size: 500%;
   height: 3px;
   transform-origin: left;

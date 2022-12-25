@@ -85,7 +85,7 @@ const services = [
     id: 12,
     icon: <RiOilFill />,
     name: "Oiling",
-    routeName: "oilingService",
+    routeName: "EngineOil",
   },
 ];
 

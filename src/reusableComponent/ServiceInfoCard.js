@@ -10,6 +10,31 @@ const ServiceInfoCard = (props) => {
   const navigate = useNavigate();
   const theme = useSelector((state) => state.color.theme);
 
+  const insertHyphen = (str) => {
+    let newStr = "";
+    for (let i = 0; i < str.length; i = i + 1) {
+      const currentValue = str[i];
+      const nextValue = str[i + 1];
+      console.log(newStr, "string");
+      newStr += currentValue;
+      console.log(isNaN(parseInt(currentValue)));
+
+      console.log(isNaN(parseInt(nextValue)));
+      if (
+        (isNaN(parseInt(currentValue)) === true &&
+          isNaN(parseInt(nextValue)) === false &&
+          nextValue !== undefined) ||
+        (isNaN(parseInt(currentValue)) === false &&
+          isNaN(parseInt(nextValue)) === true &&
+          nextValue !== undefined)
+      )
+        newStr += "-";
+      // if (nextValue) newStr += nextValue;
+    }
+    // console.log(newStr, "split");
+    return newStr;
+  };
+
   return (
     <>
       <div
@@ -25,7 +50,9 @@ const ServiceInfoCard = (props) => {
         </div>
         <div className="carNoSection">
           <p className="carNoText">Car number</p>
-          <p className="carNoValue">{props.carNo}</p>
+          <p className="carNoValue">
+            {props.carNo && insertHyphen(props.carNo)}
+          </p>
         </div>
         <div className="serviceNameSection">
           <p className="serviceNameText">Total amount</p>
@@ -63,7 +90,15 @@ const ServiceInfoCard = (props) => {
             </Button>
             <Button
               variant={"compact"}
-              onClick={() => navigate("/home/services/carService")}
+              onClick={() =>
+                navigate(
+                  `/home/services/${
+                    props.customerData.ServiceList[
+                      props.customerData.ServiceList.length - 1
+                    ].ServiceName
+                  }?regNumber=${props.customerData.RegNumber}`
+                )
+              }
             >
               Reschedule
             </Button>

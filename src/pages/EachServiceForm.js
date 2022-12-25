@@ -1,6 +1,6 @@
 import "../styles/reusableForm.css";
 import React, { useEffect, useRef, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import moment from "moment";
 import services from "../data/serviceSection";
 import Button from "../reusableComponent/Button";
@@ -12,16 +12,29 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 
 const EachServiceForm = () => {
+  const [searchParams] = useSearchParams();
+  const query = searchParams.get("regNumber");
+
+  const customerLoading = useSelector(
+    (state) => state.customer.customerLoading
+  );
   const customerDetails = useSelector(
     (state) => state.customer.customerDetails
   );
-  const [formValue, setFormValue] = useState(
-    customerDetails[customerDetails.length - 1]
-  );
 
+  const getUserObject = () => {
+    return customerDetails?.find(
+      (eachCustomer) => eachCustomer.RegNumber === query
+    );
+  };
+  const value = query
+    ? getUserObject()
+    : customerDetails[customerDetails.length - 1];
+  const [formValue, setFormValue] = useState(value);
   useEffect(() => {
-    setFormValue(customerDetails[customerDetails.length - 1]);
-  }, [customerDetails]);
+    setFormValue(value);
+  }, [value]);
+
   const [dateInput, setDateInput] = useState({
     entryDate: moment().format("yyyy-MM-DD"),
     deliveryDate: "",
@@ -38,13 +51,13 @@ const EachServiceForm = () => {
     }));
   };
 
-  useEffect(() => {
-    const checkObj = checkboxArray?.reduce(
-      (obj) => ({ ...obj, ServiceCode: "" }),
-      {}
-    );
-    setFormValue(checkObj);
-  }, [checkboxArray]);
+  // useEffect(() => {
+  //   const checkObj = checkboxArray?.reduce(
+  //     (obj) => ({ ...obj, ServiceCode: "" }),
+  //     {}
+  //   );
+  //   setFormValue(checkObj);
+  // }, [checkboxArray]);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -53,19 +66,26 @@ const EachServiceForm = () => {
   const scrollToBottom = () => {
     scrollRef.current.srollBottom = 0;
   };
+
   const servicebookingOperation = async () => {
-    let data = formValue;
-    dispatch(serviceBooking(data))
+    const obj = {
+      MobileNum: formValue.MobileNumber,
+      RegNum: formValue.RegNumber,
+      Dscription: formValue.Dscription,
+      ServiceCode: formValue.ServiceCode,
+    };
+
+    dispatch(serviceBooking(obj))
       .unwrap()
       .then(() => {
         dispatch(getCustomerDetails());
         navigate("/schedule");
-        // scrollToBottom();
+        console.log("check");
       })
       .catch(() => {
         error(true);
       });
-    console.log(data, "payload data");
+    console.log(obj, "payload data");
   };
   const error = useSelector((state) => state.customer.serviceBookingErr);
   useEffect(() => {
@@ -133,7 +153,7 @@ const EachServiceForm = () => {
         ]);
       case "washService":
         return setCheckArray([{ fieldName: "General wash", serviceCode: 116 }]);
-      case "oilingService":
+      case "EngineOil":
         return setCheckArray([
           { fieldName: "Engine oil change", serviceCode: 117 },
           { fieldName: "Brake oil change", serviceCode: 118 },
@@ -145,84 +165,93 @@ const EachServiceForm = () => {
 
   return (
     <div className="formContainer">
-      <div className="formHeader">
-        {icon}
-        <p className="formTitle">{name}</p>
-      </div>
-      <form className="formInnerContainer">
-        <FormFields
-          cularsField
-          fieldName="Customer name"
-          value={formValue?.CustomerName}
-        />
-        <FormFields
-          fieldName="Mobile number"
-          maxLength="10"
-          minLength="10"
-          value={formValue?.MobileNumber}
-          onChange={(value) => {
-            handleChange(value, "MobileNum");
-          }}
-        />
-        <FormFields fieldName="Address" value={formValue?.Address} />
-
-        <FormFields
-          fieldName="Register number"
-          value={formValue?.RegNumber}
-          onChange={(value) => {
-            handleChange(value, "RegNumber");
-          }}
-        />
-        <FormFields fieldName="Car name" value={formValue?.CarBrand} />
-        <FormFields fieldName="Car model" value={formValue?.CarModel} />
-        <FormFields
-          fieldName="Entry date"
-          type="date"
-          value={dateInput.entryDate}
-          onChange={(value) => {
-            setDateInput(value);
-            // handleChange(value, "EntryDate");
-          }}
-        />
-        <FormFields
-          fieldName="Delivery date"
-          type="date"
-          value={formValue?.DeliveryDate}
-          onChange={(value) => {
-            // setDateInput(value);
-            // handleChange(value, "DeliveryDate");
-          }}
-        />
-        <FormFields
-          fieldName="Description"
-          onChange={(value) => {
-            handleChange(value, "Dscription");
-          }}
-        />
-        {checkboxArray?.map((val) => {
-          return (
-            <div className="checkboxSection">
-              <FormFields
-                fieldName={val.fieldName}
-                value={val.serviceCode}
-                type="checkbox"
-                onChange={(value) => {
-                  handleChange(parseInt(value), "ServiceCode");
-                }}
-              />
-            </div>
-          );
-        })}
-        <div className="formBtn">
-          <Button
-            variant={"primary"}
-            type="submit"
-            onClick={servicebookingOperation}
+      {customerLoading ? (
+        <div className="loading" />
+      ) : (
+        <>
+          <div className="formHeader">
+            {icon}
+            <p className="formTitle">{name}</p>
+          </div>
+          <form
+            className="formInnerContainer"
+            onSubmit={(e) => e.preventDefault()}
           >
-            Submit
-          </Button>
-        </div>
-      </form>
+            <FormFields
+              cularsField
+              fieldName="Customer name"
+              value={formValue?.CustomerName}
+            />
+            <FormFields
+              fieldName="Mobile number"
+              maxLength="10"
+              minLength="10"
+              value={formValue?.MobileNumber}
+              onChange={(value) => {
+                handleChange(value, "MobileNum");
+              }}
+            />
+            <FormFields fieldName="Address" value={formValue?.Address} />
+
+            <FormFields
+              fieldName="Register number"
+              value={formValue?.RegNumber}
+              onChange={(value) => {
+                handleChange(value, "RegNumber");
+              }}
+            />
+            <FormFields fieldName="Car name" value={formValue?.CarBrand} />
+            <FormFields fieldName="Car model" value={formValue?.CarModel} />
+            <FormFields
+              fieldName="Entry date"
+              type="date"
+              value={dateInput.entryDate}
+              onChange={(value) => {
+                setDateInput(value);
+                // handleChange(value, "EntryDate");
+              }}
+            />
+            <FormFields
+              fieldName="Delivery date"
+              type="date"
+              value={formValue?.DeliveryDate}
+              onChange={(value) => {
+                // setDateInput(value);
+                // handleChange(value, "DeliveryDate");
+              }}
+            />
+            <FormFields
+              fieldName="Description"
+              onChange={(value) => {
+                handleChange(value, "Dscription");
+              }}
+            />
+            {checkboxArray?.map((val) => {
+              return (
+                <div className="checkboxSection">
+                  <FormFields
+                    fieldName={val.fieldName}
+                    value={val.serviceCode}
+                    type="checkbox"
+                    onChange={(value) => {
+                      handleChange(parseInt(value), "ServiceCode");
+                    }}
+                  />
+                </div>
+              );
+            })}
+            <div className="formBtn">
+              <Button
+                variant={"primary"}
+                type="submit"
+                onClick={servicebookingOperation}
+              >
+                Submit
+              </Button>
+            </div>
+          </form>
+        </>
+      )}
     </div>
   );
 };
