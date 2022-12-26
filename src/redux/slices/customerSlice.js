@@ -76,38 +76,55 @@ export const customerSlice = createSlice({
     createCustomerErr: "",
     serviceBookingErr: "",
     getCustomerDetailsErr: "",
+    customerLoading: true,
   },
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(createCustomer.fulfilled, (state, action) => {
-      state.customerDetails = action.payload;
+      state.customerLoading = false;
     });
 
-    builder.addCase(createCustomer.pending, (state, action) => {});
+    builder.addCase(createCustomer.pending, (state, action) => {
+      state.customerLoading = true;
+    });
 
     builder.addCase(createCustomer.rejected, (state, action) => {
+      state.customerLoading = false;
       state.createCustomerErr = action.error.message;
     });
 
     builder.addCase(serviceBooking.fulfilled, (state, action) => {
-      state.customerDetails = action.payload;
+      state.customerLoading = false;
     });
 
-    builder.addCase(serviceBooking.pending, (state, action) => {});
+    builder.addCase(serviceBooking.pending, (state, action) => {
+      state.customerLoading = true;
+    });
 
     builder.addCase(serviceBooking.rejected, (state, action) => {
+      state.customerLoading = false;
       state.serviceBookingErr = action.error.message;
     });
 
     builder.addCase(getCustomerDetails.fulfilled, (state, action) => {
+      // customerDetails.forEach(()=>)
       state.customerDetails = action.payload;
+      state.customerLoading = false;
     });
 
-    builder.addCase(getCustomerDetails.pending, (state, action) => {});
+    builder.addCase(getCustomerDetails.pending, (state, action) => {
+      state.customerLoading = true;
+    });
 
     builder.addCase(getCustomerDetails.rejected, (state, action) => {
+      state.customerLoading = false;
       state.getCustomerDetailsErr = action.error.message;
     });
   },
 });
 export default customerSlice.reducer;
+
+// let tempaarray = [];
+// data.foreach((el) => {
+//   tempaarray.push(el.serviceList);
+// });

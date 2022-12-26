@@ -1,5 +1,5 @@
 import "../styles/upcomingAndSchedule.css";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import SearchBar from "../reusableComponent/SearchBar";
 import ServiceInfo from "../reusableComponent/ServiceInfoCard";
 import Modal from "react-modal";
@@ -9,9 +9,32 @@ import { useSelector } from "react-redux";
 const Schedule = () => {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [value, setSearchValue] = useState("");
+  const loading = useSelector((state) => state.customer.customerLoading);
   const customerDetails = useSelector(
     (state) => state.customer.customerDetails
   );
+
+  useEffect(() => {
+    if (customerDetails) {
+      let tempArray = [];
+      const arr = customerDetails?.forEach((el) => {
+        if (el.ServiceList.length > 0) {
+          tempArray.push([...el.ServiceList]);
+        }
+        tempArray.forEach((el) => {
+          el.ServiceType = {
+            ...el.ServiceCode,
+            ServiceTags: el.map((eachService) => eachService.ServiceCode),
+          };
+        });
+      });
+      console.log(tempArray, "check");
+      console.log(customerDetails, "customerDetails123");
+    } else {
+      console.log(customerDetails, "customerDetails");
+    }
+  }, [customerDetails]);
+
   const customStyles = {
     content: {
       top: "50%",
@@ -38,27 +61,34 @@ const Schedule = () => {
         />
       </Modal>
       <div className="servicePageContainer">
-        <div className="searchWrapper">
-          <SearchBar value={value} setSearchValue={setSearchValue} />
-        </div>
-        <div className="detailsSection">
-          {customerDetails.map((data) => {
-            return data.ServiceList.length >= 1 ? (
-              <ServiceInfo
-                customerName={data.CustomerName}
-                city={data.City}
-                carNo={data.RegNumber}
-                totalAmount={data.TotalAmount}
-                deliveryDate={data.DeliveryDate}
-                deliveryTime={data.DeliveryTime}
-                status={data.Status}
-                onClick={() => {
-                  setShowDeleteModal(data.ID);
-                }}
-              />
-            ) : null;
-          })}
-        </div>
+        {loading ? (
+          <div className="loading" />
+        ) : (
+          <>
+            <div className="searchWrapper">
+              <SearchBar value={value} setSearchValue={setSearchValue} />
+            </div>
+            <div className="detailsSection">
+              {customerDetails.map((data) => {
+                return data.ServiceList.length >= 1 ? (
+                  <ServiceInfo
+                    customerName={data.CustomerName}
+                    city={data.City}
+                    carNo={data.RegNumber}
+                    totalAmount={data.TotalAmount}
+                    deliveryDate={data.DeliveryDate}
+                    deliveryTime={data.DeliveryTime}
+                    status={data.Status}
+                    customerData={data}
+                    onClick={() => {
+                      setShowDeleteModal(data.ID);
+                    }}
+                  />
+                ) : null;
+              })}
+            </div>
+          </>
+        )}
       </div>
     </>
   );

@@ -39,6 +39,7 @@ const services = [
     name: "AC Service & Repair",
     routeName: "acService",
   },
+
   {
     id: 5,
     icon: <MdCleaningServices />,
@@ -55,7 +56,7 @@ const services = [
     id: 7,
     icon: <MdHealthAndSafety />,
     name: "Insurance Renewal",
-    routeName: "insuranceRenewal",
+    routeName: "InsuranceRenewal",
   },
   {
     id: 8,
@@ -73,7 +74,7 @@ const services = [
     id: 10,
     icon: <MdDryCleaning />,
     name: "Dryclean",
-    routeName: "dryCleanService",
+    routeName: "cleaningService",
   },
   {
     id: 11,

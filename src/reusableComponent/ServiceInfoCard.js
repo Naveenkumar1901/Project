@@ -1,7 +1,7 @@
+import "../styles/serviceInfoCard.css";
 import React from "react";
 import { BiCalendar } from "react-icons/bi";
 import { MdAccessTimeFilled } from "react-icons/md";
-import "../styles/serviceInfoCard.css";
 import Button from "./Button";
 
 import { useNavigate } from "react-router-dom";
@@ -44,11 +44,7 @@ const ServiceInfoCard = (props) => {
           <div className="status">
             <span
               className={`dotIcon ${
-                props.status === "O"
-                  ? "greenColor"
-                  : "redColor" && props.status === "upcoming"
-                  ? "yellowColor"
-                  : "redColor"
+                props.status === "O" ? "greenColor" : "redColor"
               }`}
             >
               &#x2022;
@@ -56,23 +52,26 @@ const ServiceInfoCard = (props) => {
             <p className="statusInfo">{props.status}</p>
           </div>
         </div>
-        {props.scheduleStatus === "Not confirmed" ? null : (
+        {props.Status === "O" ? null : (
           <div className="actionBtn">
             <Button variant={"secondary"} onClick={props.onClick}>
               Cancel
             </Button>
             <Button
               variant={"compact"}
-              onClick={() => navigate("/home/services/carService")}
+              onClick={() =>
+                navigate(
+                  `/home/services/${
+                    props.customerData.ServiceList[
+                      props.customerData.ServiceList.length - 1
+                    ].ServiceName
+                  }?regNumber=${props.customerData.RegNumber}`
+                )
+              }
             >
               Reschedule
             </Button>
-            <Button
-              variant={"compact"}
-              onClick={() => navigate("/schedule/payment")}
-            >
-              Service details
-            </Button>
+            <Button variant={"compact"}>Service details</Button>
           </div>
         )}
       </div>

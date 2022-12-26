@@ -49,7 +49,7 @@ const Home = () => {
           >
             Create customer
           </Button>
-          <p>Customer :</p>
+          <p>Current customer: {customer?.CustomerName}</p>
         </div>
 
         <div className="homeSearch">

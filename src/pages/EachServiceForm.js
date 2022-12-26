@@ -1,6 +1,7 @@
 import "../styles/reusableForm.css";
-import React, { useEffect, useRef, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useNavigate, useParams, useSearchParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import moment from "moment";
 import services from "../data/serviceSection";
 import Button from "../reusableComponent/Button";
@@ -9,27 +10,38 @@ import {
   getCustomerDetails,
   serviceBooking,
 } from "../redux/slices/customerSlice";
-import { useDispatch, useSelector } from "react-redux";
 
 const EachServiceForm = () => {
+  const [searchParams] = useSearchParams();
+  const query = searchParams.get("regNumber");
+
+  const navigate = useNavigate();
+
+  const dispatch = useDispatch();
+
   const customerDetails = useSelector(
     (state) => state.customer.customerDetails
   );
-  const [formValue, setFormValue] = useState(
-    customerDetails[customerDetails.length - 1]
-  );
+
+  const getUserObject = () => {
+    return customerDetails?.find(
+      (eachCustomer) => eachCustomer.RegNumber === query
+    );
+  };
+
+  const value = query
+    ? getUserObject
+    : customerDetails[customerDetails.length - 1];
+  const [formValue, setFormValue] = useState(value);
 
   useEffect(() => {
-    setFormValue(customerDetails[customerDetails.length - 1]);
-  }, [customerDetails]);
+    setFormValue(value);
+  }, [value]);
+
   const [dateInput, setDateInput] = useState({
     entryDate: moment().format("yyyy-MM-DD"),
     deliveryDate: "",
   });
-  const { serviceName } = useParams();
-  const [checkboxArray, setCheckArray] = useState();
-  const [icon, setIcon] = useState();
-  const [name, setName] = useState();
 
   const handleChange = (value, fieldName) => {
     setFormValue((prevState) => ({
@@ -37,37 +49,34 @@ const EachServiceForm = () => {
       [fieldName]: value,
     }));
   };
-
-  useEffect(() => {
-    const checkObj = checkboxArray?.reduce(
-      (obj) => ({ ...obj, ServiceCode: "" }),
-      {}
-    );
-    setFormValue(checkObj);
-  }, [checkboxArray]);
-
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const scrollRef = useRef();
-
-  const scrollToBottom = () => {
-    scrollRef.current.srollBottom = 0;
-  };
+  const loading = useSelector((state) => state.customer.customerLoading);
+  const error = useSelector((state) => state.customer.serviceBookingErr);
   const servicebookingOperation = async () => {
-    let data = formValue;
+    let data = {
+      ServiceCode: formValue.ServiceCode,
+      MobileNum: formValue.MobileNumber,
+      Dscription: formValue.Dscription,
+      RegNum: formValue.RegNumber,
+    };
+
     dispatch(serviceBooking(data))
       .unwrap()
       .then(() => {
         dispatch(getCustomerDetails());
         navigate("/schedule");
-        // scrollToBottom();
       })
       .catch(() => {
         error(true);
       });
-    console.log(data, "payload data");
   };
-  const error = useSelector((state) => state.customer.serviceBookingErr);
+
+  const { serviceName } = useParams();
+
+  const [checkboxArray, setCheckArray] = useState();
+
+  const [icon, setIcon] = useState();
+
+  const [name, setName] = useState();
   useEffect(() => {
     const result = services.find(function (eachData) {
       return eachData.routeName === serviceName;
@@ -77,7 +86,12 @@ const EachServiceForm = () => {
 
     switch (serviceName) {
       case "carService":
-        return setCheckArray([{ fieldName: "Generel service" }]);
+        return setCheckArray([
+          {
+            fieldName: "Generel service",
+            serviceCode: 100,
+          },
+        ]);
       case "wheelService":
         return setCheckArray([
           {
@@ -145,84 +159,100 @@ const EachServiceForm = () => {
 
   return (
     <div className="formContainer">
-      <div className="formHeader">
-        {icon}
-        <p className="formTitle">{name}</p>
-      </div>
-      <form className="formInnerContainer">
-        <FormFields
-          cularsField
-          fieldName="Customer name"
-          value={formValue?.CustomerName}
-        />
-        <FormFields
-          fieldName="Mobile number"
-          maxLength="10"
-          minLength="10"
-          value={formValue?.MobileNumber}
-          onChange={(value) => {
-            handleChange(value, "MobileNum");
-          }}
-        />
-        <FormFields fieldName="Address" value={formValue?.Address} />
-
-        <FormFields
-          fieldName="Register number"
-          value={formValue?.RegNumber}
-          onChange={(value) => {
-            handleChange(value, "RegNumber");
-          }}
-        />
-        <FormFields fieldName="Car name" value={formValue?.CarBrand} />
-        <FormFields fieldName="Car model" value={formValue?.CarModel} />
-        <FormFields
-          fieldName="Entry date"
-          type="date"
-          value={dateInput.entryDate}
-          onChange={(value) => {
-            setDateInput(value);
-            // handleChange(value, "EntryDate");
-          }}
-        />
-        <FormFields
-          fieldName="Delivery date"
-          type="date"
-          value={formValue?.DeliveryDate}
-          onChange={(value) => {
-            // setDateInput(value);
-            // handleChange(value, "DeliveryDate");
-          }}
-        />
-        <FormFields
-          fieldName="Description"
-          onChange={(value) => {
-            handleChange(value, "Dscription");
-          }}
-        />
-        {checkboxArray?.map((val) => {
-          return (
-            <div className="checkboxSection">
-              <FormFields
-                fieldName={val.fieldName}
-                value={val.serviceCode}
-                type="checkbox"
-                onChange={(value) => {
-                  handleChange(parseInt(value), "ServiceCode");
-                }}
-              />
-            </div>
-          );
-        })}
-        <div className="formBtn">
-          <Button
-            variant={"primary"}
-            type="submit"
-            onClick={servicebookingOperation}
+      {loading ? (
+        <div className="loading" />
+      ) : (
+        <>
+          <div className="formHeader">
+            {icon}
+            <p className="formTitle">{name}</p>
+          </div>
+          <form
+            className="formInnerContainer"
+            onSubmit={(e) => e.preventDefault()}
           >
-            Submit
-          </Button>
-        </div>
-      </form>
+            <FormFields
+              cularsField
+              fieldName="Customer name"
+              value={formValue?.CustomerName}
+            />
+            <FormFields
+              fieldName="Mobile number"
+              maxLength="10"
+              minLength="10"
+              value={formValue?.MobileNumber}
+              onChange={(value) => {
+                handleChange(value, "MobileNum");
+              }}
+            />
+            <FormFields fieldName="Address" value={formValue?.Address} />
+
+            <FormFields
+              fieldName="Register number"
+              value={formValue?.RegNumber}
+              onChange={(value) => {
+                handleChange(value, "RegNumber");
+              }}
+            />
+            <FormFields fieldName="Car name" value={formValue?.CarBrand} />
+            <FormFields fieldName="Car model" value={formValue?.CarModel} />
+            <FormFields
+              fieldName="Entry date"
+              value={dateInput.entryDate}
+              type="date"
+              onChange={(value) => {
+                setDateInput(value);
+                handleChange(value, "EntryDate");
+              }}
+            />
+            <FormFields
+              fieldName="Delivery date"
+              type="date"
+              onChange={(value) => {
+                setDateInput(value);
+                handleChange(value, "DeliveryDate");
+              }}
+            />
+            <FormFields
+              fieldName="Delivery time"
+              type="time"
+              onChange={(value) => {
+                setDateInput(value);
+                handleChange(value, "DeliveryTime");
+              }}
+            />
+            <FormFields
+              fieldName="Description"
+              onChange={(value) => {
+                handleChange(value, "Dscription");
+              }}
+            />
+            {checkboxArray?.map((val) => {
+              return (
+                <div className="checkboxSection">
+                  <FormFields
+                    fieldName={val.fieldName}
+                    value={val.serviceCode}
+                    type="checkbox"
+                    onChange={(value) => {
+                      handleChange(parseInt(value), "ServiceCode");
+                    }}
+                  />
+                </div>
+              );
+            })}
+            <div className="formBtn">
+              <Button
+                variant={"primary"}
+                type="submit"
+                onClick={servicebookingOperation}
+              >
+                Submit
+              </Button>
+            </div>
+          </form>
+        </>
+      )}
     </div>
   );
 };
