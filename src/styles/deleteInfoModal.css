@@ -1,33 +1,31 @@
 .deleteInfoContainer {
-    width: 300px;
-    height: 250px;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
     padding: 10px;
     align-items: center;
+    justify-content: center;
 }
 
 .deleteIcon {
     color: #f0ce1b;
     font-size: 50px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 .deleteQuestion {
     font-size: 20px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 
 }
 
 .deleteStatement {
     font-size: 16px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 .deleteAction {
     width: 100%;
     display: flex;
-    justify-content: space-around;
-    margin-bottom: 20px;
+    justify-content: space-between;
 }

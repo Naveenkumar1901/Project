@@ -4,12 +4,12 @@ import { RiDeleteBinLine } from "react-icons/ri";
 import Button from "../../reusableComponent/Button";
 import { useSelector } from "react-redux";
 
-const DeleteInfo = ({ hideDeleteModal, deleteId, scheduleId }) => {
+const DeleteInfo = ({ hideDeleteModal, deleteId, customerId }) => {
   const customerDetails = useSelector(
     (state) => state.customer.customerDetails
   );
   const result = customerDetails.find(function (eachData) {
-    return eachData.ID === deleteId || eachData.ID === scheduleId;
+    return eachData.ID === deleteId || eachData.ID === customerId;
   });
   console.log(result, "id");
   const handleDelete = () => {

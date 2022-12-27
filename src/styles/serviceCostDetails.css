@@ -8,7 +8,7 @@
 
 .costParticular,
 .totalCostParticular {
-    flex: 0.6;
+    flex: 0.5;
     text-align: left;
     color: #1A30AC;
 }
@@ -21,8 +21,8 @@
 .costValue,
 .totalCostValue {
     font-weight: 400;
-    flex: 0.4;
-        text-align: right;
+    flex: 0.5;
+        text-align: center;
 }
 
 .totalCostValue {

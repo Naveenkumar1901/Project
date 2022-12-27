@@ -37,35 +37,35 @@ const EditModal = ({ hideEditDetails, editModalId, data, setData }) => {
       <div className="paymentDetailsBody">
         <FormFields
           fieldName="Customer name"
-          value={customerDetails.customerName}
+          value={customerDetails?.customerName}
           onChange={(value) => {
             handleChange(value, "customerName");
           }}
         />
         <FormFields
           fieldName="Car number"
-          value={customerDetails.carNo}
+          value={customerDetails?.carNo}
           onChange={(value) => {
             handleChange(value, "carNor");
           }}
         />
         <FormFields
           fieldName="Car name"
-          value={customerDetails.carName}
+          value={customerDetails?.carName}
           onChange={(value) => {
             handleChange(value, "carName");
           }}
         />
         <FormFields
           fieldName="Delivery status"
-          value={customerDetails.deliveryStatus}
+          value={customerDetails?.deliveryStatus}
           onChange={(value) => {
             handleChange(value, "deliveryStatus");
           }}
         />
         <FormFields
           fieldName="Delivery date"
-          value={customerDetails.deliveryDate}
+          value={customerDetails?.deliveryDate}
           type="date"
           onChange={(value) => {
             handleChange(value, "deliveryDate");
@@ -73,7 +73,7 @@ const EditModal = ({ hideEditDetails, editModalId, data, setData }) => {
         />
         <FormFields
           fieldName="Delivery time"
-          value={customerDetails.deliveryTime}
+          value={customerDetails?.deliveryTime}
           type="time"
           onChange={(value) => {
             handleChange(value, "deliveryTime");
@@ -81,7 +81,7 @@ const EditModal = ({ hideEditDetails, editModalId, data, setData }) => {
         />
         <FormFields
           fieldName="Payment status"
-          value={customerDetails.paymentStatus}
+          value={customerDetails?.paymentStatus}
           onChange={(value) => {
             handleChange(value, "paymentStatus");
           }}

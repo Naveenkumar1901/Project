@@ -31,17 +31,14 @@ const Delivered = () => {
 
   // const pageSize = 10;
   const customStyles = {
-    content: {
-      top: "50%",
-      left: "50%",
-      right: "auto",
-      bottom: "auto",
-      width: "350px",
-      transform: "translate(-50%, -50%)",
-      boxShadow: "10px 10px 10px 10px rgba(135, 135, 135, 0.25)",
-      borderRadius: "10px",
-      border: "none",
-    },
+    top: "50%",
+    left: "50%",
+    right: "auto",
+    bottom: "auto",
+    transform: "translate(-50%, -50%)",
+    boxShadow: "10px 10px 10px 10px rgba(135, 135, 135, 0.25)",
+    borderRadius: "10px",
+    border: "none",
   };
   const keys = [
     "serviceType",
@@ -110,7 +107,13 @@ const Delivered = () => {
     <>
       <Modal
         isOpen={showPaymentModal || showDeleteModal || showEditModal}
-        style={customStyles}
+        style={
+          showPaymentModal
+            ? { content: { ...customStyles, width: "350px", height: "350px" } }
+            : showEditModal
+            ? { content: { ...customStyles, width: "350px", height: "500px" } }
+            : { content: { ...customStyles, width: "300px", height: "250px" } }
+        }
       >
         {" "}
         {showPaymentModal ? (

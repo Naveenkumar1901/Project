@@ -5,9 +5,11 @@ import ServiceInfo from "../reusableComponent/ServiceInfoCard";
 import Modal from "react-modal";
 import DeleteInfo from "../components/modal/DeleteInfoModal";
 import { useSelector } from "react-redux";
+import ServiceDetailsModal from "../components/modal/ServiceDetailsModal";
 
 const Schedule = () => {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [showServiceDetailsModal, setShowServiceDetailsModal] = useState(false);
   const [value, setSearchValue] = useState("");
   const loading = useSelector((state) => state.customer.customerLoading);
   const customerDetails = useSelector(
@@ -36,29 +38,44 @@ const Schedule = () => {
   }, [customerDetails]);
 
   const customStyles = {
-    content: {
-      top: "50%",
-      left: "50%",
-      right: "auto",
-      bottom: "auto",
-      transform: "translate(-50%, -50%)",
-      boxShadow: "10px 10px 10px 10px rgba(135, 135, 135, 0.25)",
-      borderRadius: "10px",
-      backgroundColor: "#ffffff",
-      border: "none",
-    },
+    top: "50%",
+    left: "50%",
+    right: "auto",
+    bottom: "auto",
+    transform: "translate(-50%, -50%)",
+    boxShadow: "10px 10px 10px 10px rgba(135, 135, 135, 0.25)",
+    borderRadius: "10px",
+    backgroundColor: "#ffffff",
+    border: "none",
   };
 
   const hideDeleteModal = () => {
     setShowDeleteModal(false);
   };
+  const hideServiceDetailsModal = () => {
+    setShowServiceDetailsModal(false);
+  };
   return (
     <>
-      <Modal isOpen={showDeleteModal} style={customStyles}>
-        <DeleteInfo
-          hideDeleteModal={hideDeleteModal}
-          scheduleId={showDeleteModal}
-        />
+      <Modal
+        isOpen={showDeleteModal || showServiceDetailsModal}
+        style={
+          showDeleteModal
+            ? { content: { ...customStyles, width: "300px", height: "250px" } }
+            : { content: { ...customStyles, width: "50%", height: "50%" } }
+        }
+      >
+        {showDeleteModal ? (
+          <DeleteInfo
+            hideDeleteModal={hideDeleteModal}
+            customerId={showDeleteModal}
+          />
+        ) : (
+          <ServiceDetailsModal
+            hideServiceDetailsModal={hideServiceDetailsModal}
+            customerId={showServiceDetailsModal}
+          />
+        )}
       </Modal>
       <div className="servicePageContainer">
         {loading ? (
@@ -69,7 +86,7 @@ const Schedule = () => {
               <SearchBar value={value} setSearchValue={setSearchValue} />
             </div>
             <div className="detailsSection">
-              {customerDetails.map((data) => {
+              {customerDetails?.map((data) => {
                 return data.ServiceList.length >= 1 ? (
                   <ServiceInfo
                     customerName={data.CustomerName}
@@ -80,8 +97,11 @@ const Schedule = () => {
                     deliveryTime={data.DeliveryTime}
                     status={data.Status}
                     customerData={data}
-                    onClick={() => {
+                    onClickCancel={() => {
                       setShowDeleteModal(data.ID);
+                    }}
+                    onClickDetails={() => {
+                      setShowServiceDetailsModal(data.ID);
                     }}
                   />
                 ) : null;

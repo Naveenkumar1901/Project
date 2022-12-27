@@ -22,4 +22,5 @@ code {
 }
 ::-webkit-scrollbar-thumb {
   background: lightgray;
+  border-radius: 10px;
 }

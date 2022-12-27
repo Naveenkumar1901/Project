@@ -54,7 +54,7 @@ const ServiceInfoCard = (props) => {
         </div>
         {props.Status === "O" ? null : (
           <div className="actionBtn">
-            <Button variant={"secondary"} onClick={props.onClick}>
+            <Button variant={"secondary"} onClick={props.onClickCancel}>
               Cancel
             </Button>
             <Button
@@ -71,7 +71,9 @@ const ServiceInfoCard = (props) => {
             >
               Reschedule
             </Button>
-            <Button variant={"compact"}>Service details</Button>
+            <Button variant={"compact"} onClick={props.onClickDetails}>
+              Service details
+            </Button>
           </div>
         )}
       </div>
