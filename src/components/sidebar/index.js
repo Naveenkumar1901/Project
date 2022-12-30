@@ -18,7 +18,11 @@ const SideBar = (props) => {
       <div className="sidebarHeader">
         <img src={logo} alt="" />
 
-        <p className="displayUsername">Hello {userInfo.UserName}</p>
+        <p className="displayUsername">
+          Hello{" "}
+          {userInfo.UserName.at(0).toUpperCase() +
+            userInfo.UserName.slice(1).toLowerCase()}
+        </p>
       </div>
       <SideBarOption isOpen={!sidebarToggle} theme={props.theme} />
     </div>

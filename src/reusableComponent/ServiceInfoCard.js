@@ -10,6 +10,25 @@ const ServiceInfoCard = (props) => {
   const navigate = useNavigate();
   const theme = useSelector((state) => state.color.theme);
 
+  const insertHyphen = (value) => {
+    let newValue = "";
+    for (let i = 0; i < value.length; i = i + 1) {
+      const currentValue = value[i];
+      const nextValue = value[i + 1];
+      newValue += currentValue;
+      if (
+        (isNaN(parseInt(currentValue)) === true &&
+          isNaN(parseInt(nextValue)) === false &&
+          nextValue !== undefined) ||
+        (isNaN(parseInt(currentValue)) === false &&
+          isNaN(parseInt(nextValue)) === true &&
+          nextValue !== undefined)
+      )
+        newValue += "-";
+    }
+    return newValue;
+  };
+
   return (
     <>
       <div
@@ -25,7 +44,9 @@ const ServiceInfoCard = (props) => {
         </div>
         <div className="carNoSection">
           <p className="carNoText">Car number</p>
-          <p className="carNoValue">{props.carNo}</p>
+          <p className="carNoValue">
+            {props.carNo && insertHyphen(props.carNo)}
+          </p>
         </div>
         <div className="serviceNameSection">
           <p className="serviceNameText">Total amount</p>
@@ -52,7 +73,7 @@ const ServiceInfoCard = (props) => {
             <p className="statusInfo">{props.status}</p>
           </div>
         </div>
-        {props.Status === "O" ? null : (
+        {props.status === "O" ? (
           <div className="actionBtn">
             <Button variant={"secondary"} onClick={props.onClickCancel}>
               Cancel
@@ -75,7 +96,7 @@ const ServiceInfoCard = (props) => {
               Service details
             </Button>
           </div>
-        )}
+        ) : null}
       </div>
     </>
   );

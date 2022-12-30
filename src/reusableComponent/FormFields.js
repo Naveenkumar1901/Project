@@ -4,30 +4,14 @@ import React from "react";
 import Input from "./Input";
 
 const FormFields = (props, { variant }) => {
-  const paymentMode = [
-    {
-      text: "- Choose an option -",
-    },
-    {
-      text: "Debit card",
-    },
-    {
-      text: "Credit card",
-    },
-    {
-      text: "Net banking",
-    },
-    {
-      text: "UPI",
-    },
-  ];
+
 
   const paymentStatus = [
     {
       text: "Payed!",
     },
     {
-      text: "Not Payed!",
+      text: "Not payed!",
     },
   ];
 
@@ -50,8 +34,7 @@ const FormFields = (props, { variant }) => {
             value={props.value}
             onChange={(e) => props.onChange(e.target.value)}
           ></textarea>
-        ) : props.fieldName === "Payment mode" ||
-          props.fieldName === "Payment status" ||
+        ) : props.fieldName === "Payment status" ||
           props.fieldName === "Delivery status" ? (
           <div className="dropdownWrapper">
             <select
@@ -61,11 +44,7 @@ const FormFields = (props, { variant }) => {
                 props.onChange(e.target.value);
               }}
             >
-              {props.fieldName === "Payment mode"
-                ? paymentMode.map((eachOption) => (
-                    <option>{eachOption.text}</option>
-                  ))
-                : props.fieldName === "Payment status"
+              {props.fieldName === "Payment status"
                 ? paymentStatus.map((eachOption) => (
                     <option>{eachOption.text}</option>
                   ))
@@ -78,12 +57,9 @@ const FormFields = (props, { variant }) => {
           <div className={`inputWrapper`}>
             <Input
               type={props.type}
-              name={props.name}
               value={props.value}
               minLength={props.minLength}
               maxLength={props.maxLength}
-              min={props.min}
-              max={props.max}
               onChange={(e) => props.onChange(e)}
             />
           </div>

@@ -119,3 +119,6 @@ tr:hover {
   display: flex;
   justify-content: center;
 }
+.tableContainer::-webkit-scrollbar {
+  width: 10px;
+}

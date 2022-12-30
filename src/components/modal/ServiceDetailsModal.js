@@ -40,7 +40,6 @@ const ServiceDetailsModal = ({ customerId, hideServiceDetailsModal }) => {
         ))}
 
         <ServiceCostDetails
-          variant={"modalPrimary"}
           costParticular="Total amount with GST"
           costValue={result?.TotalAmount}
         />

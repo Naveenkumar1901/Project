@@ -13,11 +13,13 @@ import Input from "../reusableComponent/Input";
 import PaymentModal from "../components/modal/PaymentModal";
 import DeleteInfo from "../components/modal/DeleteInfoModal";
 import EditModal from "../components/modal/EditModal";
-import customerData from "../data/CustomerData";
 // import _ from "lodash";
 
 const Delivered = () => {
-  const [data, setData] = useState(customerData);
+  const customerDetails = useSelector(
+    (state) => state.customer.customerDetails
+  );
+  const [data, setData] = useState(customerDetails);
   // const [paginatedData, setPaginatedData] = useState();
   const [dateFilters, setDateFilters] = useState({
     start: moment().format("yyyy-MM-DD"),
@@ -41,18 +43,18 @@ const Delivered = () => {
     border: "none",
   };
   const keys = [
-    "serviceType",
-    "customerName",
-    "carName",
-    "carNo",
-    "deliveryTime",
-    "deliveryStatus",
-    "paymentStatus",
-    "paymentMode",
+    "CustomerName",
+    "CarBrand",
+    "CarModel",
+    "RegNumber",
+    "MobileNumber",
+    "DeliveryDate",
+    "Status",
+    "City",
   ];
 
   const handleSearch = (input) => {
-    let filteredSearch = customerData.filter((eachItem) =>
+    let filteredSearch = customerDetails.filter((eachItem) =>
       keys.some((key) =>
         eachItem[key].toLowerCase().includes(input.toLowerCase())
       )
@@ -65,7 +67,7 @@ const Delivered = () => {
     dateFilters.start &&
       dateFilters.end &&
       setData(
-        customerData.filter(
+        customerDetails.filter(
           ({ deliveryDate }) =>
             moment(deliveryDate).format("yyyy-MM-DD") >= dateFilters.start &&
             moment(deliveryDate).format("yyyy-MM-DD") <= dateFilters.end
@@ -109,9 +111,9 @@ const Delivered = () => {
         isOpen={showPaymentModal || showDeleteModal || showEditModal}
         style={
           showPaymentModal
-            ? { content: { ...customStyles, width: "350px", height: "350px" } }
+            ? { content: { ...customStyles, width: "50%", height: "40%" } }
             : showEditModal
-            ? { content: { ...customStyles, width: "350px", height: "500px" } }
+            ? { content: { ...customStyles, width: "350px", height: "70%" } }
             : { content: { ...customStyles, width: "300px", height: "250px" } }
         }
       >
@@ -180,26 +182,28 @@ const Delivered = () => {
                 <th>Action</th>
               </tr>
             </thead>
-            {data.length ? (
-              data.map((filteredData) => {
+            {customerDetails.length ? (
+              customerDetails.map((filteredData, index) => {
                 return (
                   <tbody>
                     <tr>
-                      <td>{filteredData.id}</td>
-                      <td>{filteredData.customerName}</td>
-                      <td>{filteredData.carName}</td>
-                      <td>{filteredData.carNo}</td>
-                      <td>{filteredData.deliveryDate}</td>
-                      <td>{filteredData.deliveryTime}</td>
+                      <td>{index + 1}</td>
+                      <td>{filteredData.CustomerName}</td>
+                      <td>
+                        {filteredData.CarBrand} - {filteredData.CarModel}
+                      </td>
+                      <td>{filteredData.RegNumber}</td>
+                      <td>{filteredData.DeliveryDate}</td>
+                      <td>{filteredData.DeliveryTime}</td>
                       <td
                         style={{
                           color:
-                            filteredData.deliveryStatus === "Delivered"
+                            filteredData.Status === "Delivered"
                               ? "#3A7F0D"
                               : "#EB4335",
                         }}
                       >
-                        {filteredData.deliveryStatus}
+                        {filteredData.Status}
                       </td>
                       <td>
                         <div className="actionIcons">
@@ -213,7 +217,7 @@ const Delivered = () => {
                               <AiOutlineEye
                                 className="actionEyeIcon"
                                 onClick={() =>
-                                  setShowPaymentModal(filteredData.id)
+                                  setShowPaymentModal(filteredData.ID)
                                 }
                               />
                             </div>
@@ -228,7 +232,7 @@ const Delivered = () => {
                               <TbEdit
                                 className="actionEditIcon"
                                 onClick={() =>
-                                  setShowEditModal(filteredData.id)
+                                  setShowEditModal(filteredData.ID)
                                 }
                               />
                             </div>
@@ -244,7 +248,7 @@ const Delivered = () => {
                                 className="actionDeleteIcon"
                                 onClick={() => {
                                   setShowDeleteModal(true);
-                                  setDeleteId(filteredData.id);
+                                  setDeleteId(filteredData.ID);
                                 }}
                               />
                             </div>
