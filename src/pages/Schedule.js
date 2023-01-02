@@ -8,13 +8,13 @@ import { useSelector } from "react-redux";
 import ServiceDetailsModal from "../components/modal/ServiceDetailsModal";
 
 const Schedule = () => {
+  const customerDetails = useSelector(
+    (state) => state.customer.customerDetails
+  );
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [showServiceDetailsModal, setShowServiceDetailsModal] = useState(false);
   const [value, setSearchValue] = useState("");
   const loading = useSelector((state) => state.customer.customerLoading);
-  const customerDetails = useSelector(
-    (state) => state.customer.customerDetails
-  );
 
   useEffect(() => {
     if (customerDetails) {
@@ -55,6 +55,23 @@ const Schedule = () => {
   const hideServiceDetailsModal = () => {
     setShowServiceDetailsModal(false);
   };
+  const keys = [
+    "CustomerName",
+    "CarBrand",
+    "CarModel",
+    "RegNumber",
+    "MobileNumber",
+    "Address",
+    "City",
+  ];
+  const handleSearch = (input) => {
+    let filteredSearch = customerDetails?.filter((eachItem) =>
+      keys.some((key) =>
+        eachItem[key].toLowerCase().includes(input.toLowerCase())
+      )
+    );
+    setSearchValue(filteredSearch);
+  };
   return (
     <>
       <Modal
@@ -62,7 +79,7 @@ const Schedule = () => {
         style={
           showDeleteModal
             ? { content: { ...customStyles, width: "300px", height: "250px" } }
-            : { content: { ...customStyles, width: "50%", height: "50%" } }
+            : { content: { ...customStyles, width: "40%", height: "50%" } }
         }
       >
         {showDeleteModal ? (
@@ -83,7 +100,14 @@ const Schedule = () => {
         ) : (
           <>
             <div className="searchWrapper">
-              <SearchBar value={value} setSearchValue={setSearchValue} />
+              <SearchBar
+                value={value}
+                setSearchValue={setSearchValue}
+                filterFunction={(input) => {
+                  handleSearch(input);
+                  console.log(input, "iiii");
+                }}
+              />
             </div>
             <div className="detailsSection">
               {customerDetails?.map((data) => {

@@ -3,24 +3,26 @@ import { BiSearchAlt2 } from "react-icons/bi";
 import { RiDeleteBinLine } from "react-icons/ri";
 import { AiOutlineEye } from "react-icons/ai";
 import { TbEdit } from "react-icons/tb";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import moment from "moment";
 import Modal from "react-modal";
 import { useSelector } from "react-redux";
 import { Pagination, Tooltip, Zoom } from "@mui/material";
 import SearchBar from "../reusableComponent/SearchBar";
 import Input from "../reusableComponent/Input";
-import PaymentModal from "../components/modal/PaymentModal";
+import PaymentDetailsModal from "../components/modal/PaymentDetailsModal";
 import DeleteInfo from "../components/modal/DeleteInfoModal";
 import EditModal from "../components/modal/EditModal";
-// import _ from "lodash";
+import _ from "lodash";
 
 const Delivered = () => {
   const customerDetails = useSelector(
     (state) => state.customer.customerDetails
   );
-  const [data, setData] = useState(customerDetails);
-  // const [paginatedData, setPaginatedData] = useState();
+  const [data, setData] = useState("");
+  const [paginatedData, setPaginatedData] = useState(customerDetails);
+  const [currentPage, setCurrentPage] = useState("");
+
   const [dateFilters, setDateFilters] = useState({
     start: moment().format("yyyy-MM-DD"),
     end: "",
@@ -31,7 +33,6 @@ const Delivered = () => {
   const [value, setSearchValue] = useState("");
   const [deleteId, setDeleteId] = useState("");
 
-  // const pageSize = 10;
   const customStyles = {
     top: "50%",
     left: "50%",
@@ -53,15 +54,15 @@ const Delivered = () => {
     "City",
   ];
 
-  const handleSearch = (input) => {
-    let filteredSearch = customerDetails.filter((eachItem) =>
-      keys.some((key) =>
-        eachItem[key].toLowerCase().includes(input.toLowerCase())
-      )
-    );
-    setData(filteredSearch);
-    // setPaginatedData(_(filteredSearch).slice(0).take(pageSize).value());
-  };
+  // const handleSearch = (input) => {
+  //   let filteredSearch = customerDetails.filter((eachItem) =>
+  //     keys.some((key) =>
+  //       eachItem[key].toLowerCase().includes(input.toLowerCase())
+  //     )
+  //   );
+  //   setData(filteredSearch);
+  //   setPaginatedData(_(filteredSearch).slice(0).take(pageSize).value());
+  // };
 
   const searchWithDate = () => {
     dateFilters.start &&
@@ -101,9 +102,22 @@ const Delivered = () => {
   };
 
   const theme = useSelector((state) => state.color.theme);
-  // const pageCount = data ? Math.ceil(data.length / pageSize) : 0;
-  // if (pageCount === 1) return null;
-  // const pages = _.range(1, pageCount + 1);
+
+  useEffect(() => {
+    setData(customerDetails);
+    setPaginatedData(_(customerDetails).slice(0).take(pageSize).value());
+  }, [customerDetails]);
+
+  const pageSize = 10;
+  const pageCount = data ? Math.ceil(data.length / pageSize) : 0;
+  if (pageCount === 1) return null;
+  const pages = _.range(1, pageCount + 1);
+  const pagination = (pageNo) => {
+    setCurrentPage(pageNo);
+    const startIndex = (pageNo - 1) * pageSize;
+    const paginated = _(data).slice(startIndex).take(pageSize).value();
+    setPaginatedData(paginated);
+  };
 
   return (
     <>
@@ -111,7 +125,7 @@ const Delivered = () => {
         isOpen={showPaymentModal || showDeleteModal || showEditModal}
         style={
           showPaymentModal
-            ? { content: { ...customStyles, width: "50%", height: "40%" } }
+            ? { content: { ...customStyles, width: "40%", height: "50%" } }
             : showEditModal
             ? { content: { ...customStyles, width: "350px", height: "70%" } }
             : { content: { ...customStyles, width: "300px", height: "250px" } }
@@ -119,7 +133,7 @@ const Delivered = () => {
       >
         {" "}
         {showPaymentModal ? (
-          <PaymentModal
+          <PaymentDetailsModal
             paymentModalId={showPaymentModal}
             showEditDetails={showEditDetails}
             hidePaymentDetails={hidePaymentDetails}
@@ -144,7 +158,7 @@ const Delivered = () => {
             <SearchBar
               value={value}
               setSearchValue={setSearchValue}
-              filterFunction={(input) => handleSearch(input)}
+              // filterFunction={(input) => handleSearch(input)}
             />
           </div>
           <div className="dateFilter">
@@ -182,94 +196,92 @@ const Delivered = () => {
                 <th>Action</th>
               </tr>
             </thead>
-            {customerDetails.length ? (
-              customerDetails.map((filteredData, index) => {
-                return (
-                  <tbody>
-                    <tr>
-                      <td>{index + 1}</td>
-                      <td>{filteredData.CustomerName}</td>
-                      <td>
-                        {filteredData.CarBrand} - {filteredData.CarModel}
-                      </td>
-                      <td>{filteredData.RegNumber}</td>
-                      <td>{filteredData.DeliveryDate}</td>
-                      <td>{filteredData.DeliveryTime}</td>
-                      <td
-                        style={{
-                          color:
-                            filteredData.Status === "Delivered"
-                              ? "#3A7F0D"
-                              : "#EB4335",
-                        }}
-                      >
-                        {filteredData.Status}
-                      </td>
-                      <td>
-                        <div className="actionIcons">
-                          <Tooltip
-                            placement="top"
-                            title="Show details"
-                            arrow
-                            TransitionComponent={Zoom}
-                          >
-                            <div>
-                              <AiOutlineEye
-                                className="actionEyeIcon"
-                                onClick={() =>
-                                  setShowPaymentModal(filteredData.ID)
-                                }
-                              />
-                            </div>
-                          </Tooltip>
-                          <Tooltip
-                            placement="top"
-                            title="Edit details"
-                            arrow
-                            TransitionComponent={Zoom}
-                          >
-                            <div>
-                              <TbEdit
-                                className="actionEditIcon"
-                                onClick={() =>
-                                  setShowEditModal(filteredData.ID)
-                                }
-                              />
-                            </div>
-                          </Tooltip>
-                          <Tooltip
-                            placement="top"
-                            title="Delete"
-                            arrow
-                            TransitionComponent={Zoom}
-                          >
-                            <div>
-                              <RiDeleteBinLine
-                                className="actionDeleteIcon"
-                                onClick={() => {
-                                  setShowDeleteModal(true);
-                                  setDeleteId(filteredData.ID);
-                                }}
-                              />
-                            </div>
-                          </Tooltip>
-                        </div>
-                      </td>
-                    </tr>
-                  </tbody>
-                );
-              })
-            ) : (
-              <p className="errorMsg">No item found!</p>
-            )}
+            {paginatedData?.map((filteredData, index) => {
+              return (
+                <tbody>
+                  <tr>
+                    <td>{index + 1}</td>
+                    <td>{filteredData.CustomerName}</td>
+                    <td>
+                      {filteredData.CarBrand} - {filteredData.CarModel}
+                    </td>
+                    <td>{filteredData.RegNumber}</td>
+                    <td>{filteredData.DeliveryDate}</td>
+                    <td>{filteredData.DeliveryTime}</td>
+                    <td
+                      style={{
+                        color:
+                          filteredData.Status === "Delivered"
+                            ? "#3A7F0D"
+                            : "#EB4335",
+                      }}
+                    >
+                      {filteredData.Status}
+                    </td>
+                    <td>
+                      <div className="actionIcons">
+                        <Tooltip
+                          placement="top"
+                          title="Show details"
+                          arrow
+                          TransitionComponent={Zoom}
+                        >
+                          <div>
+                            <AiOutlineEye
+                              className="actionEyeIcon"
+                              onClick={() =>
+                                setShowPaymentModal(filteredData.ID)
+                              }
+                            />
+                          </div>
+                        </Tooltip>
+                        <Tooltip
+                          placement="top"
+                          title="Edit details"
+                          arrow
+                          TransitionComponent={Zoom}
+                        >
+                          <div>
+                            <TbEdit
+                              className="actionEditIcon"
+                              onClick={() => setShowEditModal(filteredData.ID)}
+                            />
+                          </div>
+                        </Tooltip>
+                        <Tooltip
+                          placement="top"
+                          title="Delete"
+                          arrow
+                          TransitionComponent={Zoom}
+                        >
+                          <div>
+                            <RiDeleteBinLine
+                              className="actionDeleteIcon"
+                              onClick={() => {
+                                setShowDeleteModal(true);
+                                setDeleteId(filteredData.ID);
+                              }}
+                            />
+                          </div>
+                        </Tooltip>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              );
+            })}
           </table>
         </div>
         <div className="paginationContainer">
-          <Pagination count={2} variant="outlined" shape="rounded" />
+          <Pagination
+            count={pageCount}
+            variant="outlined"
+            shape="rounded"
+            onClick={() => pagination(pages)}
+          />
         </div>
       </div>
     </>
   );
 };
-
 export default Delivered;

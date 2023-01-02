@@ -12,6 +12,9 @@
   align-items: center;
   justify-content: space-between;
 }
+.currentCustomerName {
+  font-size: 14px;
+}
 
 .menuIcon {
   font-size: 30px;

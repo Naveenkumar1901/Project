@@ -23,6 +23,7 @@
 .carNameSection,
 .carNoSection,
 .serviceNameSection {
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -35,6 +36,7 @@
 .carNameText,
 .carNoText,
 .serviceNameText {
+  width: 50%;
   color: #0071E3;
   flex: 0.5;
   text-align: left;
@@ -44,6 +46,7 @@
 .carNameValue,
 .carNoValue,
 .serviceNameValue {
+  width: 50%;
   flex: 0.5;
   text-align: left;
 }
@@ -51,6 +54,7 @@
 .ownerNameValue {
   text-transform: uppercase;
 }
+
 .separationLine {
   width: 100%;
   height: 1px;

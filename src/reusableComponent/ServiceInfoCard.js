@@ -38,9 +38,7 @@ const ServiceInfoCard = (props) => {
       >
         <div className="ownerNameSection">
           <p className="ownerNameText">Customer name</p>
-          <p className="ownerNameValue">
-            {props.customerName}({props.city})
-          </p>
+          <p className="ownerNameValue">{props.customerName}</p>
         </div>
         <div className="carNoSection">
           <p className="carNoText">Car number</p>

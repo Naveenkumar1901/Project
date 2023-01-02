@@ -1,5 +1,5 @@
 import "../styles/home.css";
-import React, { useState } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { BiMenuAltLeft } from "react-icons/bi";
@@ -8,13 +8,11 @@ import Zoom from "@mui/material/Zoom";
 import banner from "../assets/bannerDesign.jpg";
 import ServiceCategory from "../reusableComponent/SeviceCategory";
 import services from "../data/serviceSection";
-import SearchBar from "../reusableComponent/SearchBar";
 import Button from "../reusableComponent/Button";
 import { toggleSideBar } from "../redux/slices/toggleSlice";
 
 const Home = () => {
   const navigate = useNavigate();
-  const [value, setSearchValue] = useState("");
   const dispatch = useDispatch();
   const customerDetails = useSelector(
     (state) => state.customer.customerDetails
@@ -49,12 +47,10 @@ const Home = () => {
           >
             Create customer
           </Button>
-          <p>Current customer: {customer?.CustomerName}</p>
         </div>
-
-        <div className="homeSearch">
-          <SearchBar value={value} setSearchValue={setSearchValue} />
-        </div>
+        <p className="currentCustomerName">
+          Current customer: {customer?.CustomerName}
+        </p>
         <Button
           variant={"primary"}
           onClick={() => {
@@ -65,9 +61,7 @@ const Home = () => {
           Log out
         </Button>
       </div>
-
       <img src={banner} alt="" className="banner" />
-
       <>
         <div className="eachService">
           {services.map((data) => {

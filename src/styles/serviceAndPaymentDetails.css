@@ -1,0 +1,95 @@
+.detailsContainer {
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+}
+
+.detailsHeader {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-bottom: 1px solid #7E7E7E;
+}
+
+.closeModalSection {
+    width: 100%;
+    display: flex;
+    justify-content: right;
+}
+
+.closeIcon {
+    cursor: pointer;
+}
+
+.closeIcon:hover {
+    color: #f0ce1b;
+}
+
+.headerTitle {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.detailsBody {
+    padding: 20px 10px 0px 10px;
+}
+
+.bookedService {
+    margin-bottom: 20px;
+}
+
+.eachServiceSection,
+.totalSection,
+.paymentStatusSection,
+.paymentModeSection {
+    width: 100%;
+    display: flex;
+    font-size: 14px;
+    margin: 5px 0px;
+    flex: 1;
+}
+
+.totalSection {
+    font-weight: 500;
+    margin-top: 20px;
+}
+
+.costParticular,
+.serviceParticular,
+.descriptionParticular,
+.paymentStatusParticular,
+.paymentModeParticular {
+    flex: 0.5;
+    text-align: left;
+    color: #1A30AC;
+    padding-left: 20px;
+}
+
+.serviceParticular {
+    display: flex;
+    align-items: center;
+    padding-left: 0px;
+}
+
+.serviceCount {
+    width: 20px;
+    font-weight: 500;
+}
+
+.costValue,
+.serviceValue,
+.descriptionValue,
+.paymentStatus,
+.paymentMode {
+    flex: 0.5;
+    text-align: center;
+}
+
+.editBtn {
+    display: flex;
+    justify-content: center;
+}
+
+/* .detailsContainer::-webkit-scrollbar {
+    width: 0px;
+} */
